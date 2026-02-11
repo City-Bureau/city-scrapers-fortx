@@ -1,37 +1,869 @@
-{
-    "data": [
-        {
-            "id": "4774d90d-9af6-427c-c33c-08dcfdc9934d",
-            "meetingStartDateTime": "2024-12-17T10:00:00",
-            "meetingStartDateTimeDisplay": "12/17/2024",
-            "meetingEndDateTime": "2024-12-17T17:00:00",
-            "meetingType": "Commissioners Court",
-            "description": "Commissioners Court",
-            "meetingStatus": "Upcoming",
-            "isPublished": false,
-            "agendaAttachmentId": "2384129d-a6b3-460c-da6f-08dd0e2f659d",
-            "minutesAttachmentId": null,
-            "hasAgenda": true,
-            "hasMinutes": false,
-            "videoId": null
+[
+    {
+        "_id": "69611c38130b45004a0327f1",
+        "active": false,
+        "inProgress": false,
+        "publishStatus": "published",
+        "room": {
+            "address": {
+                "street2": "",
+                "street": "100 East Weatherford Street, 5th Floor",
+                "city": "Fort Worth",
+                "state": "Texas",
+                "zipCode": "76196"
+            },
+            "roomName": "Commissioners Courtroom",
+            "_id": "682aab883c8f84005c5ba0bc"
         },
-        {
-            "id": "676e2944-0b63-463c-a43f-08dd149af481",
-            "meetingStartDateTime": "2025-01-14T10:00:00",
-            "meetingStartDateTimeDisplay": "1/14/2025",
-            "meetingEndDateTime": "2025-01-14T17:00:00",
-            "meetingType": "Commissioners Court",
-            "description": "Commissioners Court",
-            "meetingStatus": "Upcoming",
-            "isPublished": false,
-            "agendaAttachmentId": null,
-            "minutesAttachmentId": null,
-            "hasAgenda": false,
-            "hasMinutes": false,
-            "videoId": null
-        }
-    ],
-    "total": 2,
-    "aggregateResults": null,
-    "errors": null
-}
+        "isRevised": true,
+        "pdfOnly": false,
+        "minutesPdfOnly": false,
+        "archiveVideo": false,
+        "meetingType": "Commissioners Court",
+        "clientId": "tarrantcountytx",
+        "scheduleDate": "Tuesday, February 10, 2026, 10:00 AM",
+        "department": {
+            "_id": "6823a747b52fbb005d2ff78d",
+            "name": "Commissioners Court"
+        },
+        "attachments": [],
+        "agendaPdfUrl": "https://s3.us-west-004.backblazeb2.com/agendalink-pdf/tarrantcountytx/pdfs/agenda/69611c38130b45004a0327f1/CommissionersCourt_2026-02-10.pdf",
+        "agendaPacketUrl": "https://s3.us-west-004.backblazeb2.com/agendalink-pdf/tarrantcountytx/pdfs/packets/69611c38130b45004a0327f1/CommissionersCourt_02-10-2026_packet.pdf",
+        "id": "69611c38130b45004a0327f1",
+        "actionTopics": [
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            }
+        ],
+        "scheduleIso": "2026-02-10T16:00:00.000Z"
+    },
+    {
+        "_id": "692dd4dac6a6310048f35e00",
+        "active": false,
+        "inProgress": false,
+        "publishStatus": "review",
+        "room": {
+            "address": {
+                "street2": "",
+                "street": "100 East Weatherford Street, 5th Floor",
+                "city": "Fort Worth",
+                "state": "Texas",
+                "zipCode": "76196"
+            },
+            "roomName": "Commissioners Courtroom",
+            "_id": "682aab883c8f84005c5ba0bc"
+        },
+        "isRevised": false,
+        "pdfOnly": false,
+        "minutesPdfOnly": true,
+        "archiveVideo": false,
+        "meetingType": "Commissioners Court",
+        "clientId": "tarrantcountytx",
+        "scheduleDate": "Tuesday, January 13, 2026, 10:00 AM",
+        "department": {
+            "_id": "6823a747b52fbb005d2ff78d",
+            "name": "Commissioners Court"
+        },
+        "attachments": [],
+        "agendaPdfUrl": "https://s3.us-west-004.backblazeb2.com/agendalink-pdf/tarrantcountytx/pdfs/agenda/692dd4dac6a6310048f35e00/CommissionersCourt_2026-01-13.pdf",
+        "agendaPacketUrl": "https://s3.us-west-004.backblazeb2.com/agendalink-pdf/tarrantcountytx/pdfs/packets/692dd4dac6a6310048f35e00/CommissionersCourt_01-13-2026_packet.pdf",
+        "videoUrl": "https://www.youtube.com/embed/MJf4ODeTozI?si=2-yB3LFBru_nog8K",
+        "minutesPdfUrl": "https://s3.us-west-004.backblazeb2.com/agendalink-pdf/tarrantcountytx/pdfs/minutes/692dd4dac6a6310048f35e00/Minutes_-_January_13_2026.pdf",
+        "id": "692dd4dac6a6310048f35e00",
+        "actionTopics": [
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            },
+            {
+                "duration": 5
+            }
+        ],
+        "scheduleIso": "2026-01-13T16:00:00.000Z"
+    }
+]
