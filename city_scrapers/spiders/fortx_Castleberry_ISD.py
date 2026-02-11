@@ -13,6 +13,9 @@ class FortxCastleberryIsdSpider(CityScrapersSpider):
     timezone = "America/Chicago"
     start_urls = ["https://meetings.boardbook.org/Public/Organization/1090"]
 
+    def _clean_text(self, text):
+        return re.sub(r"\s+", " ", text).strip() if text else ""
+
     def parse(self, response):
         for item in response.css("table tbody tr[class*='row-for-board']"):
             start = self._parse_start(item)
@@ -72,16 +75,12 @@ class FortxCastleberryIsdSpider(CityScrapersSpider):
 
     def _parse_location(self, item):
         location_td = item.css("td")[1]
-        name = location_td.css("span::text").get()
-        spans = location_td.css("span::text").getall()
-        if len(spans) >= 3:
-            line1 = spans[1] if len(spans) > 1 else ""
-            line2 = spans[2] if len(spans) > 2 else ""
-            return {
-                "name": name if name else "",
-                "address": f"{line1}, {line2}" if line1 and line2 else "",
-            }
-        return {"name": name if name else "", "address": ""}
+        spans = [self._clean_text(t) for t in location_td.css("span::text").getall()]
+        name = spans[0] if spans else ""
+        line1 = spans[1] if len(spans) > 1 else ""
+        line2 = spans[2] if len(spans) > 2 else ""
+        address = ", ".join([part for part in (line1, line2) if part])
+        return {"name": name, "address": address}
 
     def _parse_links(self, item):
         base_url = "https://meetings.boardbook.org"
