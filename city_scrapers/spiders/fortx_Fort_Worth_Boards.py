@@ -1,4 +1,7 @@
+from datetime import datetime
+
 import requests
+import scrapy
 from city_scrapers_core.constants import COMMISSION
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import CityScrapersSpider
@@ -15,9 +18,33 @@ class FortxFortWorthBoardsSpider(CityScrapersSpider):
     # https://www.fortworthtexas.gov/ocapi/calendars/getcalendaritems?Ids=788ffb59-05d1-457d-b9dd-423d4b95a06e&LanguageCode=en-US
     # API endpoint when clicking on calendar
     # https://www.fortworthtexas.gov/ocapi/get/contentinfo?calendarId=788ffb59-05d1-457d-b9dd-423d4b95a06e&contentId=e3182d81-2385-4796-809f-8a330d1c7ec9&language=en-US&mainContentId=e3182d81-2385-4796-809f-8a330d1c7ec9
-    start_urls = [
-        "https://www.fortworthtexas.gov/ocapi/calendars/getcalendaritems?Ids=788ffb59-05d1-457d-b9dd-423d4b95a06e&LanguageCode=en-US"  # noqa
-    ]
+    start_url = "https://www.fortworthtexas.gov/ocapi/calendars/getcalendaritems?Ids=788ffb59-05d1-457d-b9dd-423d4b95a06e&LanguageCode=en-US&startDate={start_date}&endDate={end_date}"  # noqa
+
+    """
+    Spider broke after June 2025 due to changes in the API endpoint.
+    Updated spider to make multiple requests for each year from June
+    27, 2025 (data cut off date) to current year.
+    """
+
+    def start_requests(self):
+        current_year = datetime.now().year
+
+        first_start = "2025-06-27"
+        first_end = "2025-12-31"
+        initial_url = self.start_url.format(start_date=first_start, end_date=first_end)
+
+        yield scrapy.Request(
+            url=initial_url,
+            callback=self.parse,
+        )
+
+        for year in range(2026, current_year + 1):
+            yield scrapy.Request(
+                url=self.start_url.format(
+                    start_date=f"{year}-01-01", end_date=f"{year}-12-31"
+                ),
+                callback=self.parse,
+            )
 
     def parse(self, response):
         """
@@ -30,8 +57,7 @@ class FortxFortWorthBoardsSpider(CityScrapersSpider):
             for item in calendar_day["Items"]:
                 # make another API requests to get more info about meeting
                 info_url = f"https://www.fortworthtexas.gov/ocapi/get/contentinfo?calendarId={item['CalendarId']}&contentId={item['Id']}&language=en-US&mainContentId={item['Id']}"  # noqa
-                headers = {"User-Agent": ""}
-                info = requests.get(info_url, headers=headers).json()["data"]
+                info = requests.get(info_url).json()["data"]
 
                 meeting = Meeting(
                     title=item["Name"],
