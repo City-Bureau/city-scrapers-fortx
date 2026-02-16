@@ -40,7 +40,7 @@ class FortxCastleberryIsdSpider(CityScrapersSpider):
             yield meeting
 
     def _parse_title(self, item):
-        text = item.css("td")[0].css("div::text").get()
+        text = item.css("td")[0].css("div").xpath("string()").get()
         if not text:
             return ""
         text = text.strip()
@@ -50,7 +50,7 @@ class FortxCastleberryIsdSpider(CityScrapersSpider):
         return text
 
     def _parse_start(self, item):
-        text = item.css("td")[0].css("div::text").get()
+        text = item.css("td")[0].css("div").xpath("string()").get()
         if not text:
             return None
         text = text.strip()
@@ -63,7 +63,7 @@ class FortxCastleberryIsdSpider(CityScrapersSpider):
         return None
 
     def _parse_time_notes(self, item):
-        text = item.css("td")[0].css("div::text").get()
+        text = item.css("td")[0].css("div").xpath("string()").get()
         if not text:
             return ""
         text = text.strip()
