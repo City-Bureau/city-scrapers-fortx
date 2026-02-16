@@ -7,11 +7,12 @@ from city_scrapers_core.spiders import CityScrapersSpider
 from dateutil.parser import parse
 
 
-class FortxCastleberryIsdSpider(CityScrapersSpider):
+class FortxCastlebreryIsdSpider(CityScrapersSpider):
     name = "fortx_Castleberry_ISD"
     agency = "Castleberry ISD Board"
     timezone = "America/Chicago"
     start_urls = ["https://meetings.boardbook.org/Public/Organization/1090"]
+    base_url = "https://meetings.boardbook.org"
 
     def _clean_text(self, text):
         return re.sub(r"\s+", " ", text).strip() if text else ""
@@ -31,7 +32,7 @@ class FortxCastleberryIsdSpider(CityScrapersSpider):
                 time_notes=self._parse_time_notes(item),
                 location=self._parse_location(item),
                 links=self._parse_links(item),
-                source=self._parse_source(response),
+                source=response.url,
             )
 
             meeting["status"] = self._get_status(meeting)
@@ -83,7 +84,6 @@ class FortxCastleberryIsdSpider(CityScrapersSpider):
         return {"name": name, "address": address}
 
     def _parse_links(self, item):
-        base_url = "https://meetings.boardbook.org"
         output = []
         map_link = item.css("td")[1].css("a")
         for link in map_link:
@@ -102,9 +102,6 @@ class FortxCastleberryIsdSpider(CityScrapersSpider):
                 title = title.strip()
             href = link.css("::attr(href)").get()
             if href:
-                href = urljoin(base_url, href)
+                href = urljoin(self.base_url, href)
                 output.append({"title": title, "href": href})
         return output
-
-    def _parse_source(self, response):
-        return response.url
