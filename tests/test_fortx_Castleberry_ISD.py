@@ -23,7 +23,7 @@ freezer.stop()
 
 
 def test_count():
-    assert len(parsed_items) >= 1
+    assert len(parsed_items) >= 347
 
 
 def test_title():
