@@ -46,8 +46,7 @@ class FortxCastlebreryIsdSpider(CityScrapersSpider):
             return ""
         text = text.strip()
         if " - " in text:
-            parts = text.split(" - ", 1)
-            return parts[1].strip() if len(parts) > 1 else text
+            return text.split(" - ", 1)[1].strip()
         return text
 
     def _parse_start(self, item):
