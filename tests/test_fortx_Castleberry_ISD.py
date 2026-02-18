@@ -42,8 +42,15 @@ def test_end():
     assert parsed_items[0]["end"] is None
 
 
-def test_time_notes():
-    assert parsed_items[0]["time_notes"] == ""
+@pytest.mark.parametrize(
+    "item_index, expected_notes",
+    [
+        (0, ""),
+        (1, "Will begin immediately following the Public Hearing"),
+    ],
+)
+def test_time_notes(item_index, expected_notes):
+    assert parsed_items[item_index]["time_notes"] == expected_notes
 
 
 def test_id():
