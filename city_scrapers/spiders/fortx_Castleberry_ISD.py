@@ -7,7 +7,7 @@ from city_scrapers_core.spiders import CityScrapersSpider
 from dateutil.parser import parse
 
 
-class FortxCastlebreryIsdSpider(CityScrapersSpider):
+class FortxCastleberryIsdSpider(CityScrapersSpider):
     name = "fortx_Castleberry_ISD"
     agency = "Castleberry ISD Board"
     timezone = "America/Chicago"
