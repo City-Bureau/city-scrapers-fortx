@@ -90,7 +90,7 @@ class FortxCastlebreryIsdSpider(CityScrapersSpider):
             title = link.css("::text").get()
             if title:
                 title = title.strip()
-            if "map it" in title:
+            if title and "map it" in title.lower():
                 title = "Map Link"
             href = link.css("::attr(href)").get()
             if href:
