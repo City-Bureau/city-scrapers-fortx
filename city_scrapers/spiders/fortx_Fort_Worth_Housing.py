@@ -55,6 +55,12 @@ class FortxFortWorthHousingSpider(CityScrapersSpider):
             self.logger.error("Could not extract tvn1 token from page")
             return
 
+        # Extract shortcode dynamically from the calendar page
+        shortcode = response.css('div[data-js="tribe-events-view"]::attr(data-view-shortcode)').get()
+        if not shortcode:
+            self.logger.error("Could not extract shortcode from page")
+            return
+
         # Use empty string for tvn2 if not found
         tvn2 = tvn2 or ""
 
@@ -82,7 +88,7 @@ class FortxFortWorthHousingSpider(CityScrapersSpider):
                 "tribe_filter_bar_state": 1,
                 "tribe_filters_state": 0,
                 "u": month_url,
-                "shortcode": "475d705f",
+                "shortcode": shortcode,
                 "tvn1": tvn1,
                 "tvn2": tvn2,
                 "smu": "false",
