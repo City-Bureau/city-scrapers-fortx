@@ -13,6 +13,15 @@ class FortxFortWorthHousingSpider(CityScrapersSpider):
     name = "fortx_fort_worth_housing"
     agency = "Fort Worth Housing Solutions (FWHS) Board of Commissioners"
     timezone = "America/Chicago"
+    WEEKDAYS = (
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+    )
 
     api_url = "https://fwhs.org/wp-json/tribe/views/v2/html"
     source_url = "https://fwhs.org/about-fwhs/events-calendar/"
@@ -47,7 +56,7 @@ class FortxFortWorthHousingSpider(CityScrapersSpider):
                 nonce_data = json.loads(nonce_script)
                 tvn1 = nonce_data.get("tvn1")
                 tvn2 = nonce_data.get("tvn2")
-            except Exception as e:
+            except json.JSONDecodeError as e:
                 self.logger.error(f"Error parsing nonce data: {e}")
 
         # Validate that we have the required tokens
@@ -56,7 +65,9 @@ class FortxFortWorthHousingSpider(CityScrapersSpider):
             return
 
         # Extract shortcode dynamically from the calendar page
-        shortcode = response.css('div[data-js="tribe-events-view"]::attr(data-view-shortcode)').get()
+        shortcode = response.css(
+            'div[data-js="tribe-events-view"]::attr(data-view-shortcode)'
+        ).get()  # noqa
         if not shortcode:
             self.logger.error("Could not extract shortcode from page")
             return
@@ -154,10 +165,9 @@ class FortxFortWorthHousingSpider(CityScrapersSpider):
         # Parse everything from the event page
         title = self._parse_title_from_page(response)
         description = self._parse_description_from_page(response)
-        start_time = self._parse_start_from_page(response)
+        start_time, end_time = self._parse_start_end_from_page(response)
         if not start_time:
             return
-        end_time = self._parse_end_from_page(response)
         location = self._parse_location_from_page(response)
         links = self._parse_links_from_page(response)
 
@@ -202,42 +212,28 @@ class FortxFortWorthHousingSpider(CityScrapersSpider):
         title = response.css("h2::text").get()
         return self._clean_title(title) if title else ""
 
-    def _parse_start_from_page(self, response):
-        """Parse start datetime from p.date element using strptime()."""
+    def _parse_start_end_from_page(self, response):
+        """Parse start and end datetimes from p.date element."""
         date_text = " ".join(response.css("p.date::text").getall())
-
-        # Split at dash to isolate start datetime: "Thursday, January 27, 2026 12:00 PM" # noqa
         parts = re.split(r"\s*[–-]\s*", date_text)
-        if parts:
-            start_str = parts[0].strip()
-            try:
-                return datetime.strptime(start_str, "%A, %B %d, %Y %I:%M %p")
-            except ValueError:
-                return None
-        return None
+        if not parts:
+            return None, None
 
-    def _parse_end_from_page(self, response):
-        """Parse end datetime from p.date element using strptime()."""
-        date_text = " ".join(response.css("p.date::text").getall())
+        start_str = parts[0].strip()
+        try:
+            start_dt = datetime.strptime(start_str, "%A, %B %d, %Y %I:%M %p")
+        except ValueError:
+            return None, None
 
-        # Split at dash: ["Thursday, January 27, 2026 12:00 PM", "01:30 PM"]
-        parts = re.split(r"\s*[–-]\s*", date_text)
+        end_dt = None
         if len(parts) >= 2:
             end_time_str = parts[1].strip()
-            start_dt = self._parse_start_from_page(response)
-            if start_dt:
-                try:
-                    end_time = datetime.strptime(end_time_str, "%I:%M %p")
-                    return datetime(
-                        start_dt.year,
-                        start_dt.month,
-                        start_dt.day,
-                        end_time.hour,
-                        end_time.minute,
-                    )
-                except ValueError:
-                    return None
-        return None
+            try:
+                end_time = datetime.strptime(end_time_str, "%I:%M %p")
+                end_dt = start_dt.replace(hour=end_time.hour, minute=end_time.minute)
+            except ValueError:
+                pass  # end_dt remains None
+        return start_dt, end_dt
 
     def _parse_location_from_page(self, response):
         """Parse location from individual event page."""
@@ -261,21 +257,35 @@ class FortxFortWorthHousingSpider(CityScrapersSpider):
                 text
                 and len(text) > 30
                 and "\u2026" not in text
-                and not text.startswith(
-                    (
-                        "Monday",
-                        "Tuesday",
-                        "Wednesday",
-                        "Thursday",
-                        "Friday",
-                        "Saturday",
-                        "Sunday",
-                    )
-                )
+                and not text.startswith(self.WEEKDAYS)
                 and "please email" not in text.lower()
             ):
                 return text
         return ""
+
+    def _process_link(self, link, response, seen_hrefs, default_title="Document"):
+        """Process a single link element and return link dict if valid."""
+        href = link.css("::attr(href)").get()
+        title = link.css("span::text").get() or link.css("::text").get()
+
+        # Skip broken links (those with HTML content in href)
+        if not href or href.startswith("<") or ".pdf" not in href.lower():
+            return None
+
+        # Skip duplicates
+        if href in seen_hrefs:
+            return None
+
+        seen_hrefs.add(href)
+        normalized_title = title.strip() if title else default_title
+        if normalized_title.lower().startswith("download agenda pdf"):
+            normalized_title = normalized_title.replace(
+                "Download Agenda PDF", "Agenda"
+            ).replace("download agenda pdf", "Agenda")
+        return {
+            "title": normalized_title,
+            "href": response.urljoin(href.strip()),
+        }
 
     def _parse_links_from_page(self, response):
         """Parse relevant links from individual event page - agendas and supplemental docs."""  # noqa
@@ -285,44 +295,17 @@ class FortxFortWorthHousingSpider(CityScrapersSpider):
         # Supplemental documents from document_era section
         doc_links = response.css("div.document_era a.doc_block")
         for link in doc_links:
-            href = link.css("::attr(href)").get()
-            title = link.css("span::text").get()
-
-            # Skip broken links (those with HTML content in href)
-            if href and not href.startswith("<") and ".pdf" in href.lower():
-                if href not in seen_hrefs:
-                    seen_hrefs.add(href)
-                    normalized_title = title.strip() if title else "Document"
-                    if normalized_title.lower().startswith("download agenda pdf"):
-                        normalized_title = normalized_title.replace(
-                            "Download Agenda PDF", "Agenda"
-                        ).replace("download agenda pdf", "Agenda")
-                    links.append(
-                        {
-                            "title": normalized_title,
-                            "href": response.urljoin(href.strip()),
-                        }
-                    )
+            processed_link = self._process_link(link, response, seen_hrefs)
+            if processed_link:
+                links.append(processed_link)
 
         # Also check for agenda links in other sections
         agenda_links = response.css(
             "a[href*='agenda'][href$='.pdf'], a[href*='Agenda'][href$='.pdf']"
         )
         for link in agenda_links:
-            href = link.css("::attr(href)").get()
-            title = link.css("::text").get() or link.css("span::text").get()
+            processed_link = self._process_link(link, response, seen_hrefs, "Agenda")
+            if processed_link:
+                links.append(processed_link)
 
-            if href and href not in seen_hrefs:
-                seen_hrefs.add(href)
-                normalized_title = title.strip() if title else "Agenda"
-                if normalized_title.lower().startswith("download agenda pdf"):
-                    normalized_title = normalized_title.replace(
-                        "Download Agenda PDF", "Agenda"
-                    ).replace("download agenda pdf", "Agenda")
-                links.append(
-                    {
-                        "title": normalized_title,
-                        "href": response.urljoin(href.strip()),
-                    }
-                )
         return links
