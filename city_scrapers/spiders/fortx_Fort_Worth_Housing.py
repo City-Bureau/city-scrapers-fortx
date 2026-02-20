@@ -78,7 +78,11 @@ class FortxFortWorthHousingSpider(CityScrapersSpider):
         # Build AJAX payloads for multiple months (including past meetings)
         # Generate months from start_date to end_date automatically
         start_date = datetime(2024, 2, 1)  # Start from February 2024
-        end_date = datetime(2026, 3, 31)  # End at March 2026
+        now = datetime.now()
+        future_month = now.month + 12
+        future_year = now.year + (future_month - 1)
+        future_month = ((future_month - 1) % 12) + 1
+        end_date = datetime(future_year, future_month, 1)
 
         months_to_scrape = []
         current = start_date
@@ -92,7 +96,6 @@ class FortxFortWorthHousingSpider(CityScrapersSpider):
                 current = current.replace(year=current.year + 1, month=1)
             else:
                 current = current.replace(month=current.month + 1)
-            current = current.replace(day=1)  # Reset to 1st day
 
         for month_url in months_to_scrape:
             payload = {
