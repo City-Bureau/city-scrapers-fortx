@@ -79,10 +79,7 @@ class FortxFortWorthHousingSpider(CityScrapersSpider):
         # Generate months from start_date to end_date automatically
         start_date = datetime(2024, 2, 1)  # Start from February 2024
         now = datetime.now()
-        future_month = now.month + 12
-        future_year = now.year + (future_month - 1)
-        future_month = ((future_month - 1) % 12) + 1
-        end_date = datetime(future_year, future_month, 1)
+        end_date = datetime(now.year + 1, now.month, 1)
 
         months_to_scrape = []
         current = start_date
@@ -134,17 +131,12 @@ class FortxFortWorthHousingSpider(CityScrapersSpider):
 
         selector = Selector(text=html_content)
 
-        # Extract event URLs from the AJAX HTML response
-        event_links = selector.css('a[href*="/event/"]::attr(href)').getall()
+        # Extract event URLs from JSON-LD structured data
+        json_ld_text = selector.css('script[type="application/ld+json"]::text').get()
+        events = json.loads(json_ld_text) if json_ld_text else []
+        event_links = [event["url"] for event in events if event.get("@type") == "Event"]
 
-        self.logger.info(
-            f"Parsed month {month_url}: found {len(event_links)} event links"
-        )
-
-        # Dedupe within this month first
-        unique_links = set(event_links)
-
-        for href in unique_links:
+        for href in event_links:
             if not href:
                 continue
 
