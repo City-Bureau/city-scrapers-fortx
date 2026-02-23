@@ -134,7 +134,9 @@ class FortxFortWorthHousingSpider(CityScrapersSpider):
         # Extract event URLs from JSON-LD structured data
         json_ld_text = selector.css('script[type="application/ld+json"]::text').get()
         events = json.loads(json_ld_text) if json_ld_text else []
-        event_links = [event["url"] for event in events if event.get("@type") == "Event"]
+        event_links = [
+            event["url"] for event in events if event.get("@type") == "Event"
+        ]
 
         for href in event_links:
             if not href:
