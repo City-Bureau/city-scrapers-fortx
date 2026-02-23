@@ -46,7 +46,11 @@ def test_end():
     "item_index, expected_notes",
     [
         (0, ""),
-        (1, "Will begin immediately following the Public Hearing"),
+        (
+            1,
+            "Will begin immediately following the Public Hearing; "
+            "Start time not listed; estimated from same-day meeting",
+        ),
     ],
 )
 def test_time_notes(item_index, expected_notes):
