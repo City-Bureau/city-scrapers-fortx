@@ -1,19 +1,19 @@
 {
-    "data": {
-      "Title": "TPW Meeting Glasgow and Oak Grove Roads",
-      "Description": "Join us at the upcoming public meeting to learn about street upgrades. This project is located in Council District 8.\r\nThe City of Fort Worth Transportation and Public Works (TPW) Department will present upcoming street improvements at the\r\nHighland Hills Neighborhood Association meeting.\r\n\r\nThursday, February 1, 2024 at 6:00 p.m.",
-      "Link": "https://www.fortworthtexas.gov/departments/cip/events/glasgow-oak-grove-meeting-tpw",
-      "Image": null,
-      "AltText": null,
-      "Address": {
-        "Venue": "Highland Hills Community Center",
-        "Street": "1600 Glasgow Road",
-        "Suburb": "Fort Worth",
-        "PostCode": "76134",
-        "Formatted": "Highland Hills Community Center, 1600 Glasgow Road, Fort Worth, 76134"
-      },
-      "AdditionalInfo": [],
-      "IsCancelled": false
+  "data": {
+    "Title": "TPW Meeting Glasgow and Oak Grove Roads",
+    "Description": "Join us at the upcoming public meeting to learn about street upgrades. This project is located in Council District 8.\r\nThe City of Fort Worth Transportation and Public Works (TPW) Department will present upcoming street improvements at the\r\nHighland Hills Neighborhood Association meeting.\r\n\r\nThursday, February 1, 2024 at 6:00 p.m.",
+    "Link": "https://www.fortworthtexas.gov/departments/cip/events/glasgow-oak-grove-meeting-tpw",
+    "Image": null,
+    "AltText": null,
+    "Address": {
+      "Venue": "Highland Hills Community Center",
+      "Street": "1600 Glasgow Road",
+      "Suburb": "Fort Worth",
+      "PostCode": "76134",
+      "Formatted": "Highland Hills Community Center, 1600 Glasgow Road, Fort Worth, 76134"
     },
-    "success": true
-  }
+    "AdditionalInfo": [],
+    "IsCancelled": false
+  },
+  "success": true
+}

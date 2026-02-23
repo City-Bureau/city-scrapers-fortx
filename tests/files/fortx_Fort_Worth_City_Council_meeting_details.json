@@ -1,19 +1,19 @@
 {
-    "data": {
-      "Title": "City Council Executive Session",
-      "Description": "City Council Executive Session",
-      "Link": "https://www.fortworthtexas.gov/departments/citysecretary/events/2024-city-council-executive-session-meetings",
-      "Image": null,
-      "AltText": null,
-      "Address": {
-        "Venue": "Old City Hall",
-        "Street": "200 Texas St.",
-        "Suburb": "Fort Worth",
-        "PostCode": "76102",
-        "Formatted": "Old City Hall, 200 Texas St., Fort Worth, 76102"
-      },
-      "AdditionalInfo": [],
-      "IsCancelled": false
+  "data": {
+    "Title": "City Council Executive Session",
+    "Description": "City Council Executive Session",
+    "Link": "https://www.fortworthtexas.gov/departments/citysecretary/events/2024-city-council-executive-session-meetings",
+    "Image": null,
+    "AltText": null,
+    "Address": {
+      "Venue": "Old City Hall",
+      "Street": "200 Texas St.",
+      "Suburb": "Fort Worth",
+      "PostCode": "76102",
+      "Formatted": "Old City Hall, 200 Texas St., Fort Worth, 76102"
     },
-    "success": true
-  }
+    "AdditionalInfo": [],
+    "IsCancelled": false
+  },
+  "success": true
+}
