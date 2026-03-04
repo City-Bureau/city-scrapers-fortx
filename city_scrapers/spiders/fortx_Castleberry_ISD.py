@@ -124,16 +124,6 @@ class FortxCastleberryIsdSpider(CityScrapersSpider):
 
     def _parse_links(self, item):
         output = []
-        map_link = item.css("td")[1].css("a")
-        for link in map_link:
-            title = link.css("::text").get()
-            if title:
-                title = title.strip()
-            if title and "map it" in title.lower():
-                title = "Map Link"
-            href = link.css("::attr(href)").get()
-            if href:
-                output.append({"title": title, "href": href})
         links = item.css("td")[2].css("a")
         for link in links:
             title = link.css("::text").get()
