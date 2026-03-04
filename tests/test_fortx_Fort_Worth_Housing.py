@@ -42,6 +42,16 @@ def calendar_response():
 
 
 @pytest.fixture
+def cancelled_event_response():
+    return file_response(
+        join(
+            dirname(__file__), "files", "fortx_Fort_Worth_Housing_cancelled_event.html"
+        ),
+        url="https://fwhs.org/event/fwhs-board-of-commissioners-meeting-11/",
+    )
+
+
+@pytest.fixture
 def parsed_item(spider, event_response):
     """Parse the event page and return the first item."""
     items = list(spider.parse_event_page(event_response))
@@ -95,6 +105,37 @@ class TestEventPage:
     def test_empty_description(self, parsed_item):
         """Standard meetings without description text should have empty description."""
         assert parsed_item["description"] == ""
+
+
+@pytest.fixture
+def cancelled_parsed_item(spider, cancelled_event_response):
+    items = list(spider.parse_event_page(cancelled_event_response))
+    return items[0]
+
+
+@freeze_time("2026-02-05")
+class TestCancelledEvent:
+
+    def test_title_cleaned(self, cancelled_parsed_item):
+        assert cancelled_parsed_item["title"] == "FWHS Board of Commissioners Meeting"
+
+    def test_status_cancelled(self, cancelled_parsed_item):
+        assert cancelled_parsed_item["status"] == "cancelled"
+
+    def test_classification(self, cancelled_parsed_item):
+        assert cancelled_parsed_item["classification"] == BOARD
+
+    def test_start(self, cancelled_parsed_item):
+        assert cancelled_parsed_item["start"] == datetime(2024, 9, 19, 17, 0)
+
+    def test_end(self, cancelled_parsed_item):
+        assert cancelled_parsed_item["end"] == datetime(2024, 9, 19, 18, 0)
+
+    def test_cancellation_notice_link(self, cancelled_parsed_item):
+        links = cancelled_parsed_item["links"]
+        cancellation_links = [link for link in links if "Cancellation" in link["title"]]
+        assert len(cancellation_links) == 1
+        assert "Cancellation.pdf" in cancellation_links[0]["href"]
 
 
 class TestCalendarParsing:
