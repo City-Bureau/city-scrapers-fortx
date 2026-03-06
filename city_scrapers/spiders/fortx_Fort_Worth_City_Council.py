@@ -6,7 +6,6 @@ import scrapy
 from city_scrapers_core.constants import CITY_COUNCIL
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import CityScrapersSpider
-from dateutil.parser import parse as dateparse
 from dateutil.relativedelta import relativedelta
 
 
@@ -89,6 +88,7 @@ class FortxFortWorthCityCouncilSpider(CityScrapersSpider):
         meeting_data = data["data"]
 
         meetings_detail_url = meeting_data["Link"]
+        meeting_start = datetime.strptime(item["DateTime"], "%d/%m/%Y %I:%M:%S %p")
 
         try:
             details_page = requests.get(meetings_detail_url).text
@@ -100,7 +100,7 @@ class FortxFortWorthCityCouncilSpider(CityScrapersSpider):
             title=meeting_data["Title"],
             description=meeting_data["Description"],
             classification=CITY_COUNCIL,
-            start=dateparse(item["DateTime"]),
+            start=meeting_start,
             end=None,
             all_day=False,
             time_notes="Please check the meeting description for details on the start time",  # noqa
