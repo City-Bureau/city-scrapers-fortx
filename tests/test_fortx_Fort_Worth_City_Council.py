@@ -2,6 +2,7 @@ from datetime import datetime
 from os.path import dirname, join
 
 import pytest
+import requests
 import scrapy
 from city_scrapers_core.constants import CITY_COUNCIL
 from city_scrapers_core.utils import file_response
@@ -24,14 +25,36 @@ meetings_detail = file_response(
     ),
     url=(
         "https://www.fortworthtexas.gov/ocapi/get/contentinfo?calendarId=8a8add9a-3fd0-4b39-9a3e-d58e98e27acc"  # noqa
-        "&contentId=07d0abc1-462c-4b0a-94b9-d1e7aee72eec&language=en-US&currentDateTime=09/01/2024%2012:00:00%20PM"  # noqa
-        "&mainContentId=07d0abc1-462c-4b0a-94b9-d1e7aee72eec"
+        "&contentId=57212572-47cc-44e2-9da3-8e0d88b7c003&language=en-US&currentDateTime=14/10/2025%2009:00:00%20AM"  # noqa
+        "&mainContentId=57212572-47cc-44e2-9da3-8e0d88b7c003"
     ),
 )
 
 spider = FortxFortWorthCityCouncilSpider()
 
-freezer = freeze_time("2024-12-19")
+
+class MockDetailPageResponse:
+    def __init__(self, text):
+        self.text = text
+
+
+DETAIL_HTML = """
+<div class="side-box consultation-snapshot">
+    <h2 class="side-box-title">
+        Current Agenda
+    </h2>
+    <div class="side-box-content">
+        <div class="side-box-section body-content">
+            <p><a title="12-02-2025 Audit and Finance Committee Agenda" href="/files/assets/public/v/2/city-secretary/documents/calendar/2025-agendas/city-council/committee/audit-ampfinance/12-02-2025-audit-and-finance-committee-agenda.pdf" target="_self" class="document ext-pdf"><i aria-hidden="true"></i>12-02-2025 Audit and Finance Committee Agenda<span class="file-info">(PDF,&nbsp;174KB)</span></a></p> # noqa
+        </div>
+    </div>
+</div>
+"""
+
+original_get = requests.get
+requests.get = lambda *args, **kwargs: MockDetailPageResponse(DETAIL_HTML)
+
+freezer = freeze_time("2026-03-06")
 freezer.start()
 
 parsed_items = []
@@ -44,28 +67,32 @@ for req in spider.parse(meetings_items):
         parsed_items.extend(meeting_detail_item)
 
 freezer.stop()
+requests.get = original_get
 
 """
 The spider for this site is set to fetch meeting items for the entire year.
 To make the test less time consuming, the number of meetings to be tested is
-limited to 17 items.
+limited to 13 items.
 """
 
 
 def test_count():
-    assert len(parsed_items) == 17
+    assert len(parsed_items) == 13
 
 
 def test_title():
-    assert parsed_items[0]["title"] == "City Council Executive Session"
+    assert parsed_items[0]["title"] == "Audit & Finance Committee"
 
 
 def test_description():
-    assert parsed_items[0]["description"] == "City Council Executive Session"
+    assert (
+        parsed_items[0]["description"]
+        == "Audit & Finance Committee Meeting. Veiw agenda and meeting details."
+    )
 
 
 def test_start():
-    assert parsed_items[0]["start"] == datetime(2024, 9, 1, 12, 0)
+    assert parsed_items[0]["start"] == datetime(2025, 10, 14, 9, 0)
 
 
 def test_end():
@@ -82,7 +109,7 @@ def test_time_notes():
 def test_id():
     assert (
         parsed_items[0]["id"]
-        == "fortx_Fort_Worth_City_Council/202409011200/x/city_council_executive_session"
+        == "fortx_Fort_Worth_City_Council/202510140900/x/audit_finance_committee"
     )
 
 
@@ -92,22 +119,22 @@ def test_status():
 
 def test_location():
     assert parsed_items[0]["location"] == {
-        "name": "Old City Hall",
-        "address": "200 Texas St., Fort Worth, 76102",
+        "name": "New City Hall",
+        "address": "100 Fort Worth Trail, Fort Worth, 76102",
     }
 
 
 def test_source():
     assert parsed_items[0]["source"] == (
         "https://www.fortworthtexas.gov/departments/citysecretary/"
-        "events/2024-city-council-executive-session-meetings"
+        "events/audit-committee-2025"
     )
 
 
 def test_links():
     assert parsed_items[0]["links"] == [
         {
-            "href": "https://www.fortworthtexas.gov//files/assets/public/v/2/city-secretary/documents/calendar/2024-agendas/city-council/executive-session/11-05-2024-executive-session.pdf",  # noqa
+            "href": "https://www.fortworthtexas.gov//files/assets/public/v/2/city-secretary/documents/calendar/2025-agendas/city-council/committee/audit-ampfinance/12-02-2025-audit-and-finance-committee-agenda.pdf",  # noqa
             "title": "Agenda",
         }
     ]
