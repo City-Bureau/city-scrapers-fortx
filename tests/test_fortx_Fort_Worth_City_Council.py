@@ -1,5 +1,6 @@
 from datetime import datetime
 from os.path import dirname, join
+from unittest.mock import MagicMock, patch
 
 import pytest
 import requests
@@ -30,6 +31,12 @@ meetings_detail = file_response(
     ),
 )
 
+detail_page_path = join(
+    dirname(__file__), "files", "fortx_Fort_Worth_City_Council_detail_page.html"
+)
+with open(detail_page_path) as f:
+    detail_page_html = f.read()
+
 spider = FortxFortWorthCityCouncilSpider()
 
 
@@ -57,14 +64,21 @@ requests.get = lambda *args, **kwargs: MockDetailPageResponse(DETAIL_HTML)
 freezer = freeze_time("2026-03-06")
 freezer.start()
 
+mock_response = MagicMock()
+mock_response.text = detail_page_html
+
 parsed_items = []
 
-for req in spider.parse(meetings_items):
-    if isinstance(req, scrapy.Request):
-        meeting_detail_item = spider.parse_meeting(
-            meetings_detail, req.cb_kwargs["item"]
-        )
-        parsed_items.extend(meeting_detail_item)
+with patch(
+    "city_scrapers.spiders.fortx_Fort_Worth_City_Council.requests.get",
+    return_value=mock_response,
+):  # noqa
+    for req in spider.parse(meetings_items):
+        if isinstance(req, scrapy.Request):
+            meeting_detail_item = spider.parse_meeting(
+                meetings_detail, req.cb_kwargs["item"]
+            )
+            parsed_items.extend(meeting_detail_item)
 
 freezer.stop()
 requests.get = original_get
