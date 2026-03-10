@@ -1,3 +1,4 @@
+import json
 from datetime import datetime
 
 import requests
@@ -5,105 +6,170 @@ import scrapy
 from city_scrapers_core.constants import COMMISSION
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import CityScrapersSpider
-from dateutil.parser import parse
+from dateutil.relativedelta import relativedelta
 
 
 class FortxFortWorthBoardsSpider(CityScrapersSpider):
     name = "fortx_Fort_Worth_Boards"
     agency = "Fort Worth Boards and Commissions"
     timezone = "America/Chicago"
-    # original URL
-    # https://www.fortworthtexas.gov/calendar/boards-commission
-    # API endpoint after initial page load
-    # https://www.fortworthtexas.gov/ocapi/calendars/getcalendaritems?Ids=788ffb59-05d1-457d-b9dd-423d4b95a06e&LanguageCode=en-US
-    # API endpoint when clicking on calendar
-    # https://www.fortworthtexas.gov/ocapi/get/contentinfo?calendarId=788ffb59-05d1-457d-b9dd-423d4b95a06e&contentId=e3182d81-2385-4796-809f-8a330d1c7ec9&language=en-US&mainContentId=e3182d81-2385-4796-809f-8a330d1c7ec9
-    start_url = "https://www.fortworthtexas.gov/ocapi/calendars/getcalendaritems?Ids=788ffb59-05d1-457d-b9dd-423d4b95a06e&LanguageCode=en-US&startDate={start_date}&endDate={end_date}"  # noqa
 
-    """
-    Spider broke after June 2025 due to changes in the API endpoint.
-    Updated spider to make multiple requests for each year from June
-    27, 2025 (data cut off date) to current year.
-    """
+    custom_settings = {
+        "ROBOTSTXT_OBEY": False,
+    }
+
+    main_url = "https://www.fortworthtexas.gov/"
+
+    meetings_url = "https://www.fortworthtexas.gov/ocapi/calendars/getcalendaritems"
+
+    meetings_url_payload = {
+        "LanguageCode": "en-US",
+        "Ids": ["788ffb59-05d1-457d-b9dd-423d4b95a06e"],
+        "StartDate": "",
+        "EndDate": "",
+    }
+
+    meeting_detail_url = (
+        "https://www.fortworthtexas.gov/ocapi/get/contentinfo"
+        "?calendarId={calendarId}&contentId={contentId}&language=en-US"
+        "&currentDateTime={currentDateTime}&mainContentId={mainContentId}"
+    )
+
+    # The last meeting scraped from the source was on June 26, 2025.
+    start_date = datetime(2025, 6, 20)
 
     def start_requests(self):
-        current_year = datetime.now().year
+        """
+        The meeting items for this organization are
+        fetched from two of its API endpoints. The
+        main API endpoint allows fetching meeting
+        items for the entirety of one year. The
+        spider is set to fetch all meetings 6 months
+        in the past and 6 months in the future.
+        """
+        payloads = self.construct_payloads(self.start_date)
 
-        first_start = "2025-06-27"
-        first_end = "2025-12-31"
-        initial_url = self.start_url.format(start_date=first_start, end_date=first_end)
-
-        yield scrapy.Request(
-            url=initial_url,
-            callback=self.parse,
-        )
-
-        for year in range(2026, current_year + 1):
+        for payload in payloads:
+            if payload["StartDate"] == payload["EndDate"]:
+                continue
             yield scrapy.Request(
-                url=self.start_url.format(
-                    start_date=f"{year}-01-01", end_date=f"{year}-12-31"
-                ),
+                url=self.meetings_url,
+                method="POST",
+                body=json.dumps(payload),
+                headers={"Content-Type": "application/json"},
                 callback=self.parse,
             )
 
     def parse(self, response):
-        """
-        Parse meetings from multiple API responses.
-        """
-
         data = response.json()
 
-        for calendar_day in data["data"]:
-            for item in calendar_day["Items"]:
-                # make another API requests to get more info about meeting
-                info_url = f"https://www.fortworthtexas.gov/ocapi/get/contentinfo?calendarId={item['CalendarId']}&contentId={item['Id']}&language=en-US&mainContentId={item['Id']}"  # noqa
-                info = requests.get(info_url).json()["data"]
+        items = []
+        for meeting in data["data"]:
+            items.extend(meeting["Items"])
 
-                meeting = Meeting(
-                    title=item["Name"],
-                    description=info["Description"],
-                    classification=COMMISSION,
-                    start=parse(item["DateTime"], dayfirst=True),
-                    end=None,
-                    all_day=False,
-                    time_notes="",
-                    location=self._parse_location(info),
-                    links=self._parse_links(info),
-                    source=self._parse_source(response),
-                )
+        for item in items:
+            date_obj = datetime.strptime(item["DateTime"], "%d/%m/%Y %I:%M:%S %p")
+            currentDateTime = date_obj.strftime("%d/%m/%Y%%20%I:%M:%S%%20%p")
 
-                meeting["status"] = self._get_status(meeting)
-                meeting["id"] = self._get_id(meeting)
+            meeting_detail_url = self.meeting_detail_url.format(
+                calendarId=item["CalendarId"],
+                contentId=item["Id"],
+                currentDateTime=currentDateTime,
+                mainContentId=item["MainContentId"],
+            )
 
-                yield meeting
+            yield scrapy.Request(
+                url=meeting_detail_url,
+                method="GET",
+                callback=self.parse_meeting,
+                cb_kwargs={"item": item},
+            )
 
-    def _parse_location(self, info):
+    def parse_meeting(self, response, item):
+        data = response.json()
+        meeting_data = data["data"]
+
+        meetings_detail_url = meeting_data["Link"]
+        meeting_start = datetime.strptime(item["DateTime"], "%d/%m/%Y %I:%M:%S %p")
+
+        try:
+            details_page = requests.get(meetings_detail_url).text
+        except requests.RequestException as e:
+            self.logger.error("Failed to retrieve details page: %s", e)
+            return
+
+        meeting = Meeting(
+            title=meeting_data["Title"],
+            description=meeting_data["Description"],
+            classification=COMMISSION,
+            start=meeting_start,
+            end=None,
+            all_day=False,
+            time_notes="Please check the meeting description for details on the start time",  # noqa
+            location=self._parse_location(meeting_data),
+            links=self._parse_links(details_page),
+            source=meeting_data.get("Link", response.url),
+        )
+
+        meeting["status"] = self._parse_status(meeting, meeting_data)
+        meeting["id"] = self._get_id(meeting)
+
+        yield meeting
+
+    def _parse_status(self, meeting, item):
+        if item["IsCancelled"]:
+            return "cancelled"
+        return self._get_status(meeting)
+
+    def _parse_location(self, item):
         """
-        Generate location from another API call.
-        The API call is triggered by clicking on a calendar item on the page.
+        Some meeting items' Address fields are returned empty.
+        In such cases, the meeting is set to the default address.
         """
-        obj = info["Address"]
-        venue = obj["Venue"]
-        street = obj["Street"]
-        suburb = obj["Suburb"]
-        zip = obj["PostCode"]
-        values = [street, suburb, zip, "TX"]
+        location = item["Address"]
+        name = location.get("Venue") or location.get("Suburb")
+        address = location.get("Formatted").split(", ")
+        address.pop(0) if len(address) > 1 else None
+        address = ", ".join(address)
 
-        # filter out empty strings
-        address = ", ".join(value for value in values if value)
+        if name == "Fort Worth":
+            return {"name": "City Hall", "address": "200 Texas St., Fort Worth, 76102"}
+        return {"name": name, "address": address}
 
-        return {"name": venue, "address": address}
-
-    def _parse_links(self, info):
-        """Parse or generate links."""
+    def _parse_links(self, response):
+        selector = scrapy.Selector(text=response)
         links = []
-        link = info["Link"]
-        if link:
-            links.append({"title": "Link", "href": link})
+        attachments_col = selector.css(".col-xs-12.col-m-4")
+        pdf_links = attachments_col.css('a[href*=".pdf"]')
+        for link in pdf_links:
+            href = link.attrib["href"]
+            text = link.attrib["title"]
+            links.append({"title": text, "href": self.main_url + href})
         return links
 
-    def _parse_source(self, response):
+    def construct_payloads(self, start_date):
         """
-        Hardcode source since actual source is an API endpoint and is not user friendly.
+        The start and end dates parameters for this organization main
+        API endpoint requires the dates to be within the same year.
+        This means it can't be used to fetch meetings spanning months
+        from different years. This method constructs start and end date
+        ranges from the current date to 6 months in the past and 6 months
+        in the future.
         """
-        return "https://www.fortworthtexas.gov/calendar/boards-commission"
+
+        current_date = datetime.now()
+
+        future = current_date + relativedelta(months=6)
+
+        payloads = []
+
+        first_payload = self.meetings_url_payload.copy()
+        first_payload["StartDate"] = str(start_date)
+        first_payload["EndDate"] = str(start_date.replace(month=12, day=31))
+        second_payload = self.meetings_url_payload.copy()
+        second_payload["StartDate"] = str(future.replace(month=1, day=1))
+        second_payload["EndDate"] = str(future)
+        payloads.append(first_payload)
+        payloads.append(second_payload)
+
+        return payloads
