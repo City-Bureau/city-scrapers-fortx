@@ -137,28 +137,12 @@ class FortxFortWorthCityCouncilSpider(CityScrapersSpider):
     def _parse_links(self, response):
         selector = scrapy.Selector(text=response)
         links = []
-        attachment_div = selector.css(".side-box.consultation-snapshot")
-        attachment_hint = (
-            attachment_div.css(".side-box-title::text").get(default="").strip()
-        )
-        attachment_link = attachment_div.css(
-            ".side-box-section.body-content a::attr(href)"
-        ).get()
-
-        if attachment_link is not None:
-            if "agenda" in attachment_hint.lower():
-                links.append(
-                    {"href": self.main_url + attachment_link, "title": "Agenda"}
-                )
-            if "minutes" in attachment_hint.lower():
-                links.append(
-                    {"href": self.main_url + attachment_link, "title": "Minutes"}
-                )
-            if "notice" in attachment_hint.lower():
-                links.append(
-                    {"href": self.main_url + attachment_link, "title": "Public Notice"}
-                )
-
+        attachments_col = selector.css(".col-xs-12.col-m-4")
+        pdf_links = attachments_col.css('a[href*=".pdf"]')
+        for link in pdf_links:
+            href = link.attrib["href"]
+            text = link.attrib["title"]
+            links.append({"title": text, "href": self.main_url + href})
         return links
 
     def construct_payloads(self, current_date):
