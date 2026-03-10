@@ -46,7 +46,7 @@ class FortxFortWorthHousingSpider(CityScrapersSpider):
         tvn1 = None
         tvn2 = None
 
-        # Method 1: Look for the specific nonce data script
+        # Extract nonce from script tag
         nonce_script = response.css(
             'script[data-js="tribe-events-view-nonce-data"]::text'
         ).get()
@@ -202,6 +202,7 @@ class FortxFortWorthHousingSpider(CityScrapersSpider):
     def _clean_title(self, text: str) -> str:
         if not text:
             return ""
+        text = re.sub(r"^(CANCELLED|POSTPONED|RESCHEDULED):\s*", "", text.strip())
         return text.replace("\u2013", "-").strip()
 
     def _parse_title_from_page(self, response):
@@ -276,9 +277,7 @@ class FortxFortWorthHousingSpider(CityScrapersSpider):
         seen_hrefs.add(href)
         normalized_title = title.strip() if title else default_title
         if normalized_title.lower().startswith("download agenda pdf"):
-            normalized_title = normalized_title.replace(
-                "Download Agenda PDF", "Agenda"
-            ).replace("download agenda pdf", "Agenda")
+            normalized_title = "Agenda"
         return {
             "title": normalized_title,
             "href": response.urljoin(href.strip()),
