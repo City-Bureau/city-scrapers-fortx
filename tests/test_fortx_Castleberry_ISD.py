@@ -46,7 +46,11 @@ def test_end():
     "item_index, expected_notes",
     [
         (0, ""),
-        (1, "Will begin immediately following the Public Hearing"),
+        (
+            1,
+            "Will begin immediately following the Public Hearing; "
+            "Start time not listed; estimated from same-day meeting",
+        ),
     ],
 )
 def test_time_notes(item_index, expected_notes):
@@ -79,10 +83,6 @@ def test_source():
 
 def test_links():
     assert parsed_items[0]["links"] == [
-        {
-            "title": "Map Link",
-            "href": "https://maps.google.com/?q=5228+Ohio+Garden%2c+Fort+Worth%2c+TX+76114",  # noqa
-        },
         {
             "title": "Agenda",
             "href": "https://meetings.boardbook.org/Public/Agenda/1090?meeting=726957",  # noqa

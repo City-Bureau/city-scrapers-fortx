@@ -1,4 +1,5 @@
 import re
+from collections import defaultdict
 from urllib.parse import urljoin
 
 from city_scrapers_core.constants import BOARD
@@ -18,26 +19,64 @@ class FortxCastleberryIsdSpider(CityScrapersSpider):
         return re.sub(r"\s+", " ", text).strip() if text else ""
 
     def parse(self, response):
+        raw_meetings = []
         for item in response.css("table tbody tr[class*='row-for-board']"):
-            start = self._parse_start(item)
+            start, has_explicit_time = self._parse_start(item)
             if not start:
                 continue
-            meeting = Meeting(
-                title=self._parse_title(item),
-                description="",
-                classification=BOARD,
-                start=start,
-                end=None,
-                all_day=False,
-                time_notes=self._parse_time_notes(item),
-                location=self._parse_location(item),
-                links=self._parse_links(item),
-                source=response.url,
+            raw_meetings.append(
+                {
+                    "title": self._parse_title(item),
+                    "start": start,
+                    "has_explicit_time": has_explicit_time,
+                    "time_notes": self._parse_time_notes(item),
+                    "location": self._parse_location(item),
+                    "links": self._parse_links(item),
+                    "source": response.url,
+                }
             )
 
+        date_groups = defaultdict(list)
+        for i, m in enumerate(raw_meetings):
+            date_groups[m["start"].date()].append(i)
+
+        for indices in date_groups.values():
+            explicit_times = [
+                raw_meetings[i]["start"]
+                for i in indices
+                if raw_meetings[i]["has_explicit_time"]
+            ]
+            if explicit_times:
+                shared_time = explicit_times[0]
+                for i in indices:
+                    if not raw_meetings[i]["has_explicit_time"]:
+                        orig = raw_meetings[i]["start"]
+                        raw_meetings[i]["start"] = orig.replace(
+                            hour=shared_time.hour,
+                            minute=shared_time.minute,
+                            second=shared_time.second,
+                        )
+
+        for m in raw_meetings:
+            time_notes = m["time_notes"]
+            if not m["has_explicit_time"]:
+                note = "Start time not listed; estimated from same-day meeting"
+                time_notes = f"{time_notes}; {note}" if time_notes else note
+
+            meeting = Meeting(
+                title=m["title"],
+                description="",
+                classification=BOARD,
+                start=m["start"],
+                end=None,
+                all_day=False,
+                time_notes=time_notes,
+                location=m["location"],
+                links=m["links"],
+                source=m["source"],
+            )
             meeting["status"] = self._get_status(meeting)
             meeting["id"] = self._get_id(meeting)
-
             yield meeting
 
     def _parse_title(self, item):
@@ -52,15 +91,16 @@ class FortxCastleberryIsdSpider(CityScrapersSpider):
     def _parse_start(self, item):
         text = item.css("td")[0].css("div").xpath("string()").get()
         if not text:
-            return None
+            return None, False
         text = text.strip()
         match = re.search(r"(\w+ \d+, \d{4})", text)
         if match:
             date_str = match.group(1)
             time_match = re.search(r"at (\d+:\d+ [AP]M)", text)
-            time_str = time_match.group(1) if time_match else "12:00 AM"
-            return parse(f"{date_str} {time_str}")
-        return None
+            if time_match:
+                return parse(f"{date_str} {time_match.group(1)}"), True
+            return parse(f"{date_str} 12:00 AM"), False
+        return None, False
 
     def _parse_time_notes(self, item):
         text = item.css("td")[0].css("div").xpath("string()").get()
@@ -84,16 +124,6 @@ class FortxCastleberryIsdSpider(CityScrapersSpider):
 
     def _parse_links(self, item):
         output = []
-        map_link = item.css("td")[1].css("a")
-        for link in map_link:
-            title = link.css("::text").get()
-            if title:
-                title = title.strip()
-            if title and "map it" in title.lower():
-                title = "Map Link"
-            href = link.css("::attr(href)").get()
-            if href:
-                output.append({"title": title, "href": href})
         links = item.css("td")[2].css("a")
         for link in links:
             title = link.css("::text").get()
