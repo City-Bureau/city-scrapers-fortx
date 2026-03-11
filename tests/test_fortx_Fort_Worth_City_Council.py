@@ -3,7 +3,6 @@ from os.path import dirname, join
 from unittest.mock import MagicMock, patch
 
 import pytest
-import requests
 import scrapy
 from city_scrapers_core.constants import CITY_COUNCIL
 from city_scrapers_core.utils import file_response
@@ -13,139 +12,130 @@ from city_scrapers.spiders.fortx_Fort_Worth_City_Council import (
     FortxFortWorthCityCouncilSpider,
 )
 
-meetings_items = file_response(
-    join(
-        dirname(__file__), "files", "fortx_Fort_Worth_City_Council_meeting_items.json"
-    ),
-    url="https://www.fortworthtexas.gov/ocapi/calendars/getcalendaritems",
-)
 
-meetings_detail = file_response(
-    join(
-        dirname(__file__), "files", "fortx_Fort_Worth_City_Council_meeting_details.json"
-    ),
-    url=(
-        "https://www.fortworthtexas.gov/ocapi/get/contentinfo?calendarId=8a8add9a-3fd0-4b39-9a3e-d58e98e27acc"  # noqa
-        "&contentId=57212572-47cc-44e2-9da3-8e0d88b7c003&language=en-US&currentDateTime=14/10/2025%2009:00:00%20AM"  # noqa
-        "&mainContentId=57212572-47cc-44e2-9da3-8e0d88b7c003"
-    ),
-)
-
-detail_page_path = join(
-    dirname(__file__), "files", "fortx_Fort_Worth_City_Council_detail_page.html"
-)
-with open(detail_page_path) as f:
-    detail_page_html = f.read()
-
-spider = FortxFortWorthCityCouncilSpider()
+@pytest.fixture(scope="module")
+def spider():
+    return FortxFortWorthCityCouncilSpider()
 
 
-class MockDetailPageResponse:
-    def __init__(self, text):
-        self.text = text
+@pytest.fixture(scope="module")
+def meetings_items_response():
+    return file_response(
+        join(
+            dirname(__file__),
+            "files",
+            "fortx_Fort_Worth_City_Council_meeting_items.json",
+        ),
+        url="https://www.fortworthtexas.gov/ocapi/calendars/getcalendaritems",
+    )
 
 
-DETAIL_HTML = """
-<div class="side-box consultation-snapshot">
-    <h2 class="side-box-title">
-        Current Agenda
-    </h2>
-    <div class="side-box-content">
-        <div class="side-box-section body-content">
-            <p><a title="12-02-2025 Audit and Finance Committee Agenda" href="/files/assets/public/v/2/city-secretary/documents/calendar/2025-agendas/city-council/committee/audit-ampfinance/12-02-2025-audit-and-finance-committee-agenda.pdf" target="_self" class="document ext-pdf"><i aria-hidden="true"></i>12-02-2025 Audit and Finance Committee Agenda<span class="file-info">(PDF,&nbsp;174KB)</span></a></p> # noqa
-        </div>
-    </div>
-</div>
-"""
+@pytest.fixture(scope="module")
+def meetings_detail_response():
+    return file_response(
+        join(
+            dirname(__file__),
+            "files",
+            "fortx_Fort_Worth_City_Council_meeting_details.json",
+        ),
+        url=(
+            "https://www.fortworthtexas.gov/ocapi/get/contentinfo"
+            "?calendarId=8a8add9a-3fd0-4b39-9a3e-d58e98e27acc"
+            "&contentId=57212572-47cc-44e2-9da3-8e0d88b7c003&language=en-US"
+            "&currentDateTime=14/10/2025%2009:00:00%20AM"
+            "&mainContentId=57212572-47cc-44e2-9da3-8e0d88b7c003"
+        ),
+    )
 
-original_get = requests.get
-requests.get = lambda *args, **kwargs: MockDetailPageResponse(DETAIL_HTML)
 
-freezer = freeze_time("2026-03-06")
-freezer.start()
+@pytest.fixture(scope="module")
+def detail_page_html():
+    detail_page_path = join(
+        dirname(__file__), "files", "fortx_Fort_Worth_City_Council_detail_page.html"
+    )
+    with open(detail_page_path) as f:
+        return f.read()
 
-mock_response = MagicMock()
-mock_response.text = detail_page_html
 
-parsed_items = []
-
-with patch(
-    "city_scrapers.spiders.fortx_Fort_Worth_City_Council.requests.get",
-    return_value=mock_response,
+@pytest.fixture(scope="module")
+def parsed_items(
+    spider, meetings_items_response, meetings_detail_response, detail_page_html
 ):  # noqa
-    for req in spider.parse(meetings_items):
-        if isinstance(req, scrapy.Request):
-            meeting_detail_item = spider.parse_meeting(
-                meetings_detail, req.cb_kwargs["item"]
-            )
-            parsed_items.extend(meeting_detail_item)
+    mock_response = MagicMock()
+    mock_response.text = detail_page_html
 
-freezer.stop()
-requests.get = original_get
+    items = []
+    with freeze_time("2026-03-06"):
+        with patch(
+            "city_scrapers.spiders.fortx_Fort_Worth_City_Council.requests.get",
+            return_value=mock_response,
+        ):
+            for req in spider.parse(meetings_items_response):
+                if isinstance(req, scrapy.Request):
+                    meeting_detail_item = spider.parse_meeting(
+                        meetings_detail_response, req.cb_kwargs["item"]
+                    )
+                    items.extend(meeting_detail_item)
 
-"""
-The spider for this site is set to fetch meeting items for the entire year.
-To make the test less time consuming, the number of meetings to be tested is
-limited to 13 items.
-"""
+    return items
 
 
-def test_count():
+def test_count(parsed_items):
     assert len(parsed_items) == 13
 
 
-def test_title():
+def test_title(parsed_items):
     assert parsed_items[0]["title"] == "Audit & Finance Committee"
 
 
-def test_description():
+def test_description(parsed_items):
     assert (
         parsed_items[0]["description"]
         == "Audit & Finance Committee Meeting. Veiw agenda and meeting details."
     )
 
 
-def test_start():
+def test_start(parsed_items):
     assert parsed_items[0]["start"] == datetime(2025, 10, 14, 9, 0)
 
 
-def test_end():
+def test_end(parsed_items):
     assert parsed_items[0]["end"] is None
 
 
-def test_time_notes():
+def test_time_notes(parsed_items):
     assert (
         parsed_items[0]["time_notes"]
         == "Please check the meeting description for details on the start time"
     )
 
 
-def test_id():
+def test_id(parsed_items):
     assert (
         parsed_items[0]["id"]
         == "fortx_Fort_Worth_City_Council/202510140900/x/audit_finance_committee"
     )
 
 
-def test_status():
+def test_status(parsed_items):
     assert parsed_items[0]["status"] == "passed"
 
 
-def test_location():
+def test_location(parsed_items):
     assert parsed_items[0]["location"] == {
         "name": "New City Hall",
         "address": "100 Fort Worth Trail, Fort Worth, 76102",
     }
 
 
-def test_source():
+def test_source(parsed_items):
     assert parsed_items[0]["source"] == (
         "https://www.fortworthtexas.gov/departments/citysecretary/"
         "events/audit-committee-2025"
     )
 
 
-def test_links():
+def test_links(parsed_items):
     assert parsed_items[0]["links"] == [
         {
             "href": "https://www.fortworthtexas.gov//files/assets/public/v/2/city-secretary/documents/calendar/2025-agendas/city-council/committee/audit-ampfinance/12-02-2025-audit-and-finance-committee-agenda.pdf",  # noqa
@@ -154,10 +144,10 @@ def test_links():
     ]
 
 
-def test_classification():
+def test_classification(parsed_items):
     assert parsed_items[0]["classification"] == CITY_COUNCIL
 
 
-@pytest.mark.parametrize("item", parsed_items)
-def test_all_day(item):
-    assert item["all_day"] is False
+def test_all_day(parsed_items):
+    for item in parsed_items:
+        assert item["all_day"] is False
