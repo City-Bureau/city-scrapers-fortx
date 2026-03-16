@@ -1,8 +1,9 @@
 import json
+import re
 from datetime import datetime
 
 import scrapy
-from city_scrapers_core.constants import COMMISSION
+from city_scrapers_core.constants import BOARD, COMMISSION, COMMITTEE, NOT_CLASSIFIED
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import CityScrapersSpider
 from dateutil.parser import parse as dateparse
@@ -30,9 +31,10 @@ class FortxTarrantCountyCommissionersCourtSpider(CityScrapersSpider):
     }
 
     archived_url = "https://tarrant-agendamanagement-public.techsharetx.gov/publicportal/api/meetings/readArchived"  # noqa
-    upcoming_url = "https://api-dev.agendalink.app/api/engage/agendas/tarrantcountytx?span={year}&department=6823a747b52fbb005d2ff78d"  # noqa
+    upcoming_url = "https://api-dev.agendalink.app/api/engage/agendas/tarrantcountytx?span={year}&department=all"  # noqa
     attachments_url = "https://tarrant-agendamanagement-public.techsharetx.gov/publicportal/api/meetingattachments/download?id="  # noqa
     source_url = "https://www.tarrantcountytx.gov/en/commissioners-court/commissioners-court-agenda-videos.html"  # noqa
+    youtube_url = "https://www.youtube.com/watch?v={video_id}"  # noqa
 
     committee_id = "fe6aa5cc-7448-4194-ac6e-08dc95f79ccc"
     bearer_token = "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY0MzIzMzY5NCwiaWF0IjoxNjQzMjMzNjk0fQ.5C2WIXm6xGY63E_6k3wnCcT3YstnTj-J2UWdZuuJbW8"  # noqa
@@ -93,10 +95,12 @@ class FortxTarrantCountyCommissionersCourtSpider(CityScrapersSpider):
         )
         meetings = self._filtered_meetings(archived_meetings, upcoming)
         for item in meetings:
+            title = item.get("title", "Commissioners Court")
+            classification = self._parse_classification(title)
             meeting = Meeting(
-                title=item.get("title", "Commissioners Court"),
+                title=title,
                 description="",
-                classification=COMMISSION,
+                classification=classification,
                 start=item.get("start"),
                 end=item.get("end"),
                 all_day=False,
@@ -110,6 +114,17 @@ class FortxTarrantCountyCommissionersCourtSpider(CityScrapersSpider):
             meeting["id"] = self._get_id(meeting)
 
             yield meeting
+
+    def _parse_classification(self, title):
+        classification_map = {
+            "commission": COMMISSION,
+            "committee": COMMITTEE,
+            "board": BOARD,
+        }
+        for key, classification in classification_map.items():
+            if key in title.lower():
+                return classification
+        return NOT_CLASSIFIED
 
     def _filtered_meetings(self, archived, upcoming):
         meetings = []
@@ -127,7 +142,7 @@ class FortxTarrantCountyCommissionersCourtSpider(CityScrapersSpider):
         return {
             "id": item["_id"],
             "title": department.get("name", "Commissioners Court"),
-            "start": self._parse_datetime(item.get("scheduleIso")),
+            "start": self._parse_datetime(item.get("scheduleDate")),
             "end": None,
             "location": self._parse_upcoming_location(item.get("room")),
             "links": self._parse_upcoming_links(item),
@@ -158,7 +173,7 @@ class FortxTarrantCountyCommissionersCourtSpider(CityScrapersSpider):
         link_config = [
             ("agendaAttachmentId", "Agenda", lambda id: self.attachments_url + id),
             ("minutesAttachmentId", "Minutes", lambda id: self.attachments_url + id),
-            ("videoId", "Video", lambda id: self.attachments_url + id),
+            ("videoId", "Video", lambda id: self.youtube_url.format(video_id=id)),
         ]
         links = []
         for key, title, url_builder in link_config:
@@ -171,20 +186,25 @@ class FortxTarrantCountyCommissionersCourtSpider(CityScrapersSpider):
                 )
         return links
 
+    def _parse_video_link(self, video_url):
+        video_id = re.search(r"embed/(.+?)\?", video_url)
+        if video_id:
+            return self.youtube_url.format(video_id=video_id.group(1))
+
     def _parse_upcoming_links(self, item):
         link_config = [
             ("agendaPdfUrl", "Agenda", lambda url: url),
             ("agendaPacketUrl", "Agenda Packet", lambda url: url),
             ("minutesPdfUrl", "Minutes", lambda url: url),
-            ("videoUrl", "Video", lambda url: url),
+            ("videoUrl", "Video", self._parse_video_link),
         ]
         links = []
-        for key, title, url in link_config:
+        for key, title, url_builder in link_config:
             if url := item.get(key):
                 links.append(
                     {
                         "title": title,
-                        "href": url,
+                        "href": url_builder(url),
                     }
                 )
         return links
