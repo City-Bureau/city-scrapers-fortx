@@ -1,174 +1,125 @@
 {
-    "success": true,
-    "data": [
+  "success": true,
+  "data": [
+    {
+      "Date": "14/10/2025",
+      "DD": 14,
+      "MM": 10,
+      "YYYY": 2025,
+      "Items": [
         {
-            "Date": "09/01/2024",
-            "DD": 9,
-            "MM": 1,
-            "YYYY": 2024,
-            "Items": [
-                {
-                    "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
-                    "Id": "07d0abc1-462c-4b0a-94b9-d1e7aee72eec",
-                    "MainContentId": "07d0abc1-462c-4b0a-94b9-d1e7aee72eec",
-                    "Name": "City Council Executive Session",
-                    "DateTime": "9/01/2024 12:00:00 PM"
-                },
-                {
-                    "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
-                    "Id": "0c7408c0-9669-418a-9a46-d0f905260a77",
-                    "MainContentId": "0c7408c0-9669-418a-9a46-d0f905260a77",
-                    "Name": "City Council Work Session",
-                    "DateTime": "9/01/2024 1:00:00 PM"
-                },
-                {
-                    "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
-                    "Id": "db89a7e2-1030-420e-ac6a-756e37adfcb4",
-                    "MainContentId": "db89a7e2-1030-420e-ac6a-756e37adfcb4",
-                    "Name": "Special Called City Council Meeting",
-                    "DateTime": "9/01/2024 5:45:00 PM"
-                },
-                {
-                    "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
-                    "Id": "5ac3eaa2-8539-4604-ab33-f668a27fa534",
-                    "MainContentId": "5ac3eaa2-8539-4604-ab33-f668a27fa534",
-                    "Name": "City Council Public Comment Meeting",
-                    "DateTime": "9/01/2024 6:00:00 PM"
-                }
-            ],
-            "Day": "Tuesday",
-            "Month": "January"
+          "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
+          "Id": "57212572-47cc-44e2-9da3-8e0d88b7c003",
+          "MainContentId": "57212572-47cc-44e2-9da3-8e0d88b7c003",
+          "Name": "Audit \u0026 Finance Committee",
+          "DateTime": "14/10/2025 9:00:00 AM"
         },
         {
-            "Date": "23/01/2024",
-            "DD": 23,
-            "MM": 1,
-            "YYYY": 2024,
-            "Items": [
-                {
-                    "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
-                    "Id": "b703ee93-72f9-4330-ba27-b229dd685a6d",
-                    "MainContentId": "b703ee93-72f9-4330-ba27-b229dd685a6d",
-                    "Name": "Entrepreneurship and Innovation Committee (EIC)",
-                    "DateTime": "23/01/2024 9:00:00 AM"
-                },
-                {
-                    "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
-                    "Id": "fbd09600-09c0-493d-85c1-8eb6ee6148e9",
-                    "MainContentId": "fbd09600-09c0-493d-85c1-8eb6ee6148e9",
-                    "Name": "Ad Hoc Council Committee on Emergency Medical Response",
-                    "DateTime": "23/01/2024 12:00:00 PM"
-                },
-                {
-                    "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
-                    "Id": "e4e4a1ee-91a6-4e3a-bf01-ace024666a42",
-                    "MainContentId": "e4e4a1ee-91a6-4e3a-bf01-ace024666a42",
-                    "Name": "Mobility: Infrastructure and Transportation (MITC)",
-                    "DateTime": "23/01/2024 4:00:00 PM"
-                },
-                {
-                    "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
-                    "Id": "782739a3-b9f7-45b3-beda-7b045d7f0650",
-                    "MainContentId": "782739a3-b9f7-45b3-beda-7b045d7f0650",
-                    "Name": "City Council Evening Meeting",
-                    "DateTime": "23/01/2024 6:00:00 PM"
-                }
-            ],
-            "Day": "Tuesday",
-            "Month": "January"
+          "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
+          "Id": "b8eb0bc4-0345-41fc-bc8d-aec9c63a53b5",
+          "MainContentId": "b8eb0bc4-0345-41fc-bc8d-aec9c63a53b5",
+          "Name": "Public Safety Committee",
+          "DateTime": "14/10/2025 10:00:00 AM"
         },
         {
-            "Date": "25/01/2024",
-            "DD": 25,
-            "MM": 1,
-            "YYYY": 2024,
-            "Items": [
-                {
-                    "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
-                    "Id": "bf291479-30ea-4fab-9506-34c4a4ea1304",
-                    "MainContentId": "bf291479-30ea-4fab-9506-34c4a4ea1304",
-                    "Name": "Meet and Confer Public Notice between the City and the FW POA",
-                    "DateTime": "25/01/2024 9:30:00 AM"
-                }
-            ],
-            "Day": "Thursday",
-            "Month": "January"
+          "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
+          "Id": "8a1e38b2-8a8d-4783-8936-10007ca20155",
+          "MainContentId": "8a1e38b2-8a8d-4783-8936-10007ca20155",
+          "Name": "Legislative and Intergovernmental Affairs Committee",
+          "DateTime": "14/10/2025 11:00:00 AM"
         },
         {
-            "Date": "06/02/2024",
-            "DD": 6,
-            "MM": 2,
-            "YYYY": 2024,
-            "Items": [
-                {
-                    "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
-                    "Id": "fbd09600-09c0-493d-85c1-8eb6ee6148e9",
-                    "MainContentId": "fbd09600-09c0-493d-85c1-8eb6ee6148e9",
-                    "Name": "Ad Hoc Council Committee on Emergency Medical Response",
-                    "DateTime": "6/02/2024 10:00:00 AM"
-                },
-                {
-                    "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
-                    "Id": "07d0abc1-462c-4b0a-94b9-d1e7aee72eec",
-                    "MainContentId": "07d0abc1-462c-4b0a-94b9-d1e7aee72eec",
-                    "Name": "City Council Executive Session",
-                    "DateTime": "6/02/2024 12:00:00 PM"
-                },
-                {
-                    "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
-                    "Id": "0c7408c0-9669-418a-9a46-d0f905260a77",
-                    "MainContentId": "0c7408c0-9669-418a-9a46-d0f905260a77",
-                    "Name": "City Council Work Session",
-                    "DateTime": "6/02/2024 1:00:00 PM"
-                },
-                {
-                    "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
-                    "Id": "5ac3eaa2-8539-4604-ab33-f668a27fa534",
-                    "MainContentId": "5ac3eaa2-8539-4604-ab33-f668a27fa534",
-                    "Name": "City Council Public Comment Meeting",
-                    "DateTime": "6/02/2024 6:00:00 PM"
-                }
-            ],
-            "Day": "Tuesday",
-            "Month": "February"
+          "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
+          "Id": "fd48c07f-aa82-4ba1-b7e0-013b00f3f7b0",
+          "MainContentId": "fd48c07f-aa82-4ba1-b7e0-013b00f3f7b0",
+          "Name": "2025 City Council Executive Session Meeting",
+          "DateTime": "14/10/2025 12:00:00 PM"
         },
         {
-            "Date": "13/02/2024",
-            "DD": 13,
-            "MM": 2,
-            "YYYY": 2024,
-            "Items": [
-                {
-                    "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
-                    "Id": "db89a7e2-1030-420e-ac6a-756e37adfcb4",
-                    "MainContentId": "db89a7e2-1030-420e-ac6a-756e37adfcb4",
-                    "Name": "Special Called City Council Meeting",
-                    "DateTime": "13/02/2024 11:00:00 AM"
-                },
-                {
-                    "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
-                    "Id": "5de2f26c-d64a-4124-87ca-10a0e80bb776",
-                    "MainContentId": "5de2f26c-d64a-4124-87ca-10a0e80bb776",
-                    "Name": "Neighborhood Quality and Revitalization Committee (NQRC)",
-                    "DateTime": "13/02/2024 2:00:00 PM"
-                },
-                {
-                    "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
-                    "Id": "e4e4a1ee-91a6-4e3a-bf01-ace024666a42",
-                    "MainContentId": "e4e4a1ee-91a6-4e3a-bf01-ace024666a42",
-                    "Name": "Mobility: Infrastructure and Transportation (MITC)",
-                    "DateTime": "13/02/2024 4:00:00 PM"
-                },
-                {
-                    "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
-                    "Id": "782739a3-b9f7-45b3-beda-7b045d7f0650",
-                    "MainContentId": "782739a3-b9f7-45b3-beda-7b045d7f0650",
-                    "Name": "City Council Evening Meeting",
-                    "DateTime": "13/02/2024 6:00:00 PM"
-                }
-            ],
-            "Day": "Tuesday",
-            "Month": "February"
+          "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
+          "Id": "5bfd286e-d8ef-492f-8c8c-f4b8df7889fc",
+          "MainContentId": "5bfd286e-d8ef-492f-8c8c-f4b8df7889fc",
+          "Name": "City Council Work Session",
+          "DateTime": "14/10/2025 1:00:00 PM"
+        },
+        {
+          "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
+          "Id": "14bb0e52-3135-44a5-868f-3a8d7330d8cf",
+          "MainContentId": "14bb0e52-3135-44a5-868f-3a8d7330d8cf",
+          "Name": "City Council Public Comment Meeting",
+          "DateTime": "14/10/2025 6:00:00 PM"
         }
-    ]
+      ],
+      "Day": "Tuesday",
+      "Month": "October"
+    },
+    {
+      "Date": "10/03/2026",
+      "DD": 10,
+      "MM": 3,
+      "YYYY": 2026,
+      "Items": [
+        {
+          "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
+          "Id": "829c72ac-388c-4791-8425-a763fbd65cb5",
+          "MainContentId": "829c72ac-388c-4791-8425-a763fbd65cb5",
+          "Name": "2026 Public Notice Consideration of Tax Abatement AgreementEDC Fort Wo",
+          "DateTime": "10/03/2026 12:00:00 AM"
+        },
+        {
+          "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
+          "Id": "2f7f60e6-1873-40ed-85ad-fc214bd77582",
+          "MainContentId": "2f7f60e6-1873-40ed-85ad-fc214bd77582",
+          "Name": "2026 Special Called Election Voting Dates \u0026 Election Notices",
+          "DateTime": "10/03/2026 12:00:00 AM"
+        },
+        {
+          "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
+          "Id": "21098c9f-b827-4d28-b55d-f57d008f37c1",
+          "MainContentId": "21098c9f-b827-4d28-b55d-f57d008f37c1",
+          "Name": "Property Management \u0026 Environmental Services Committee",
+          "DateTime": "10/03/2026 2:00:00 PM"
+        },
+        {
+          "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
+          "Id": "1835b00a-317a-45e2-9f8d-fa0e16048ad4",
+          "MainContentId": "1835b00a-317a-45e2-9f8d-fa0e16048ad4",
+          "Name": "Infrastructure and Growth Committee",
+          "DateTime": "10/03/2026 3:00:00 PM"
+        },
+        {
+          "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
+          "Id": "a0175ad3-7bca-4df3-bea9-4707090502d9",
+          "MainContentId": "a0175ad3-7bca-4df3-bea9-4707090502d9",
+          "Name": "City Council Evening Meeting",
+          "DateTime": "10/03/2026 6:00:00 PM"
+        }
+      ],
+      "Day": "Tuesday"
+    },
+    {
+      "Date": "29/09/2026",
+      "DD": 29,
+      "MM": 9,
+      "YYYY": 2026,
+      "Items": [
+        {
+          "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
+          "Id": "d02e43d5-8967-441d-8a0d-2efc61c41302",
+          "MainContentId": "d02e43d5-8967-441d-8a0d-2efc61c41302",
+          "Name": "City Council Work Session",
+          "DateTime": "29/09/2026 9:00:00 AM"
+        },
+        {
+          "CalendarId": "8a8add9a-3fd0-4b39-9a3e-d58e98e27acc",
+          "Id": "8529ed69-a7e0-49d8-ac61-c056ee088c8e",
+          "MainContentId": "8529ed69-a7e0-49d8-ac61-c056ee088c8e",
+          "Name": "City Council Day Meeting",
+          "DateTime": "29/09/2026 11:00:00 AM"
+        }
+      ],
+      "Day": "Tuesday",
+      "Month": "September"
+    }
+  ]
 }
