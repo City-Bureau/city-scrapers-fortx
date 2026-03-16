@@ -5,7 +5,6 @@ import scrapy
 from city_scrapers_core.constants import CITY_COUNCIL
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import CityScrapersSpider
-from dateutil.parser import parse as dateparse
 from dateutil.relativedelta import relativedelta
 
 
@@ -59,9 +58,7 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
     def parse(self, response):
         data = response.json()
 
-        items = []
-        for meeting in data["data"]:
-            items.extend(meeting["Items"])
+        items = [item for meeting in data["data"] for item in meeting["Items"]]
 
         for item in items:
             date_obj = datetime.strptime(item["DateTime"], "%d/%m/%Y %I:%M:%S %p")
@@ -78,10 +75,10 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
                 url=meeting_detail_url,
                 method="GET",
                 callback=self.parse_meeting,
-                cb_kwargs={"item": item},
+                cb_kwargs={"start_time": date_obj},
             )
 
-    def parse_meeting(self, response, item):
+    def parse_meeting(self, response, start_time):
         data = response.json()
         meeting_data = data["data"]
 
@@ -89,7 +86,7 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
             title=meeting_data["Title"],
             description=self._parse_description(meeting_data),
             classification=CITY_COUNCIL,
-            start=dateparse(item["DateTime"]),
+            start=start_time,
             end=None,
             all_day=False,
             time_notes="Please check the meeting description for details on the start time",  # noqa
@@ -121,7 +118,8 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
         location = item["Address"]
         name = location.get("Venue") or location.get("Suburb")
         address = location.get("Formatted").split(", ")
-        address.pop(0) if len(address) > 1 else None
+        if len(address) > 1:
+            address.pop(0)
         address = ", ".join(address)
 
         if not name and not address:
@@ -134,21 +132,25 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
         API endpoint requires the dates to be within the same year.
         This means it can't be used to fetch meetings spanning months
         from different years. This method constructs start and end date
-        ranges from the current date to 6 months in the past and 6 months
-        in the future.
+        ranges covering 6 months in the past through the end of the
+        current year, splitting into separate payloads per year.
         """
         past = current_date - relativedelta(months=6)
-        future = current_date + relativedelta(months=6)
 
-        payloads = []
+        def _create_payload(start_date, end_date):
+            payload = self.meetings_url_payload.copy()
+            payload["StartDate"] = start_date
+            payload["EndDate"] = end_date
+            return payload
 
-        first_payload = self.meetings_url_payload.copy()
-        first_payload["StartDate"] = str(past)
-        first_payload["EndDate"] = str(past.replace(month=12, day=31))
-        second_payload = self.meetings_url_payload.copy()
-        second_payload["StartDate"] = str(future.replace(month=1, day=1))
-        second_payload["EndDate"] = str(future)
-        payloads.append(first_payload)
-        payloads.append(second_payload)
+        payloads = [_create_payload(past.strftime("%Y-%m-%d"), f"{past.year}-12-31")]
+
+        # Add current year if it differs from the past year
+        if current_date.year != past.year:
+            payloads.append(
+                _create_payload(
+                    f"{current_date.year}-01-01", f"{current_date.year}-12-31"
+                )
+            )
 
         return payloads

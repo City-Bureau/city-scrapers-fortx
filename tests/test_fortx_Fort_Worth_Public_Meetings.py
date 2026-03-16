@@ -42,7 +42,7 @@ parsed_items = []
 for req in spider.parse(meetings_items):
     if isinstance(req, scrapy.Request):
         meeting_detail_item = spider.parse_meeting(
-            meetings_detail, req.cb_kwargs["item"]
+            meetings_detail, start_time=req.cb_kwargs["start_time"]
         )
         parsed_items.extend(meeting_detail_item)
 
@@ -74,7 +74,7 @@ def test_description():
 
 
 def test_start():
-    assert parsed_items[0]["start"] == datetime(2024, 1, 2, 18, 0)
+    assert parsed_items[0]["start"] == datetime(2024, 2, 1, 18, 0)
 
 
 def test_end():
@@ -90,7 +90,7 @@ def test_time_notes():
 
 def test_id():
     assert parsed_items[0]["id"] == (
-        "fortx_Fort_Worth_Public_Meetings/202401021800/x/"
+        "fortx_Fort_Worth_Public_Meetings/202402011800/x/"
         "tpw_meeting_glasgow_and_oak_grove_roads"
     )
 
