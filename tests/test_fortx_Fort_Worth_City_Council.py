@@ -1,6 +1,5 @@
 from datetime import datetime
 from os.path import dirname, join
-from unittest.mock import MagicMock, patch
 
 import pytest
 import scrapy
@@ -49,33 +48,15 @@ def meetings_detail_response():
 
 
 @pytest.fixture(scope="module")
-def detail_page_html():
-    detail_page_path = join(
-        dirname(__file__), "files", "fortx_Fort_Worth_City_Council_detail_page.html"
-    )
-    with open(detail_page_path) as f:
-        return f.read()
-
-
-@pytest.fixture(scope="module")
-def parsed_items(
-    spider, meetings_items_response, meetings_detail_response, detail_page_html
-):  # noqa
-    mock_response = MagicMock()
-    mock_response.text = detail_page_html
-
+def parsed_items(spider, meetings_items_response, meetings_detail_response):  # noqa
     items = []
     with freeze_time("2026-03-06"):
-        with patch(
-            "city_scrapers.spiders.fortx_Fort_Worth_City_Council.requests.get",
-            return_value=mock_response,
-        ):
-            for req in spider.parse(meetings_items_response):
-                if isinstance(req, scrapy.Request):
-                    meeting_detail_item = spider.parse_meeting(
-                        meetings_detail_response, req.cb_kwargs["item"]
-                    )
-                    items.extend(meeting_detail_item)
+        for req in spider.parse(meetings_items_response):
+            if isinstance(req, scrapy.Request):
+                meeting_detail_item = spider.parse_meeting(
+                    meetings_detail_response, req.cb_kwargs["item"]
+                )
+                items.extend(meeting_detail_item)
 
     return items
 
@@ -130,16 +111,15 @@ def test_location(parsed_items):
 
 def test_source(parsed_items):
     assert parsed_items[0]["source"] == (
-        "https://www.fortworthtexas.gov/departments/citysecretary/"
-        "events/audit-committee-2025"
+        "https://www.fortworthtexas.gov/calendar/city-council"
     )
 
 
 def test_links(parsed_items):
     assert parsed_items[0]["links"] == [
         {
-            "href": "https://www.fortworthtexas.gov//files/assets/public/v/2/city-secretary/documents/calendar/2025-agendas/city-council/committee/audit-ampfinance/12-02-2025-audit-and-finance-committee-agenda.pdf",  # noqa
-            "title": "Agenda",
+            "title": "Meeting Details",
+            "href": "https://www.fortworthtexas.gov/departments/citysecretary/events/audit-committee-2025",  # noqa
         }
     ]
 
