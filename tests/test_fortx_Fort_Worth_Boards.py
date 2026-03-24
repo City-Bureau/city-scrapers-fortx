@@ -93,11 +93,13 @@ def test_source(parsed_items):
     )
 
 
-# TODO: test_links commented out for staging - spider uses requests.get()
-# to fetch live page, and the website HTML structure has changed (no PDF links).
-# Needs to be fixed by mocking the HTTP call with a local fixture.
-# def test_links(parsed_items):
-#     assert parsed_items[0]["links"] == [...]
+def test_links(parsed_items):
+    assert parsed_items[0]["links"] == [
+        {
+            "title": "Meeting Details",
+            "href": "https://www.fortworthtexas.gov/departments/citysecretary/events/building-standards-commission-meeting-2025",  # noqa
+        }
+    ]
 
 
 def test_classification(parsed_items):

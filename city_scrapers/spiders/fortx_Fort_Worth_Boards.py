@@ -1,7 +1,6 @@
 import json
 from datetime import datetime
 
-import requests
 import scrapy
 from city_scrapers_core.constants import COMMISSION
 from city_scrapers_core.items import Meeting
@@ -21,6 +20,8 @@ class FortxFortWorthBoardsSpider(CityScrapersSpider):
     main_url = "https://www.fortworthtexas.gov/"
 
     meetings_url = "https://www.fortworthtexas.gov/ocapi/calendars/getcalendaritems"
+
+    calendar_url = "https://www.fortworthtexas.gov/calendar/boards-commission"
 
     meetings_url_payload = {
         "LanguageCode": "en-US",
@@ -89,14 +90,7 @@ class FortxFortWorthBoardsSpider(CityScrapersSpider):
         data = response.json()
         meeting_data = data["data"]
 
-        meetings_detail_url = meeting_data["Link"]
         meeting_start = datetime.strptime(item["DateTime"], "%d/%m/%Y %I:%M:%S %p")
-
-        try:
-            details_page = requests.get(meetings_detail_url).text
-        except requests.RequestException as e:
-            self.logger.error("Failed to retrieve details page: %s", e)
-            return
 
         meeting = Meeting(
             title=meeting_data["Title"],
@@ -107,8 +101,8 @@ class FortxFortWorthBoardsSpider(CityScrapersSpider):
             all_day=False,
             time_notes="Please check the meeting description for details on the start time",  # noqa
             location=self._parse_location(meeting_data),
-            links=self._parse_links(details_page),
-            source=meeting_data.get("Link", response.url),
+            links=self._parse_links(meeting_data),
+            source=meeting_data.get("Link", self.calendar_url),
         )
 
         meeting["status"] = self._parse_status(meeting, meeting_data)
@@ -136,16 +130,12 @@ class FortxFortWorthBoardsSpider(CityScrapersSpider):
             return {"name": "City Hall", "address": "200 Texas St., Fort Worth, 76102"}
         return {"name": name, "address": address}
 
-    def _parse_links(self, response):
-        selector = scrapy.Selector(text=response)
-        links = []
-        attachments_col = selector.css(".col-xs-12.col-m-4")
-        pdf_links = attachments_col.css('a[href*=".pdf"]')
-        for link in pdf_links:
-            href = link.attrib["href"]
-            text = link.attrib["title"]
-            links.append({"title": text, "href": self.main_url + href})
-        return links
+    def _parse_links(self, meeing_data):
+        if href := meeing_data["Link"]:
+            return [
+                {"title": "Meeting Details", "href": href},
+            ]
+        return []
 
     def construct_payloads(self, start_date):
         """
