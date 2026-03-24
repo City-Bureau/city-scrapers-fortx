@@ -12,7 +12,9 @@ env:
 
 jobs:
   merge-and-prepare:
+    if: github.ref == 'refs/heads/staging' || github.event_name == 'schedule'
     runs-on: ubuntu-latest
+    environment: staging
     permissions:
       contents: write
       pull-requests: read
@@ -236,6 +238,7 @@ jobs:
   refresh-db:
     needs: crawl
     runs-on: ubuntu-latest
+    environment: staging
     timeout-minutes: 15
     steps:
       - name: Install Heroku CLI
