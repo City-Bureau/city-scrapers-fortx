@@ -99,7 +99,7 @@ class FortxFortWorthCityCouncilSpider(CityScrapersSpider):
             time_notes="Please check the meeting description for details on the start time",  # noqa
             location=self._parse_location(meeting_data),
             links=self._parse_links(meeting_data),
-            source=self.calendar_url,
+            source=meeting_data.get("Link", self.calendar_url),
         )
 
         meeting["status"] = self._parse_status(meeting, meeting_data)
