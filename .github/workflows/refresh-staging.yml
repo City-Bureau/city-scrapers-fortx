@@ -12,6 +12,7 @@ env:
 
 jobs:
   merge-and-prepare:
+    if: github.ref == 'refs/heads/staging' || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     environment: staging
     permissions:
