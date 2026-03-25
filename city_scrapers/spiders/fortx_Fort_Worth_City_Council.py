@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 
 import scrapy
-from city_scrapers_core.constants import CITY_COUNCIL
+from city_scrapers_core.constants import CANCELLED, CITY_COUNCIL
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import CityScrapersSpider
 from dateutil.relativedelta import relativedelta
@@ -109,8 +109,11 @@ class FortxFortWorthCityCouncilSpider(CityScrapersSpider):
 
     def _parse_status(self, meeting, item):
         if item["IsCancelled"]:
-            return "cancelled"
-        return self._get_status(meeting)
+            return CANCELLED
+        meeting_copy = {
+            key: value for key, value in meeting.items() if key != "description"
+        }  # noqa
+        return self._get_status(meeting_copy)
 
     def _parse_location(self, item):
         """

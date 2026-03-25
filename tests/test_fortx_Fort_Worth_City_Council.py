@@ -110,8 +110,9 @@ def test_location(parsed_items):
 
 
 def test_source(parsed_items):
-    assert parsed_items[0]["source"] == (
-        "https://www.fortworthtexas.gov/calendar/city-council"
+    assert (
+        parsed_items[0]["source"]
+        == "https://www.fortworthtexas.gov/departments/citysecretary/events/audit-committee-2025"  # noqa
     )
 
 
