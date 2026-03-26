@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 
 import scrapy
-from city_scrapers_core.constants import COMMISSION
+from city_scrapers_core.constants import CANCELLED, COMMISSION, PASSED, TENTATIVE
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import CityScrapersSpider
 from dateutil.relativedelta import relativedelta
@@ -111,9 +111,22 @@ class FortxFortWorthBoardsSpider(CityScrapersSpider):
         yield meeting
 
     def _parse_status(self, meeting, item):
-        if item["IsCancelled"]:
-            return "cancelled"
-        return self._get_status(meeting)
+        """
+        The get status method is overriden to only check the meeting
+        title and not the description as some meetings have the word
+        "cancelled" in the description but are not actually cancelled.
+        """
+        meeting_text = meeting.get("title", "").lower()
+        is_cancelled = item.get("IsCancelled", False)
+
+        if (
+            any(word in meeting_text for word in ["cancel", "rescheduled", "postpone"])
+            or is_cancelled
+        ):
+            return CANCELLED
+        if meeting["start"] < datetime.now():
+            return PASSED
+        return TENTATIVE
 
     def _parse_location(self, item):
         """
