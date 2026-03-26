@@ -113,7 +113,14 @@ def test_source():
 
 
 def test_links():
-    assert parsed_items[0]["links"] == []
+    assert parsed_items[0]["links"] == (
+        [
+            {
+                "href": "https://www.fortworthtexas.gov/departments/cip/events/glasgow-oak-grove-meeting-tpw",  # noqa
+                "title": "Meeting Details",
+            },
+        ]
+    )
 
 
 def test_classification():

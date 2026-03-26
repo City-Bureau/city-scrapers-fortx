@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 
 import scrapy
-from city_scrapers_core.constants import CITY_COUNCIL
+from city_scrapers_core.constants import CANCELLED, CITY_COUNCIL, PASSED, TENTATIVE
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import CityScrapersSpider
 from dateutil.relativedelta import relativedelta
@@ -19,6 +19,8 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
     main_url = "https://www.fortworthtexas.gov/"
 
     meetings_url = "https://www.fortworthtexas.gov/ocapi/calendars/getcalendaritems"
+
+    calendar_url = "https://www.fortworthtexas.gov/calendar/public-meetings"
 
     meetings_url_payload = {
         "LanguageCode": "en-US",
@@ -91,8 +93,8 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
             all_day=False,
             time_notes="Please check the meeting description for details on the start time",  # noqa
             location=self._parse_location(meeting_data),
-            links=[],
-            source=meeting_data.get("Link", response.url),
+            links=self._parse_links(meeting_data),
+            source=meeting_data.get("Link", self.calendar_url),
         )
 
         meeting["status"] = self._parse_status(meeting, meeting_data)
@@ -101,9 +103,22 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
         yield meeting
 
     def _parse_status(self, meeting, item):
-        if item["IsCancelled"]:
-            return "cancelled"
-        return self._get_status(meeting)
+        """
+        The get status method is overriden to only check the meeting
+        title and not the description as some meetings have the word
+        "cancelled" in the description but are not actually cancelled.
+        """
+        meeting_text = meeting.get("title", "").lower()
+        is_cancelled = item.get("IsCancelled", False)
+
+        if (
+            any(word in meeting_text for word in ["cancel", "rescheduled", "postpone"])
+            or is_cancelled
+        ):
+            return CANCELLED
+        if meeting["start"] < datetime.now():
+            return PASSED
+        return TENTATIVE
 
     def _parse_description(self, item):
         description = item["Description"]
@@ -125,6 +140,13 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
         if not name and not address:
             return {"name": "WebEx", "address": "WebEx"}
         return {"name": name, "address": address}
+
+    def _parse_links(self, meeing_data):
+        if href := meeing_data["Link"]:
+            return [
+                {"title": "Meeting Details", "href": href},
+            ]
+        return []
 
     def construct_payloads(self, current_date):
         """
