@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 import scrapy
 from city_scrapers_core.constants import CANCELLED, COMMISSION, PASSED, TENTATIVE
@@ -12,6 +13,8 @@ class FortxFortWorthBoardsSpider(CityScrapersSpider):
     name = "fortx_Fort_Worth_Boards"
     agency = "Fort Worth Boards and Commissions"
     timezone = "America/Chicago"
+
+    tz = ZoneInfo(timezone)
 
     custom_settings = {
         "ROBOTSTXT_OBEY": False,
@@ -37,7 +40,7 @@ class FortxFortWorthBoardsSpider(CityScrapersSpider):
     )
 
     # The last meeting scraped from the source was on June 26, 2025.
-    start_date = datetime(2025, 6, 20)
+    start_date = datetime(2025, 6, 20, tzinfo=tz)
 
     def start_requests(self):
         """
@@ -69,7 +72,9 @@ class FortxFortWorthBoardsSpider(CityScrapersSpider):
             items.extend(meeting["Items"])
 
         for item in items:
-            date_obj = datetime.strptime(item["DateTime"], "%d/%m/%Y %I:%M:%S %p")
+            date_obj = datetime.strptime(
+                item["DateTime"], "%d/%m/%Y %I:%M:%S %p"
+            ).replace(tzinfo=self.tz)
             currentDateTime = date_obj.strftime("%d/%m/%Y%%20%I:%M:%S%%20%p")
 
             meeting_detail_url = self.meeting_detail_url.format(
@@ -90,7 +95,9 @@ class FortxFortWorthBoardsSpider(CityScrapersSpider):
         data = response.json()
         meeting_data = data["data"]
 
-        meeting_start = datetime.strptime(item["DateTime"], "%d/%m/%Y %I:%M:%S %p")
+        meeting_start = datetime.strptime(
+            item["DateTime"], "%d/%m/%Y %I:%M:%S %p"
+        ).replace(tzinfo=self.tz)
 
         meeting = Meeting(
             title=meeting_data["Title"],
@@ -124,7 +131,7 @@ class FortxFortWorthBoardsSpider(CityScrapersSpider):
             or is_cancelled
         ):
             return CANCELLED
-        if meeting["start"] < datetime.now():
+        if meeting["start"] < datetime.now(tz=self.tz):
             return PASSED
         return TENTATIVE
 
