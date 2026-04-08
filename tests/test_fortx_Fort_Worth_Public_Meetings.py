@@ -3,7 +3,7 @@ from os.path import dirname, join
 
 import pytest
 import scrapy
-from city_scrapers_core.constants import CITY_COUNCIL
+from city_scrapers_core.constants import CITY_COUNCIL, PASSED
 from city_scrapers_core.utils import file_response
 from freezegun import freeze_time
 
@@ -74,7 +74,7 @@ def test_description():
 
 
 def test_start():
-    assert parsed_items[0]["start"] == datetime(2024, 2, 1, 18, 0)
+    assert parsed_items[0]["start"] == datetime(2024, 2, 1, 18, 0, tzinfo=spider.tz)
 
 
 def test_end():
@@ -96,7 +96,7 @@ def test_id():
 
 
 def test_status():
-    assert parsed_items[0]["status"] == "passed"
+    assert parsed_items[0]["status"] == PASSED
 
 
 def test_location():

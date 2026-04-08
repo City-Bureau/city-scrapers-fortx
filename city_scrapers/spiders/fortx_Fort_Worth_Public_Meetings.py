@@ -1,11 +1,11 @@
 import json
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 import scrapy
 from city_scrapers_core.constants import CANCELLED, CITY_COUNCIL, PASSED, TENTATIVE
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import CityScrapersSpider
-from dateutil.relativedelta import relativedelta
 
 
 class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
@@ -15,6 +15,8 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
     custom_settings = {
         "ROBOTSTXT_OBEY": False,
     }
+
+    tz = ZoneInfo(timezone)
 
     main_url = "https://www.fortworthtexas.gov/"
 
@@ -41,10 +43,11 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
         being fetched from two of its API endpoints.
         The main API endpoint allows fetching meeting
         items for the entirety of one year. The
-        spider is set to fetch all meetings 6 months
-        in the past and 6 months in the future.
+        spider is set to fetch all meetings for the
+        current year, one year to the past and one
+        year to the future.
         """
-        current_date = datetime.now()
+        current_date = datetime.now(tz=self.tz)
         payloads = self.construct_payloads(current_date)
         for payload in payloads:
             if payload["StartDate"] == payload["EndDate"]:
@@ -63,7 +66,9 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
         items = [item for meeting in data["data"] for item in meeting["Items"]]
 
         for item in items:
-            date_obj = datetime.strptime(item["DateTime"], "%d/%m/%Y %I:%M:%S %p")
+            date_obj = datetime.strptime(
+                item["DateTime"], "%d/%m/%Y %I:%M:%S %p"
+            ).replace(tzinfo=self.tz)
             currentDateTime = date_obj.strftime("%d/%m/%Y%%20%I:%M:%S%%20%p")
 
             meeting_detail_url = self.meeting_detail_url.format(
@@ -113,10 +118,10 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
 
         if (
             any(word in meeting_text for word in ["cancel", "rescheduled", "postpone"])
-            or is_cancelled
+            or is_cancelled == "True"
         ):
             return CANCELLED
-        if meeting["start"] < datetime.now():
+        if meeting["start"] < datetime.now(tz=self.tz):
             return PASSED
         return TENTATIVE
 
@@ -153,26 +158,15 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
         The start and end dates parameters for this organization main
         API endpoint requires the dates to be within the same year.
         This means it can't be used to fetch meetings spanning months
-        from different years. This method constructs start and end date
-        ranges covering 6 months in the past through the end of the
-        current year, splitting into separate payloads per year.
+        from different years. This method constructs date ranges for the
+        current year, one year to the past and one year to the future.
         """
-        past = current_date - relativedelta(months=6)
+        payloads = []
 
-        def _create_payload(start_date, end_date):
+        for year in range(current_date.year - 1, current_date.year + 1):
             payload = self.meetings_url_payload.copy()
-            payload["StartDate"] = start_date
-            payload["EndDate"] = end_date
-            return payload
-
-        payloads = [_create_payload(past.strftime("%Y-%m-%d"), f"{past.year}-12-31")]
-
-        # Add current year if it differs from the past year
-        if current_date.year != past.year:
-            payloads.append(
-                _create_payload(
-                    f"{current_date.year}-01-01", f"{current_date.year}-12-31"
-                )
-            )
+            payload["StartDate"] = str(datetime(year, 1, 1, tzinfo=self.tz))
+            payload["EndDate"] = str(datetime(year, 12, 31, tzinfo=self.tz))
+            payloads.append(payload)
 
         return payloads
