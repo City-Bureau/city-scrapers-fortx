@@ -17,6 +17,13 @@ class FortxFortWorthCityCouncilSpider(CityScrapersSpider):
 
     custom_settings = {
         "ROBOTSTXT_OBEY": False,
+        "DOWNLOAD_DELAY": 2,
+        "DEFAULT_REQUEST_HEADERS": {
+            "Accept": "application/json, text/plain, */*",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Origin": "https://www.fortworthtexas.gov",
+            "Referer": "https://www.fortworthtexas.gov/calendar/city-council",
+        },
     }
 
     main_url = "https://www.fortworthtexas.gov/"
