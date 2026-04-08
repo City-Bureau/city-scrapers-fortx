@@ -69,12 +69,9 @@ class FortxFortWorthCityCouncilSpider(CityScrapersSpider):
                 )
                 continue
 
-            yield from self._parse_items(response.json())
+            yield from self.parse(response.json())
 
-    def parse(self, response):
-        yield from self._parse_items(response.json())
-
-    def _parse_items(self, data):
+    def parse(self, data):
         items = []
         for meeting in data["data"]:
             items.extend(meeting["Items"])
