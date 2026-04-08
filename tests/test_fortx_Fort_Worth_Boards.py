@@ -2,7 +2,7 @@ from datetime import datetime
 from os.path import dirname, join
 
 import pytest
-from city_scrapers_core.constants import COMMISSION
+from city_scrapers_core.constants import COMMISSION, PASSED
 from city_scrapers_core.utils import file_response
 from freezegun import freeze_time
 
@@ -78,7 +78,7 @@ def test_id(parsed_items):
 
 
 def test_status(parsed_items):
-    assert parsed_items[0]["status"] == "cancelled"
+    assert parsed_items[0]["status"] == PASSED
 
 
 def test_location(parsed_items):

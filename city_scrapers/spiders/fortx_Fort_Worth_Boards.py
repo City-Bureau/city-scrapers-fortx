@@ -6,7 +6,6 @@ import scrapy
 from city_scrapers_core.constants import CANCELLED, COMMISSION, PASSED, TENTATIVE
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import CityScrapersSpider
-from dateutil.relativedelta import relativedelta
 
 
 class FortxFortWorthBoardsSpider(CityScrapersSpider):
@@ -128,7 +127,7 @@ class FortxFortWorthBoardsSpider(CityScrapersSpider):
 
         if (
             any(word in meeting_text for word in ["cancel", "rescheduled", "postpone"])
-            or is_cancelled
+            or is_cancelled == "True"
         ):
             return CANCELLED
         if meeting["start"] < datetime.now(tz=self.tz):
@@ -162,24 +161,26 @@ class FortxFortWorthBoardsSpider(CityScrapersSpider):
         The start and end dates parameters for this organization main
         API endpoint requires the dates to be within the same year.
         This means it can't be used to fetch meetings spanning months
-        from different years. This method constructs start and end date
-        ranges from the current date to 6 months in the past and 6 months
-        in the future.
+        from different years. The method constructs start and end date
+        ranges from the cutoff date of the of scraper "start_date" until
+        one year in the future.
         """
 
-        current_date = datetime.now()
-
-        future = current_date + relativedelta(months=6)
+        current_date = datetime.now(tz=self.tz)
 
         payloads = []
 
         first_payload = self.meetings_url_payload.copy()
         first_payload["StartDate"] = str(start_date)
-        first_payload["EndDate"] = str(start_date.replace(month=12, day=31))
-        second_payload = self.meetings_url_payload.copy()
-        second_payload["StartDate"] = str(future.replace(month=1, day=1))
-        second_payload["EndDate"] = str(future)
+        first_payload["EndDate"] = str(
+            start_date.replace(month=12, day=31, tzinfo=self.tz)
+        )
         payloads.append(first_payload)
-        payloads.append(second_payload)
+
+        for year in range(start_date.year + 1, current_date.year + 1):
+            payload = self.meetings_url_payload.copy()
+            payload["StartDate"] = str(datetime(year, 1, 1, tzinfo=self.tz))
+            payload["EndDate"] = str(datetime(year, 12, 31, tzinfo=self.tz))
+            payloads.append(payload)
 
         return payloads
