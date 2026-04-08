@@ -99,7 +99,7 @@ class FortxFortWorthCityCouncilSpider(CityScrapersSpider):
             title=meeting_data["Title"],
             description=meeting_data["Description"],
             classification=CITY_COUNCIL,
-            start=meeting_start,
+            start=meeting_start.replace(tzinfo=None),
             end=None,
             all_day=False,
             time_notes="Please check the meeting description for details on the start time",  # noqa
@@ -127,7 +127,7 @@ class FortxFortWorthCityCouncilSpider(CityScrapersSpider):
             or is_cancelled == "True"
         ):
             return CANCELLED
-        if meeting["start"] < datetime.now(tz=self.tz):
+        if meeting["start"] < datetime.now():
             return PASSED
         return TENTATIVE
 
