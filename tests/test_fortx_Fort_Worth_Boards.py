@@ -54,9 +54,7 @@ def test_description(parsed_items):
 
 
 def test_start(parsed_items):
-    assert parsed_items[0]["start"] == datetime(
-        2025, 6, 23, 9, 0, tzinfo=parsed_items[0]["start"].tzinfo
-    )
+    assert parsed_items[0]["start"] == datetime(2025, 6, 23, 9, 0)
 
 
 def test_end(parsed_items):
