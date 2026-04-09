@@ -66,9 +66,7 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
         items = [item for meeting in data["data"] for item in meeting["Items"]]
 
         for item in items:
-            date_obj = datetime.strptime(
-                item["DateTime"], "%d/%m/%Y %I:%M:%S %p"
-            )
+            date_obj = datetime.strptime(item["DateTime"], "%d/%m/%Y %I:%M:%S %p")
             currentDateTime = date_obj.strftime("%d/%m/%Y%%20%I:%M:%S%%20%p")
 
             meeting_detail_url = self.meeting_detail_url.format(
