@@ -68,7 +68,7 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
         for item in items:
             date_obj = datetime.strptime(
                 item["DateTime"], "%d/%m/%Y %I:%M:%S %p"
-            ).replace(tzinfo=self.tz)
+            )
             currentDateTime = date_obj.strftime("%d/%m/%Y%%20%I:%M:%S%%20%p")
 
             meeting_detail_url = self.meeting_detail_url.format(
@@ -121,7 +121,7 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
             or is_cancelled == "True"
         ):
             return CANCELLED
-        if meeting["start"] < datetime.now(tz=self.tz):
+        if meeting["start"] < datetime.now():
             return PASSED
         return TENTATIVE
 
