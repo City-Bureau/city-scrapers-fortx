@@ -1,4 +1,3 @@
-import json
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
@@ -6,6 +5,7 @@ import scrapy
 from city_scrapers_core.constants import CANCELLED, CITY_COUNCIL, PASSED, TENTATIVE
 from city_scrapers_core.items import Meeting
 from city_scrapers_core.spiders import CityScrapersSpider
+from curl_cffi import requests as curl_requests
 
 
 class FortxFortWorthCityCouncilSpider(CityScrapersSpider):
@@ -52,6 +52,9 @@ class FortxFortWorthCityCouncilSpider(CityScrapersSpider):
         items for the entirety of one year. The
         spider is set to fetch all meetings 6 months
         in the past and 6 months in the future.
+
+        Uses curl_cffi for POST requests to bypass
+        TLS fingerprinting / WAF bot protection.
         """
         current_date = datetime.now(tz=self.tz)
         payloads = self.construct_payloads(current_date)
@@ -59,17 +62,23 @@ class FortxFortWorthCityCouncilSpider(CityScrapersSpider):
         for payload in payloads:
             if payload["StartDate"] == payload["EndDate"]:
                 continue
-            yield scrapy.Request(
-                url=self.meetings_url,
-                method="POST",
-                body=json.dumps(payload),
-                headers={"Content-Type": "application/json"},
-                callback=self.parse,
+
+            response = curl_requests.post(
+                self.meetings_url,
+                json=payload,
+                impersonate="chrome120",
             )
 
-    def parse(self, response):
-        data = response.json()
+            if response.status_code != 200:
+                self.logger.warning(
+                    f"Unexpected response from {self.meetings_url}: "
+                    f"status={response.status_code}"
+                )
+                continue
 
+            yield from self.parse(response.json())
+
+    def parse(self, data):
         items = []
         for meeting in data["data"]:
             items.extend(meeting["Items"])

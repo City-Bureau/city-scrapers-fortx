@@ -51,7 +51,7 @@ def meetings_detail_response():
 def parsed_items(spider, meetings_items_response, meetings_detail_response):  # noqa
     items = []
     with freeze_time("2026-03-06"):
-        for req in spider.parse(meetings_items_response):
+        for req in spider.parse(meetings_items_response.json()):
             if isinstance(req, scrapy.Request):
                 meeting_detail_item = spider.parse_meeting(
                     meetings_detail_response, req.cb_kwargs["item"]
@@ -77,9 +77,7 @@ def test_description(parsed_items):
 
 
 def test_start(parsed_items):
-    assert parsed_items[0]["start"] == datetime(
-        2025, 10, 14, 9, 0, tzinfo=parsed_items[0]["start"].tzinfo
-    )
+    assert parsed_items[0]["start"] == datetime(2025, 10, 14, 9, 0)
 
 
 def test_end(parsed_items):
