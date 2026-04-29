@@ -1,0 +1,19 @@
+{
+    "data": {
+      "Title": "Goodman Park Public Meeting",
+      "Description": "Join us at the upcoming public meeting to learn about park improvements at Goodman Park.",
+      "Link": "https://www.fortworthtexas.gov/departments/parks/events/meetings-and-projects/goodman-park-public-meeting",
+      "Image": null,
+      "AltText": null,
+      "Address": {
+        "Venue": "Goodman Park",
+        "Street": "3200 Goodman Street",
+        "Suburb": "Fort Worth",
+        "PostCode": "76106",
+        "Formatted": "Goodman Park, 3200 Goodman Street, Fort Worth, 76106"
+      },
+      "AdditionalInfo": [],
+      "IsCancelled": true
+    },
+    "success": true
+  }

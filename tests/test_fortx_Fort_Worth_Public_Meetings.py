@@ -3,7 +3,7 @@ from os.path import dirname, join
 
 import pytest
 import scrapy
-from city_scrapers_core.constants import CITY_COUNCIL, PASSED
+from city_scrapers_core.constants import CANCELLED, CITY_COUNCIL, PASSED
 from city_scrapers_core.utils import file_response
 from freezegun import freeze_time
 
@@ -130,3 +130,29 @@ def test_classification():
 @pytest.mark.parametrize("item", parsed_items)
 def test_all_day(item):
     assert item["all_day"] is False
+
+
+# Verify that a meeting with IsCancelled=true (boolean) is correctly marked CANCELLED
+cancelled_detail = file_response(
+    join(
+        dirname(__file__),
+        "files",
+        "fortx_Fort_Worth_Public_Meetings_cancelled_meeting_details.json",
+    ),
+    url=(
+        "https://www.fortworthtexas.gov/ocapi/get/contentinfo?calendarId=8efac0b6-9ea3-402e-b7d9-e9e71a2a34a0"  # noqa
+        "&contentId=9c1c703d-0beb-46b1-9776-4bd79b26cefc&language=en-US&currentDateTime=04/02/2025%2006:00:00%20PM"  # noqa
+        "&mainContentId=00000000-0000-0000-0000-000000000000"
+    ),
+)
+
+freezer2 = freeze_time("2024-12-19")
+freezer2.start()
+cancelled_items = list(
+    spider.parse_meeting(cancelled_detail, start_time=datetime(2025, 2, 4, 18, 0))
+)
+freezer2.stop()
+
+
+def test_cancelled_status():
+    assert cancelled_items[0]["status"] == CANCELLED

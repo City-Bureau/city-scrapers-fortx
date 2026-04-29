@@ -18,8 +18,6 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
 
     tz = ZoneInfo(timezone)
 
-    main_url = "https://www.fortworthtexas.gov/"
-
     meetings_url = "https://www.fortworthtexas.gov/ocapi/calendars/getcalendaritems"
 
     calendar_url = "https://www.fortworthtexas.gov/calendar/public-meetings"
@@ -50,8 +48,6 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
         current_date = datetime.now(tz=self.tz)
         payloads = self.construct_payloads(current_date)
         for payload in payloads:
-            if payload["StartDate"] == payload["EndDate"]:
-                continue
             yield scrapy.Request(
                 url=self.meetings_url,
                 method="POST",
@@ -97,7 +93,7 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
             time_notes="Please check the meeting description for details on the start time",  # noqa
             location=self._parse_location(meeting_data),
             links=self._parse_links(meeting_data),
-            source=meeting_data.get("Link", self.calendar_url),
+            source=meeting_data.get("Link") or self.calendar_url,
         )
 
         meeting["status"] = self._parse_status(meeting, meeting_data)
@@ -107,7 +103,7 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
 
     def _parse_status(self, meeting, item):
         """
-        The get status method is overriden to only check the meeting
+        The get status method is overridden to only check the meeting
         title and not the description as some meetings have the word
         "cancelled" in the description but are not actually cancelled.
         """
@@ -116,7 +112,7 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
 
         if (
             any(word in meeting_text for word in ["cancel", "rescheduled", "postpone"])
-            or is_cancelled == "True"
+            or is_cancelled is True
         ):
             return CANCELLED
         if meeting["start"] < datetime.now():
@@ -124,9 +120,8 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
         return TENTATIVE
 
     def _parse_description(self, item):
-        description = item["Description"]
-        description = description.replace("\r", "").replace("\n", "")
-        return description
+        description = item.get("Description") or ""
+        return description.replace("\r", "").replace("\n", "")
 
     def _parse_location(self, item):
         """
@@ -135,7 +130,7 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
         """
         location = item["Address"]
         name = location.get("Venue") or location.get("Suburb")
-        address = location.get("Formatted").split(", ")
+        address = location.get("Formatted", "").split(", ")
         if len(address) > 1:
             address.pop(0)
         address = ", ".join(address)
@@ -144,8 +139,8 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
             return {"name": "WebEx", "address": "WebEx"}
         return {"name": name, "address": address}
 
-    def _parse_links(self, meeing_data):
-        if href := meeing_data["Link"]:
+    def _parse_links(self, meeting_data):
+        if href := meeting_data["Link"]:
             return [
                 {"title": "Meeting Details", "href": href},
             ]
@@ -161,7 +156,7 @@ class FortxFortWorthPublicMeetingsSpider(CityScrapersSpider):
         """
         payloads = []
 
-        for year in range(current_date.year - 1, current_date.year + 1):
+        for year in range(current_date.year - 1, current_date.year + 2):
             payload = self.meetings_url_payload.copy()
             payload["StartDate"] = str(datetime(year, 1, 1, tzinfo=self.tz))
             payload["EndDate"] = str(datetime(year, 12, 31, tzinfo=self.tz))
