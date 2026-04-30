@@ -133,7 +133,7 @@ class FortxFortWorthCityCouncilSpider(CityScrapersSpider):
 
         if (
             any(word in meeting_text for word in ["cancel", "rescheduled", "postpone"])
-            or is_cancelled == "True"
+            or is_cancelled
         ):
             return CANCELLED
         if meeting["start"] < datetime.now():
@@ -172,7 +172,7 @@ class FortxFortWorthCityCouncilSpider(CityScrapersSpider):
         """
         payloads = []
 
-        for year in range(current_date.year - 1, current_date.year + 1):
+        for year in range(current_date.year - 1, current_date.year + 2):
             payload = self.meetings_url_payload.copy()
             payload["StartDate"] = str(datetime(year, 1, 1, tzinfo=self.tz))
             payload["EndDate"] = str(datetime(year, 12, 31, tzinfo=self.tz))
