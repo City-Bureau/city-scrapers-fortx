@@ -1,0 +1,19 @@
+{
+    "data": {
+        "Title": "2025 Building Standards Commission (BSC)",
+        "Description": "2025 Meeting Calendar. View the past agendas and meeting details.",
+        "Link": "https://www.fortworthtexas.gov/departments/citysecretary/events/building-standards-commission-meeting-2025",
+        "Image": "None",
+        "AltText": "None",
+        "Address": {
+            "Venue": "",
+            "Street": "",
+            "Suburb": "Fort Worth",
+            "PostCode": "",
+            "Formatted": " Fort Worth"
+        },
+        "AdditionalInfo": [],
+        "IsCancelled": "False"
+    },
+    "success": "True"
+}
