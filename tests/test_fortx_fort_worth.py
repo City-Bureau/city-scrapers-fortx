@@ -658,6 +658,36 @@ def test_attachment_cancellations():
     }
 
 
+@freeze_time("2026-10-05")
+def test_rescheduled_notice_only_cancels_the_source_date():
+    spider = FortxFortWorthBoardsSpider()
+    detail = fixture("fortx_Fort_Worth_Boards_disciplinary_details.json")
+    page = event_page(
+        """<p class="event-date">Next date: Thursday, October 15, 2026 | 09:00 AM</p>
+        <p>10/15/2026 hearing rescheduled to 10/22/2026</p>"""
+    )
+    request = next(iter(spider.parse_meeting(detail, start=datetime(2026, 10, 15, 9))))
+    assert list(spider.parse_meeting(detail, start=datetime(2026, 10, 22, 9))) == []
+
+    meetings = list(spider.parse_event_page(page, **request.cb_kwargs))
+    assert [(m["start"].day, m["status"]) for m in meetings] == [
+        (15, CANCELLED),
+        (22, TENTATIVE),
+    ]
+
+
+def test_postponed_attachment_only_cancels_the_source_date():
+    spider = FortxFortWorthBoardsSpider()
+    cancelled_dates = spider._parse_event_page(
+        event_page("""<a class="document" href="/files/a.pdf"
+            >10-08-2026 Agenda Postponed to 10-22-2026</a>
+        <a class="document" href="/files/b.pdf"
+            >11-02-2026-11-03-2026 Canceled Hearing</a>""")
+    )
+    # A cancellation keeps every date it names
+    assert cancelled_dates == {date(2026, 10, 8), date(2026, 11, 2), date(2026, 11, 3)}
+
+
 def test_header_notice_without_date_uses_next_date():
     spider = FortxFortWorthBoardsSpider()
     cancelled_dates = spider._parse_event_page(

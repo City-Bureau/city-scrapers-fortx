@@ -406,10 +406,10 @@ class FortWorthMixin(CityScrapersSpider, metaclass=FortWorthMixinMeta):
         return dates
 
     def _parse_notice_dates(self, text):
-        dates = set()
+        dates = []
         for month, day, year in self.us_date_re.findall(text):
             try:
-                dates.add(date(int(year), int(month), int(day)))
+                dates.append(date(int(year), int(month), int(day)))
             except ValueError:
                 self.logger.warning(f"Invalid date in {text!r}")
         return dates
