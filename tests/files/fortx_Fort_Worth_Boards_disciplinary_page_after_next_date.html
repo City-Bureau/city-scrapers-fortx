@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en-US">
+<!--<![endif]-->
+<head>
+	<!-- Published by OpenCities, 1.38.0.1 -->
+
+    
+        
+    
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="theme-color" content="#003363"/>
+    <title>Disciplinary Hearings 2026 – Welcome to the City of Fort Worth</title>
+	<meta name="generator" content="OpenCities - https://granicus.com/product/opencities" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Using mobile-web-app-capable for now to enable full-screen experience on supported platforms -->
+    <!-- Note: This tag works mainly on Android Chrome. It does NOT enable full-screen mode on iOS Safari. -->
+    <!-- For iOS, the correct tag is: <meta name="apple-mobile-web-app-capable" content="yes"> -->
+    <!-- TODO: Monitor for updated meta tag standards from Apple or other browser vendors -->
+    <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="description" content="View agendas and meeting details." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://www.fortworthtexas.gov/departments/citysecretary/events/Disciplinary-Hearings-2026" />
+    <meta property="og:title" content="Disciplinary Hearings 2026" />
+    <meta property="og:description" content="View agendas and meeting details." />
+    <meta property="og:image" content="https://www.fortworthtexas.gov/files/ocwebsite/Public/HeroImage/sprite-molly-large.png?w=1200" />
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:title" content="Disciplinary Hearings 2026" />
+    <meta property="twitter:description" content="View agendas and meeting details." />
+    <meta property="twitter:image" content="https://www.fortworthtexas.gov/files/ocwebsite/Public/HeroImage/sprite-molly-large.png?w=1080" />
+    <link rel="canonical" href="https://www.fortworthtexas.gov/departments/citysecretary/events/Disciplinary-Hearings-2026" />
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/files/ocfavicon/Public/apple-touch-icon.png?V=637092758668860679">
+<link rel="icon" type="image/png" sizes="32x32" href="/files/ocfavicon/Public/favicon-32x32.png?V=637092758668860679">
+<link rel="icon" type="image/png" sizes="16x16" href="/files/ocfavicon/Public/favicon-16x16.png?V=637092758668860679">
+<link rel="manifest" href="/files/ocfavicon/Public/site.webmanifest?V=637092758668860679">
+<link rel="shortcut icon" href="/files/ocfavicon/Public/favicon.ico?V=637092758668860679">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="/files/ocfavicon/Public/browserconfig.xml?V=637092758668860679">
+    <script>
+        (function () {
+            if (window.__UNLOAD_LAZY_PATCH__) return;
+            window.__UNLOAD_LAZY_PATCH__ = true;
+
+            var supportsPageHide = ("onpagehide" in window);
+            var mappedType = supportsPageHide ? "pagehide" : "beforeunload";
+            var nativeAdd = window.addEventListener;
+            var nativeRemove = window.removeEventListener;
+            var unloadMap = null;
+            var patched = false;
+
+            function ensurePatched() {
+                if (patched) return;
+                unloadMap = new WeakMap();
+
+                window.addEventListener = function (type, listener, options) {
+                    if (type === "unload") {
+                        var wrapped = function (evt) {
+                            if (supportsPageHide && evt.persisted) return;
+                            listener.call(this, evt);
+                        };
+                        unloadMap.set(listener, wrapped);
+                        return nativeAdd.call(this, mappedType, wrapped, options);
+                    }
+                    return nativeAdd.call(this, type, listener, options);
+                };
+
+                window.removeEventListener = function (type, listener, options) {
+                    if (type === "unload") {
+                        var wrapped = unloadMap.get(listener);
+                        if (wrapped) {
+                            nativeRemove.call(this, mappedType, wrapped, options);
+                            unloadMap.delete(listener);
+                        }
+                        return;
+                    }
+                    return nativeRemove.call(this, type, listener, options);
+                };
+
+                var orig = null;
+                Object.defineProperty(window, "onunload", {
+                    configurable: true, enumerable: true,
+                    get: function () { return orig; },
+                    set: function (h) {
+                        orig = h;
+                        if (typeof h === "function") window.addEventListener("unload", h);
+                    }
+                });
+                patched = true;
+            }
+
+            window.addEventListener = function (type, listener, options) {
+                if (type === "unload") {
+                    ensurePatched();
+                    return window.addEventListener(type, listener, options);
+                }
+                return nativeAdd.call(this, type, listener, options);
+            };
+
+            window.removeEventListener = function (type, listener, options) {
+                if (type === "unload" && !patched) {
+                    return;
+                }
+                return nativeRemove.call(this, type, listener, options);
+            };
+
+            function patchTelerik() {
+                ensurePatched();
+                var ns = window.RadAjaxNamespace;
+                if (!ns || !ns.EventManager || !ns.EventManager.Add || ns.EventManager.__UnloadPatched) return;
+                var origAdd = ns.EventManager.Add;
+                ns.EventManager.Add = function (el, evtName, handler, clientId) {
+                    if (el === window && evtName === "unload") {
+                        return window.addEventListener("unload", handler);
+                    }
+                    return origAdd.call(this, el, evtName, handler, clientId);
+                };
+                ns.EventManager.__UnloadPatched = true;
+            }
+
+            if (window.RadAjaxNamespace)
+                patchTelerik();
+            else (window.requestIdleCallback || function (cb)
+            {
+                setTimeout(cb, 120);
+            })(patchTelerik);
+        })();
+    </script>
+    <!-- Preconnecting to Google Fonts servers -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Defer Roboto font loading to avoid render-blocking -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const robotoLink = document.createElement('link');
+            robotoLink.rel = 'stylesheet';
+            robotoLink.href = 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap';
+            document.head.appendChild(robotoLink);
+        });
+    </script>
+
+    <style>
+        .gm-style, .gm-style * {
+            font-family: 'Roboto', system-ui, -apple-system, "Segoe UI", Arial, sans-serif !important;
+        }
+    </style>
+
+    <script>
+        document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, "js");
+    </script>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Yrsa:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+    
+        
+            <script type="text/javascript">
+                window.__oc_flags_ImprovedBreakpointEventHandling = true;
+            </script>
+            
+        
+    
+    
+    
+        <script type="text/javascript">
+            var __metaQueryBreakpoints = {
+                'sc-size-4': '(max-width: 480px)',
+                'sc-size-3': '(min-width: 480px) and (max-width: 768px)',
+                'sc-size-2': '(min-width: 768px) and (max-width: 992px)',
+                'sc-size-1': '(min-width: 992px)'
+            }
+
+            var __ocSizePoints = [
+                { min: 0, name: 'sc-size-4' },
+                { min: 480, name: 'sc-size-3' },
+                { min: 768, name: 'sc-size-2' },
+                { min: 992, name: 'sc-size-1' }
+            ];
+
+        </script>
+    
+
+    <!-- Framework Section -->
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/files/templates/00000000-0000-0000-0000-000000000000/525d1c38-bc79-4b7d-b917-cd56bf30808e/v/4214/jquery-1.12.4.min.js?seamlessts=639263591069309728" ><\/script>')</script>
+
+    <!--Google Maps API Loader – Improved Version to avoid Warning
+    This script loads the Google Maps JavaScript API using a dynamic and async method.
+    It replaces the old static <script> tag to avoid performance warnings from Google.
+
+    Dynamically creates the <script> tag with loading = async for better performance
+    Builds the API URL with required libraries(places, geometry, marker, geocoding)
+    Uses a Promise and callback(google.maps.__ib__) to confirm when the script is ready
+
+    It Avoids Google’s warning about direct script loading
+    Improves page load speed by loading the API asynchronously-->
+
+    
+        <script>
+            (function (root) {
+                root.OpenCities = root.OpenCities || {};
+                if (!root.OpenCities.GoogleMapsLoader) {
+                    root.OpenCities.GoogleMapsLoader = {
+                        _cbs: [],
+                        _ready: false,
+                        onReady: function (cb) {
+                            if (this._ready) { try { cb(); } catch (e) { console.error(e); } }
+                            else if (typeof cb === 'function') this._cbs.push(cb);
+                        },
+                        _fire: function () {
+                            if (this._ready) return;
+                            this._ready = true;
+                            var q = this._cbs.splice(0);
+                            for (var i = 0; i < q.length; i++) {
+                                try { q[i](); } catch (e) { console.error(e); }
+                            }
+                        }
+                    };
+                }
+            })(window);
+
+            (g => {
+                var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__",
+                    m = document, b = window;
+                b = b[c] || (b[c] = {});
+                var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams,
+                    u = () => h || (h = new Promise(async (resolve, reject) => {
+                        a = m.createElement("script");
+                        e.set("libraries", [...r] + "");
+                        for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]);
+                        e.set("callback", c + ".maps." + q);
+                        a.src = "https://maps." + c + "apis.com/maps/api/js?" + e.toString();
+                        a.loading = "async";
+                        a.async = true;
+                        a.defer = true;
+                        d[q] = resolve;
+                        a.onerror = () => reject(Error(p + " could not load."));
+                        a.nonce = m.querySelector("script[nonce]")?.nonce || "";
+                        m.head.append(a);
+                    }));
+                if (d[l]) {
+                    console.warn(p + " only loads once. Ignoring duplicate load.");
+                } else {
+                    d[l] = (f, ...n) => (r.add(f), u().then(() => d[l](f, ...n)));
+                }
+            })({
+                key: "AIzaSyCQMCiBpjEFVSIDsr5IR6gUMFDm6QX02k4",
+                v: "3.65"
+            });
+
+            (async () => {
+                try {
+                    if (!google?.maps?.importLibrary) return;
+
+                    if (!window.OpenCities.__mapsLibsPromise) {
+                        window.OpenCities.__mapsLibsPromise = Promise.all([
+                            google.maps.importLibrary('maps'),
+                            google.maps.importLibrary('places'),
+                            google.maps.importLibrary('geocoding'),
+                            google.maps.importLibrary('marker'),
+                            google.maps.importLibrary('geometry')
+                        ]);
+                    }
+                    await window.OpenCities.__mapsLibsPromise;
+
+                    if (window.OpenCities?.GoogleMapsLoader) {
+                        window.OpenCities.GoogleMapsLoader._fire();
+                    }
+                } catch (err) {
+                    console.error('Google Maps failed to initialise', err);
+                }
+            })();
+        </script>
+    
+    <script src="/files/templates/00000000-0000-0000-0000-000000000000/525d1c38-bc79-4b7d-b917-cd56bf30808e/v/4214/modernizr.custom.710f3bf.js?seamlessts=639263591069309728" defer></script>
+    
+    <!--// End Framework Section -->
+    <!-- OpenCities Section -->
+    <script>
+        var OpenCities = OpenCities || {};
+        OpenCities.Paths = {
+            SiteTemplate: '/files/templates/00000000-0000-0000-0000-000000000000/525d1c38-bc79-4b7d-b917-cd56bf30808e/v/4214/',
+            ThemePath: '/files/templates/00000000-0000-0000-0000-000000000000/525d1c38-bc79-4b7d-b917-cd56bf30808e/v/4214/'
+        };
+    </script>
+    <script src='/ocapi/51f3576c-c5c7-42d4-ad05-af27da0cdb02/en-US/websitesettings.js'></script>
+    <script src="/files/templates/00000000-0000-0000-0000-000000000000/525d1c38-bc79-4b7d-b917-cd56bf30808e/v/4214/oc_head.js?applied=20260930025737"></script>
+    <!-- Script Combine. To enter debug mode for this browser session, enter OcScriptCombineDebug=true as a querystring -->
+<link href="/files/oc-templates/00000000-0000-0000-0000-000000000000/525d1c38-bc79-4b7d-b917-cd56bf30808e/v/4214/oc_grid.css~oc_style.css~oc_wizard_style.css~oc_main.css~oc_forms.css~oc_wizard.css~oc_wizard_menu.css~oc_main_s1.css~oc_wizard_s1.css~oc_wizard_menu_s1.css~oc_grid_s1.css~OcScriptCombine_Minify0?uniqueid=20260930025737" rel="stylesheet" type="text/css">
+    <!-- Script Combine. To enter debug mode for this browser session, enter OcScriptCombineDebug=true as a querystring -->
+<link href="/files/oc-templates/00000000-0000-0000-0000-000000000000/525d1c38-bc79-4b7d-b917-cd56bf30808e/v/4214/client_style.css~client.css~client_menu.css~client_s1.css~client_menu_s1.css~client_forms.css~OcScriptCombine_Minify0?uniqueid=20260930025737" rel="stylesheet" type="text/css">
+    <style type="text/css">.content-outer-container
+{
+    background-image:url('/files/assets/public/v/21/images/banner-2025-fw.png?w=480');
+    
+}
+
+@media (min-width: 480px)
+{
+    .content-outer-container
+    {
+      background-image:url('/files/assets/public/v/21/images/banner-2025-fw.png?w=768');
+    }
+}
+@media (min-width: 768px)
+{
+    .content-outer-container
+    {
+      background-image:url('/files/assets/public/v/21/images/banner-2025-fw.png?w=992');
+    }
+}
+@media (min-width: 992px)
+{
+    .content-outer-container
+    {
+      background-image:url('/files/assets/public/v/21/images/banner-2025-fw.png');
+    }
+}
+@media (min-width: 1280px)
+{
+    .content-outer-container
+    {
+      background-image:url('/files/assets/public/v/21/images/banner-2025-fw.png');
+    }
+}
+@media (min-width: 1920px)
+{
+    .content-outer-container
+    {
+      background-image:url('/files/assets/public/v/21/images/banner-2025-fw.png');
+    }
+}
+        </style><script>
+(function (BackgroundSettings, $, undefined) {
+    BackgroundSettings.initialise = function () {
+        this.Application = {"CSSSelector":".content-outer-container","EnableFade":false,"MediaType":"image"};
+    };
+} (OpenCities.BackgroundSettings = OpenCities.BackgroundSettings || {}, jQuery));
+OpenCities.BackgroundSettings.initialise();
+</script>
+    
+    <!-- Script Combine. To enter debug mode for this browser session, enter OcScriptCombineDebug=true as a querystring -->
+<link href="/files/oc-templates/00000000-0000-0000-0000-000000000000/525d1c38-bc79-4b7d-b917-cd56bf30808e/v/4214/oc_print.css~client_print.css~OcScriptCombine_Minify0?uniqueid=20260930025737" rel="stylesheet" type="text/css" media="print">
+    <!-- Script Combine. To enter debug mode for this browser session, enter OcScriptCombineDebug=true as a querystring -->
+<script src="/files/oc-templates/00000000-0000-0000-0000-000000000000/525d1c38-bc79-4b7d-b917-cd56bf30808e/v/4214/external_plugins.js~oc_form_helper.js~oc_main.js~plugins.js~oc_main_init.js~OcScriptCombine_Minify0?uniqueid=20260930025737" defer="true"></script>
+    <script async src="https://siteimproveanalytics.com/js/siteanalyze_15203328.js"></script>
+<meta name="google-site-verification" content="8Uw73SRRth4gHaICpClF1-JJeaJs8Q8qR4anKc_PzTY" />
+
+<meta name="description" content="Ranked the 11th largest and one of the fastest-growing cities in the U.S., the City of Fort Worth, Texas, is home to more than 1 million residents.">
+
+<!-- Heatmapping code -->
+<script async defer src="https://tools.luckyorange.com/core/lo.js?site-id=33fcb514"></script>
+<!-- End Heatmapping code -->
+    
+
+                                <script>!function(e){var n="https://s.go-mpulse.net/boomerang/";if("False"=="True")e.BOOMR_config=e.BOOMR_config||{},e.BOOMR_config.PageParams=e.BOOMR_config.PageParams||{},e.BOOMR_config.PageParams.pci=!0,n="https://s2.go-mpulse.net/boomerang/";if(window.BOOMR_API_key="DYTCK-JM9C8-ED4EP-C3GGK-Z575H",function(){function e(){if(!r){var e=document.createElement("script");e.id="boomr-scr-as",e.src=window.BOOMR.url,e.async=!0,o.appendChild(e),r=!0}}function t(e){r=!0;var n,t,a,i,d=document,O=window;if(window.BOOMR.snippetMethod=e?"if":"i",t=function(e,n){var t=d.createElement("script");t.id=n||"boomr-if-as",t.src=window.BOOMR.url,BOOMR_lstart=(new Date).getTime(),e=e||d.body,e.appendChild(t)},!window.addEventListener&&window.attachEvent&&navigator.userAgent.match(/MSIE [67]\./))return window.BOOMR.snippetMethod="s",void t(o,"boomr-async");a=document.createElement("IFRAME"),a.src="about:blank",a.title="",a.role="presentation",a.loading="eager",i=(a.frameElement||a).style,i.width=0,i.height=0,i.border=0,i.display="none",o.appendChild(a);try{O=a.contentWindow,d=O.document.open()}catch(_){n=document.domain,a.src="javascript:var d=document.open();d.domain='"+n+"';void 0;",O=a.contentWindow,d=O.document.open()}if(n)d._boomrl=function(){this.domain=n,t()},d.write("<bo"+"dy onload='document._boomrl();'>");else if(O._boomrl=function(){t()},O.addEventListener)O.addEventListener("load",O._boomrl,!1);else if(O.attachEvent)O.attachEvent("onload",O._boomrl);d.close()}function a(e){window.BOOMR_onload=e&&e.timeStamp||(new Date).getTime()}if(!window.BOOMR||!window.BOOMR.version&&!window.BOOMR.snippetExecuted){window.BOOMR=window.BOOMR||{},window.BOOMR.snippetStart=(new Date).getTime(),window.BOOMR.snippetExecuted=!0,window.BOOMR.snippetVersion=14,window.BOOMR.url=n+"DYTCK-JM9C8-ED4EP-C3GGK-Z575H";var i=document.currentScript||document.getElementsByTagName("script")[0],o=i.parentNode,r=!1,d=document.createElement("link");if(d.relList&&"function"==typeof d.relList.supports&&d.relList.supports("preload")&&"as"in d)window.BOOMR.snippetMethod="p",d.href=window.BOOMR.url,d.rel="preload",d.as="script",d.addEventListener("load",e),d.addEventListener("error",function(){t(!0)}),setTimeout(function(){if(!r)t(!0)},3e3),BOOMR_lstart=(new Date).getTime(),o.appendChild(d);else t(!1);if(window.addEventListener)window.addEventListener("load",a,!1);else if(window.attachEvent)window.attachEvent("onload",a)}}(),"".length>0)if(e&&"performance"in e&&e.performance&&"function"==typeof e.performance.setResourceTimingBufferSize)e.performance.setResourceTimingBufferSize();!function(){if(BOOMR=e.BOOMR||{},BOOMR.plugins=BOOMR.plugins||{},!BOOMR.plugins.AK){var n=""=="true"?1:0,t="",a="ubhwueix24f7g2v75o2q-f-614ad6bdb-clientnsv4-s.akamaihd.net",i="false"=="true"?2:1,o={"ak.v":"41","ak.cp":"1680976","ak.ai":parseInt("1075935",10),"ak.ol":"0","ak.cr":16,"ak.ipv":4,"ak.proto":"h2","ak.rid":"2e697a5b","ak.r":48121,"ak.a2":n,"ak.m":"dscb","ak.n":"essl","ak.cport":16385,"ak.gh":"23.62.38.240","ak.quicv":"","ak.tlsv":"tls1.3","ak.0rtt":"","ak.0rtt.ed":"","ak.csrc":"-","ak.acc":"","ak.t":"1790962613","ak.ak":"hOBiQwZUYzCg5VSAfCLimQ==ClF23flBPKjhsh6a8ztA6bQsIGu/B8oshgl0t38cbI0247jV5Wqa+ISgY9pBwhO7rzpKHt2uLa4nq3zJWs0jXKQhiTYLePJdW2jcn3F4OpB7ACELQyagZlHPbZk3IwzHiZF/ajFznuCFu3yxjrhf85j5XjIQCInZNhNa2zvAfRP5JQe7D83U37ChVegy1zqO7sufICYWgWOaI+PUrYPbi4m7rHFcBJBhFYogaiLF0vU4fRezdGpem8d058WXy4feIgVOeAeSTE1sqLdH4mBc1u3Kh7N1pNVvqdXVjxODxmGVYgm9Bv8ro/6zCzhT5ySylcfTX5yCi1bGc/vMHen6qffYM5OPAfcJVBUzwe0Pv8aolOy/IAxDyjZTvJ7az9bnFmTqeVWVptQgjUqsCBtuopS0W/UFSM2sJo8KzoU/qwI=","ak.pv":"351","ak.dpoabenc":"","ak.tf":i};if(""!==t)o["ak.ruds"]=t;var r={i:!1,av:function(n){var t="http.initiator";if(n&&(!n[t]||"spa_hard"===n[t]))o["ak.feo"]=void 0!==e.aFeoApplied?1:0,BOOMR.addVar(o)},rv:function(){var e=["ak.cport","ak.cr","ak.csrc","ak.gh","ak.ipv","ak.m","ak.n","ak.ol","ak.proto","ak.quicv","ak.tlsv","ak.0rtt","ak.0rtt.ed","ak.r","ak.acc","ak.t","ak.tf"];BOOMR.removeVar(e)}};BOOMR.plugins.AK={akVars:o,akDNSPreFetchDomain:a,init:function(){if(!r.i){var e=BOOMR.subscribe;e("before_beacon",r.av,null,null),e("onbeacon",r.rv,null,null),r.i=!0}return this},is_complete:function(){return!0}}}}()}(window);</script></head>
+<body class="body layout-modern  site-search-always-visble  content-type-oc-event content-template-fw-default---without-end-date group-template-oc-full-width-with-default-header page-name-disciplinary-hearings-2026 page-sequence-354 page-depth-4 page-section-4 website-type-primary device-desktop homepage-show " id="body-top">
+    <div id="skip-to-content-container">
+        <a href="#main-content" class="visuallyhidden focusable" id="skip-to-content-link">Skip to main content</a>
+    </div>
+    <script>
+        // OCNOW-11988 (Cursor): Proactively focus skip link when returning from browser chrome.
+        // Must run inline (not deferred oc_main.js) so focus is intercepted before NVDA speaks footer.
+        (function () {
+            var awaitingReentry = false;
+            var inertSupported = 'inert' in HTMLElement.prototype;
+
+            function isExplicitlyOutsideDocument(node) {
+                return node != null && !document.documentElement.contains(node);
+            }
+
+            function getSkipContainer() {
+                return document.getElementById('skip-to-content-container');
+            }
+
+            function getSkipLink() {
+                return document.getElementById('skip-to-content-link');
+            }
+
+            function applyGuard() {
+                awaitingReentry = true;
+                if (!inertSupported) {
+                    return;
+                }
+                var skipContainer = getSkipContainer();
+                var children = document.body.children;
+                for (var i = 0; i < children.length; i++) {
+                    if (children[i] !== skipContainer) {
+                        children[i].setAttribute('inert', '');
+                    }
+                }
+            }
+
+            function clearGuard() {
+                awaitingReentry = false;
+                if (!inertSupported) {
+                    return;
+                }
+                var children = document.body.children;
+                for (var i = 0; i < children.length; i++) {
+                    children[i].removeAttribute('inert');
+                }
+            }
+
+            function isSkipLinkElement(target) {
+                if (!target) {
+                    return false;
+                }
+                var skipContainer = getSkipContainer();
+                return target.id === 'skip-to-content-link' ||
+                    (skipContainer && skipContainer.contains(target));
+            }
+
+            function focusSkipLink() {
+                var skipLink = getSkipLink();
+                if (!skipLink) {
+                    return;
+                }
+                if (window.scrollY > 0) {
+                    window.scrollTo(0, 0);
+                }
+                skipLink.focus({ preventScroll: true });
+            }
+
+            function scheduleGuardIfDocumentLostFocus() {
+                window.setTimeout(function () {
+                    if (!document.hasFocus()) {
+                        applyGuard();
+                    }
+                }, 0);
+            }
+
+            document.addEventListener('focusout', function (e) {
+                if (isExplicitlyOutsideDocument(e.relatedTarget)) {
+                    applyGuard();
+                }
+            }, true);
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Tab') {
+                    scheduleGuardIfDocumentLostFocus();
+                } else if (e.key === 'F6' || (e.key === 'l' && e.ctrlKey)) {
+                    scheduleGuardIfDocumentLostFocus();
+                }
+            }, true);
+
+            window.addEventListener('focus', function () {
+                if (!awaitingReentry) {
+                    return;
+                }
+                applyGuard();
+                focusSkipLink();
+            }, true);
+
+            document.addEventListener('focusin', function (e) {
+                var reentryFromChrome = awaitingReentry || isExplicitlyOutsideDocument(e.relatedTarget);
+                if (!reentryFromChrome) {
+                    return;
+                }
+                if (isSkipLinkElement(e.target)) {
+                    clearGuard();
+                    return;
+                }
+                applyGuard();
+                focusSkipLink();
+                clearGuard();
+            }, true);
+        })();
+    </script>
+    <form name="mainForm" method="post" action="/departments/citysecretary/events/Disciplinary-Hearings-2026" id="mainForm">
+<input type="hidden" name="ctl04_seamless_script_manager_TSM" id="ctl04_seamless_script_manager_TSM" value="" />
+<input type="hidden" name="__SEAMLESSVIEWSTATE" id="__SEAMLESSVIEWSTATE" value="H4sIAAAAAAAEAAEACP/3/9NVl4B1zkonyoSN7oc3zUs40DiRRNynLX2QgGJtX/RUlaBkjeEUeBmT4RnprxdAMr+Xneek30iWgoWxMlt0ryRhgUvOXaohtef9Tp+cpz6vV6T9NUFQq+VJrrIfETsJkLLSW8cu5upLlpOENvp/oN3i6q+xe//t9J/VI5u5tq9+RgYyHfOWsDnb6bCHgREXfJeP/YXL/NMkp84u4ebsi30zHl3wy7lWSw6ZAcgPWqMMJlaSY2KLxY2igZkVfyxwEpZcsxOHx3rcg8IPKt6X/CnmBvk0U2eIIeJ1xrpXZepFhhZWVP7HeVzcXrjojf1/BrqKd+llh4fj/CHXAYODguwetreXe8f4JzXrYF/AhgYZGvpFd/vdNyGfxxMEVQZfpdVjBfB97nuypJHSRrVjlPF8sIghkHo3oT32YBxDWwYdHVexqKzn6c+O3pWsSMyqJzG9ZsBFODH3vSp/xvpC0fiVKoXOwfuEqA9qcyriVQUMTBEqsz0jtSvvikug/vQPL5DAo+vB/fi4v9dWMGe6MAES8X9Ms76hqjP9jyAY3fQ9Nx/pkksuBfnc6AceZ0ZayPtjIEdOgvLz0jnwhdMIgbjW2AKleU1mSNLpse2aGIpmtAoww+hJ2Dx97nndTQ5MaBhqVfaV45C49TfYe32fLPoZaFbGTsBVNEQikltLqv6E7Y9o0bAHVLmPerX3lwlvATGaxFDQjNglv71bkuGV6FMHRQb76EJyaOs8tRMSuaLEDyltj4w392yDty9zp1H8Tz9wkMqlW3PgVXb7VJoTguSHvlTH5nsGhMD3jQ4YV7Q1GCRIZJ7XuGYxMbE1aCoU23ktbNE/c8Ts6PhmIYJ6ZZOmwaEbzqXTxZBiarMMs5ZOw3ZAnF/s1i9y8tCQ/iqz/sgbgHHrnw+DOg4NKPmuoVUvDe93gwCi5MQvaqD/Cjqw/0Bsz/55bH7Fahai3WhzpBhF8HAwUBpB1RIetrO/EgXwUcLAkO8KpJDyoFnadUSkkbj4AOLl9Vzfx147QfhshVXFf89v93i1R6Q60uUvU0enRTpxN9JvhFMKSJlysx4KXPYsyfp1GZC6CAvWZ+M3Jx4zqACx3S4bcIAFECCjBVvuwXyFxnUw3keIEQsYgEaMVNINTwMgaAaDyiJagD6X0rjaSTAIWGCSs8lqSEy5u6p3kG8emKPNouuw1svYJ75HCLQ06cTAWf3ZiBIMUC0hf8La0uCeKPalXb2fOygrFV5LfvKn2eCi162tTpHMkKPOLe5vlZLH+j6hOjNcKj+E4xdl+thVQplMWVDWUMlMYm9ti2AU27bEc4m5VxDHR7PvHJhP+NW0WZW4uPll14Roi+dSG/y/A5RCRAUDT2q58bUOzimGWpIHWS4VseAsA8tln5WsjGfWJ90kORPV7tR8LvQt3AjfsllD5+nPZtyMsT4z80Kz2cl8dzOSie4zsWXy5NhOGgKML5f4mjByU1sUjQHHcEj/0hx1N9K0IwurNq3kem1UNxWdqoiMsaLJvf/Cd6yuMy+Po60lOnHM/+CpXwxTAxMtoL9/G87GxWwsYRU9tSXGqiWSMRNNm2c+9I99KJFhBcQiwFqxzhDG6AqiUkIeecSWfBxqeEQpnCltVnm5vSvYLTJtLCzHsHWMFX/4Yl8atZO8nZbmFnONklkdofjMXR7mZ7YKrmnK7oQJcdoDmgvOKAM0AHeB5jyRoWr5F/8NNqL4UZEDIAhKushudH33JITzVb+tyJk8x33yn0qadPA4kN+FkuyOsNA7UcMI6ofewTtfXi1HFDpFwK7waSMioZnZmaEBu36l06Ayz30zgLi4y2si/aIQh6Z3mS1cWwHk06TsYZWQYnNXPjQ6fq2pbmuWXK74Swc00GRZKAo89axT5r8KUDc/FwCP0K7Km60Jz5wDGWcWme9MW1HGsjT4UJiOsumaKCzlc6qAMVYvHL5zHQifrTw/pG7DWacR78Se8PO5At4XRfHM3gOe1M1eUX+m2bJhiodXbQt7hj1KCqfRExnAV0cUXM3Fg/cQt2hmDr7KHbIwySZLeNzgIu2P5utaZtQ2bBxOGnff8KZb+HStVdKRjnfLNSp4LaQNTerpAt0w5LTequGr7j1U/TQ4zNw0v0TwGM+jtHweimgjSO/Aifp9TlAsuZFho6P1oxV0W3WFwVzDkBZs9esJfneQzODQX6DC1mX0CCDYvcjFHhgi7HMq8ydeV0GA6GQSp2V0aO+8VSUGqGdlbVF28bZnNReRWL1OX6GpltUQK1MPehTuldu119u51AiI7YHjG9ckDsf526eZvErNZU9hISb7FFiPCem15Okn9UfwjpH8EeAYAPerX4HvnGpOZ48wEUAXMAQRPyuU+8xoWSEmMNONonuQ8l9Fc3R6D8qqRG/eJvbXghD6gQJwdYVsVWoAg+Fz8OhGxudnGaSGKwxt/CCbbvZvHQjrZzYs730Trjs3RJP4r1G7tAV15FI0pDhnCJ7YesuqRs9unOnBHCnQJld2lZf46V7m4pQypsCfm2lnvO2hk8xvSWdX7h6iqRdGo1mMZC2NFzuw8uBy9atLgM3zoWMN7x2kzLj9F5VV/FWdNai+bFLo2Ob4VPT3CMeQOvF2b6/OCRJbwKPvFt6aRchQPg9ad502n9jbD1KhsoKdjI+DwJnzeNuQIBrN0fqxY2TrLITXCSbUuMHCzJudK8qmJQqMcf9uRqzssddRfbbhQvAT69yzrKxTe8v1HznPu7nQAAgAAA==" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="" />
+
+
+<script src="/Telerik.Web.UI.WebResource.axd?_TSM_HiddenField_=ctl04_seamless_script_manager_TSM&amp;compress=1&amp;_TSM_CombinedScripts_=%3b%3bSystem.Web.Extensions%2c+Version%3d4.0.0.0%2c+Culture%3dneutral%2c+PublicKeyToken%3d31bf3856ad364e35%3aen-GB%3add3ac3d5-1e29-4112-8fed-529caffa8f24%3aea597d4b%3bOpenCities.CustomControls%3aen-GB%3a7197b077-b068-4a69-9481-a6cf2e7718f9%3a8e1d32bf" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=EYVjNsQ7oYmzBqCI0dkEyYe0LYmPcVFL4WPcQCXhKfQwUqkAT7lLra0za-OLMuUUcCyPINdTVMHIWti96-8R_oN-trjXUUZnJRzckxTjid4ecctwwEJyNI-05jZYvXHBRiEKL0MUQMEyEJ2FXanyE1uBk88RxZ1wVK6AUn9D4v8rW-LNx2OOtB8vE3hC8P0jk4XZt7GAPiCeYQolxUlwFZA8cuOfgd4u08OASxFdh8mChz3A0YHhuwRrXGVlulfs9SJVkAvulhjdHYIIp1SRohDxt9acTwxUQrOlxuxC847b00zOOWg9SlpwD_iBuQQ1rOK9WH9O_wN9c2TXm4GeXaQHHT4yQ9IlzZXw6th8ch3f-k_n1yYeeurDMbwChXW1Vh_7rpu00kgmegsg9w2J3ququXIPfy2Gq8IscVTmtwouupfmUzAOicU_yESgQ-dG0" type="text/javascript"></script>
+    
+<script type="text/javascript">
+    try{
+        function SeamlessEndRequestHandler(sender, args) {
+            try {
+                var dataItems = args.get_dataItems();
+                if(dataItems.ctl04_seamless_script_manager)
+                    document.getElementById('__SEAMLESSVIEWSTATE').value = dataItems.ctl04_seamless_script_manager;
+            }
+            catch (e) { }
+        }
+
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(SeamlessEndRequestHandler);
+    }
+    catch (e) { }
+</script>
+
+    <div class="unsupported-browser-warning js-element"></div>
+    
+    <div hidden>
+        <span id="new-window-0">opens in new tab or window </span>
+    </div>
+    <div class="overlay-container"></div>
+    
+    <div role="region" aria-label="Site announcements" class="emergency-container emergency-container-position-1"><div id="PublicEmergencyAnnouncementList" data-cookiekeydismisseditems="OC_EA_EmergencyAnnouncementList_Dismissed" data-querykeydismisseditem="OC_EA_EmergencyAnnouncementList_Dismiss">
+   <div class="oc-emergency-announcement-container">
+  <div class="oc-emergency-undismissed max-severity-10 results-1">
+    <div class="side-box message-box emergency-message-box oc-emergency-severity-10 " >
+   <h3 class="side-box-title"><style>line-height:0px;display:none !important;border:none;</style></h3>
+   <div class="side-box-content">
+      <p ><p style="text-align:center;width: 100%;font-size: 1.4em;"> <a href="https://fortworthtexas.gov/home#budget" ><b>Important Budget, Tax Rate and Public Hearing Information</b></a></p></p>
+      
+      
+   </div>
+   
+</div>
+        
+  </div><div class="oc-emergency-dismissed results-0"></div></div></div></div>
+    <div class="background-container">
+        <div class="page-container">
+            <!-- OC Layout Element GROUP TEMPLATE -->
+            <!--groupTemplateStart--><header>
+            <div class="toolbar-outer-container">
+  <div class="toolbar-inner-container clearfix">
+    <div class="toolbar-item toolbar-quicklinks toolbar-display-dropdown">
+	<button type="button" aria-controls="toolbar-quicklinks-drop-down" aria-expanded="false" class="toolbar-button toolbar-button-quicklinks js-element"><span>Quick Links</span><i aria-hidden="true"></i></button>	
+	<div id="toolbar-quicklinks-drop-down" class="toolbar-drop-down toolbar-quicklinks-drop-down clearfix">
+		<ul>
+		  <li><a href="https://www.facebook.com/CityOfFortWorth/" class="oc-icon-b oc-i-facebook link-type-external" target="_blank"><span>Facebook</span></a></li><li><a href="https://twitter.com/cityoffortworth/" class="oc-icon-b oc-i-twitter link-type-external" target="_blank"><span>Twitter</span></a></li><li><a href="https://www.linkedin.com/company/city-of-fort-worth" class="oc-icon-b oc-i-linkedin link-type-external" target="_blank"><span>LinkedIn</span></a></li><li><a href="https://nextdoor.com/city/fort-worth--tx/" class="oc-icon-b oc-i-nd link-type-external" target="_blank"><span>Nextdoor</span></a></li><li><a href="https://www.youtube.com/user/CityofFortWorth" class="oc-icon-b oc-i-yt link-type-external" target="_blank"><span>YouTube</span></a></li><li><a href="https://www.fortworthtexas.gov/departments/communications/customercare" class="oc-icon-b oc-i-phone link-type-internal"><span>Contact</span></a></li><li><a href="https://www.fortworthtexas.gov/departments/communications/customercare/myfw" class="oc-icon-b oc-i--none link-type-external"><span>MYFW App</span></a></li><li><a href="https://www.fortworthtexas.gov/my-area" class="oc-icon-b oc-i--none link-type-internal"><span>My Area Data</span></a></li><li><a href="#google_translate_element" class="oc-icon-b oc-i--none link-type-external"><span>Google Translate</span></a></li>
+		</ul>
+	</div>
+</div><div class="toolbar-item toolbar-language notranslate toolbar-display-links"><div class="toolbar-language-links"><a href="https://www.fortworthtexas.gov/departments/citysecretary/events/Disciplinary-Hearings-2026?oc_lang=en-US" class="lang-item lang-en-us" data-translate-to="en-us" lang="en-US"><img src="/files/assets/public/images/flags/united-states.png" class="lang-en-us"/><span style="color:#000;">&nbsp;English</span><span class="visuallyhidden"> Select this as your preferred language</span></a><a href="https://www.fortworthtexas.gov/departments/citysecretary/events/Disciplinary-Hearings-2026?oc_lang=es" class="lang-item lang-es" data-translate-to="es" lang="es"><img src="/files/assets/public/images/flags/mexico.png" alt="" class="lang-es" /><span style="color:#000;">&nbsp;Español</span><span class="visuallyhidden"> Select this as your preferred language</span></a><a href="https://www.fortworthtexas.gov/departments/citysecretary/events/Disciplinary-Hearings-2026?oc_lang=vi" class="lang-item lang-vi" data-translate-to="vi" lang="vi"><img src="/files/assets/public/images/flags/vietnam.png" alt="" class="lang-vi" /><span style="color:#000;">&nbsp;Tiếng Việt</span><span class="visuallyhidden"> Select this as your preferred language</span></a></div></div>
+  </div>
+</div>
+            <div class="header-outer-container">
+    <div class="header-container header-layout-3  clearfix">
+			<div class="header-site-logo">
+				<a href="https://www.fortworthtexas.gov/Home" lang="en-US" aria-label="City of Fort Worth - Home - Logo">
+				</a>
+			</div>
+      
+		    <div class="mobile-search-btn js-element">
+		        <button><i aria-hidden="true"></i><span class="mobile-search-btn-text"><span class="visuallyhidden">Open </span>Search</span></button>
+		    </div>
+		    <div class="header-website-settings">
+                <button id="btn-mob-nav" type="button" aria-expanded="false" aria-controls="nav">
+                    <i aria-hidden="true"></i><span class="side-menu-btn-text">Menu</span>
+                </button>
+        	</div>
+          <div class="navigation-outer-container">
+	<div id="nav" role="navigation" class="navigation-container  navigation-container-option-7" data-menu-type="horizontal" aria-label="primary">
+        <div class="grid">
+            <div class="col-xs-12">              
+                <ul class="sf-menu mega-menu" id="sc-main-menu"><li class="nav-section-quarters-1   first-item nav-item-seq-1">
+<a href="https://www.fortworthtexas.gov/residents" class="nav-level-1 nav-has-children"  target="">
+	<i class="item-icon" aria-hidden="true"></i><span class="item-text">Residents</span>
+</a>
+<button aria-label="Expand" aria-controls="sc-menu-second-level-nav-item-seq-1" aria-haspopup="true" class="mobnav-subarrow" ><i aria-hidden="true"></i></button>
+<ul id="sc-menu-second-level-nav-item-seq-1" class="second-level-container ch-4">
+
+          
+            <li class="second-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-neighborhood" class="nav-has-children"  target="">My Neighborhood</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-1-nav-item-seq-1" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-1-nav-item-seq-1" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-neighborhood/my-council-districts"  target="_self">My council district</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-neighborhood/events-activities"  target="_self">Events & activities</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-neighborhood/construction-projects"  target="_self">Construction projects</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-neighborhood/park-attractions"  target="_self">Parks & attractions</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-neighborhood/recreation-programs"  target="_self">Recreation programs</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-neighborhood/age-friendly-dementia-friendly-businesses"  target="_self">Find Age-Friendly & Dementia-Friendly Businesses</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-neighborhood/library"  target="_self">Locate the Library nearby</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-neighborhood/get-involved"  target="_self">Get Involved</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-services" class="nav-has-children"  target="">My Services</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-1-nav-item-seq-2" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-1-nav-item-seq-2" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-services/city-directory"  target="_self">City Directory</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-services/myfw-app"  target="_blank">MyFW APP -  Apple download</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-services/myfw-app-google"  target="_blank">MyFW APP -  Google download</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-services/trash-pickup"  target="_self">My Garbage and Recycling</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-services/water-service"  target="_self">My Water Service</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-services/Emergency-Alerts"  target="_self">Emergency alert system</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-services/neighborhood-wifi"  target="_self">Neighborhood Wifi</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-services/social-services"  target="_self">Neighborhood Social Services</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-services/development-services"  target="_self">Building and development services</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-services/transportation"  target="_self">Roads and transportation</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-services/service-a-z"  target="_self">Services A-Z Index</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-payments" class="nav-has-children"  target="">My Payments</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-1-nav-item-seq-3" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-1-nav-item-seq-3" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-payments/water-bill"  target="_self">Pay water bill</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-payments/warrant-parking-citations"  target="_self">Pay warrant & parking citations</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-data" class="nav-has-children"  target="">My Data</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-1-nav-item-seq-4" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-1-nav-item-seq-4" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-data/gis"  target="_blank">Find online data</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-data/one-address"  target="_self">One Address</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-data/zoning-annexation"  target="_blank">Zoning & Annexation Map</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-data/maps-apps"  target="_blank">My Maps & Apps</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-data/crime-mapping"  target="_blank">View crime mapping</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-data/code-violations"  target="_blank">Code Violation Map</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-data/health-inspections"  target="_blank">Health Inspection Map</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-data/permit-mapping"  target="_blank">Permit Locations Map</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/residents/my-data/record-requests"  target="_blank">Records Request</a></li></ul></li></ul></li>
+          
+            <li class="nav-section-quarters-1   nav-item-seq-2">
+<a href="https://www.fortworthtexas.gov/business" class="nav-level-1 "  target="">Business</a>
+</li>
+          
+            <li class="nav-section-quarters-1 nav-active-path  nav-item-seq-3">
+<a href="https://www.fortworthtexas.gov/departments" class="nav-level-1 nav-has-children"  target="">Departments</a>
+<button aria-label="Expand" aria-controls="sc-menu-second-level-nav-item-seq-3" aria-haspopup="true" class="mobnav-subarrow" ><i aria-hidden="true"></i></button>
+<ul id="sc-menu-second-level-nav-item-seq-3" class="second-level-container ch-29">
+
+          
+            <li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/city-directory" class=""  target="">City Directory</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/aviation" class="nav-has-children"  target="">Aviation</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-2" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-2" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/aviation/alliance"  target="_blank">Perot Field Fort Worth Alliance Airport</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/aviation/meacham"  target="">Meacham Airport</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/aviation/spinks"  target="">Spinks Airport</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/cityattorney" class=""  target="">City Attorney's Office</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/city-manager" class="nav-has-children"  target="">City Manager's Office</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-4" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-4" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/city-manager/city-manager-contacts"  target="">City Manager's Office Leadership</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/city-manager/department-divisions"  target="">Department Divisions</a></li></ul></li><li class="second-level-item nav-active-path "><a href="https://www.fortworthtexas.gov/departments/citysecretary" class="nav-has-children"  target="">City Secretary's Office</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-5" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-5" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/citysecretary/appear-at-council"  target="">How to Appear or Speak Before City Council</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/citysecretary/elections"  target="">City Elections</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/citysecretary/boards-redirect"  target="_self">Boards, Committees & Commissions</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/citysecretary/records"  target="">City Secretary Records</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/code-compliance" class="nav-has-children"  target="">Code Compliance</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-6" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-6" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/code-compliance/animals"  target="">Fort Worth Animal Care & Control</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/code-compliance/enforcement"  target="">Code Enforcement</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/communications" class="nav-has-children"  target="">Communications & Public Engagement</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-7" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-7" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/communications/media-relations"  target="">Media Relations</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/communications/engagement"  target="">Community Engagement</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/communications/fwtv"  target="">Fort Worth Television (FWTV)</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/communications/customercare"  target="">Customer Care</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/communications/social"  target="">Social Links</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/communications/fact-sheet"  target="">Fact Sheet</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/communications/records"  target="">Public Records</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/communications/engageFW"  target="">engageFW Community Academy</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/development-services" class="nav-has-children"  target="">Development Services</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-8" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-8" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/development-services/inspections"  target="">Inspections</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/development-services/permits"  target="">Permits</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/development-services/platting"  target="">Platting Information</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/development-services/zoning"  target="">Zoning</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/development-services/historic-preservation"  target="">Historic Preservation</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/development-services/urban-design"  target="">Urban Design Districts and Overlays</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/econdev" class="nav-has-children"  target="">Economic Development</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-9" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-9" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/econdev/bac"  target="">Devoyd Jennings Business Assistance Center (BAC)</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/econdev/revitalization"  target="">Revitalization</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/econdev/sbdp"  target="">Small Business Development Program</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/econdev/veterans-redirect"  target="_self">Veterans Business Support & Resources</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/econdev/transparency-stars-redirect"  target="_self">Economic Development Transparency</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/civil-rights-office" class="nav-has-children"  target="">Civil Rights Office</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-10" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-10" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/civil-rights-office/title-VI-accessibility-accommodations"  target="">Americans with Disabilities Act (ADA), Title VI & Accommodations</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/civil-rights-office/housing-employment-public-accommodation"  target="">Housing, Employment and Public Accommodation</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/civil-rights-office/human_relations_commission"  target="">Human Relations Commission</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/civil-rights-office/Mayors-Committee-on-Persons-with-Disabilities"  target="">Mayor's Committee on Persons with Disabilities</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/emc" class=""  target="">Emergency Management & Communications</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/environmental-services" class="nav-has-children"  target="">Environmental Services</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-12" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-12" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/environmental-services/consumer-health"  target="">Consumer Health</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/environmental-services/environmental-quality"  target="">Environmental Quality</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/environmental-services/solidwaste"  target="">Garbage & Recycling</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/finance" class="nav-has-children"  target="">Financial Management Services</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-13" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-13" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/finance/purchasing"  target="">Purchasing</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/finance/bids"  target="">Bids & Requests</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/finance/unclaimed-property"  target="">Unclaimed Property</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/the-fwlab" class="nav-has-children"  target="">The FWLab</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-14" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-14" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/the-fwlab/budget"  target="">Budget</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/the-fwlab/2026-bond"  target="">2026 Bond Program</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/the-fwlab/pid"  target="">Public Improvement Districts (PIDs)</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/the-fwlab/dashboards"  target="">Dashboards</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/the-fwlab/City-Council-Priorities"  target="_self">City Council Priorities</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/the-fwlab/Open-Data"  target="_self">Open Data</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/the-fwlab/property-tax"  target="">Property Tax</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/fire" class="nav-has-children"  target="">Fire</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-15" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-15" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/fire/operations"  target="">Operations Division</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/fire/member-services-map"  target="">Member Services</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/hr" class="nav-has-children"  target="">Human Resources</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-16" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-16" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/hr/careers"  target="">Careers</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/hr/employees"  target="">Employee Information</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/hr/retirees"  target="">Retiree Information</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/internal-audit" class="nav-has-children"  target="">Internal Audit</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-17" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-17" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/internal-audit/audit-reports"  target="">Audit Reports</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/it-solutions" class="nav-has-children"  target="">Information Technology Solutions (ITS)</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-18" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-18" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/it-solutions/gis"  target="">Geographic Information Systems (GIS)</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/it-solutions/cfwradios"  target="">Wireless Communications</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/it-solutions/cfwradios-policy"  target="">P25 Radio Systems</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/library" class="nav-has-children"  target="">Fort Worth Public Library</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-19" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-19" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/library/branches"  target="">Library Locations</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/library/resident-library-card"  target="_self">Get a Fort Worth Library Card</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/library/upcoming-programs"  target="_self">Upcoming Programs</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/library/catalog"  target="_blank">Library Catalog</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/library/policy"  target="">Library Policies</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/library/125-anniversary"  target="">Fort Worth Public Library's 125th Anniversary</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/library/support-your-library"  target="">Support Your Library</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/library/lib-accessibility"  target="_self">Library Accessibility Resources</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/municipal-court" class="nav-has-children"  target="">Municipal Court</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-20" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-20" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/municipal-court/services"  target="">Municipal Services</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/municipal-court/citations"  target="">Traffic & General Citations</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/municipal-court/warrants"  target="">Warrants</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/municipal-court/rules-of-the-court"  target="">Rules of the Court</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/neighborhoods" class="nav-has-children"  target="">Neighborhood Services</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-21" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-21" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/neighborhoods/nez"  target="_self">Neighborhood Empowerment Zones (NEZ)</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/neighborhoods/cap"  target="">Community Action Partners</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/neighborhoods/texasopioid"  target="">Texas Opioid Settlement Funds</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/neighborhoods/Stop-Six-Facade-Improvement"  target="">Stop Six Façade Improvement Program</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/neighborhoods/short-term-rentals"  target="_self">Short Term Rentals</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/omd" class=""  target="">Office of the Medical Director</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/opom" class="nav-has-children"  target="">Office of the Police Oversight Monitor</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-23" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-23" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/opom/reports"  target="">Reports</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/opom/complaints-and-review-process"  target="">Complaints & Review Process</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/opom/mediation"  target="">OPOM Mediation</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/parks" class="nav-has-children"  target="">Park & Recreation</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-24" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-24" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/parks/services"  target="">Services & Activities</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/parks/do-not-use-community-centers"  target="_self">Community Centers</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/parks/attractions"  target="_self">Attractions</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/parks/parks-and-trails"  target="">Parks & Trails</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/police" class="nav-has-children"  target="_blank">Police</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-25" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-25" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/police/recruiting"  target="_blank">Recruiting</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/property-management" class="nav-has-children"  target="">Property Management</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-26" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-26" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/property-management/facilities"  target="">Facilities Management</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/property-management/fleetservices"  target="">Fleet Services Division</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/property-management/generalservices"  target="">General Services</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/property-management/real-estate-division"  target="">Real Estate Division</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/public-events" class="nav-has-children"  target="">Public Events Department</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-27" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-27" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/public-events/outdoor-events"  target="">Office of Outdoor Events</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/public-events/convention-center"  target="">Fort Worth Convention Center</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/public-events/dickies-arena"  target="">Dickies Arena</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/public-events/will-rogers-memorial-center"  target="">Will Rogers Memorial Center</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/tpw" class="nav-has-children"  target="">Transportation & Public Works</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-28" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-28" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/tpw/parking"  target="">Parking in Fort Worth</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/tpw/street-permits"  target="_self">Street Permits</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/tpw/contractor-development"  target="_self">Contractor Information</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/tpw/stormwater"  target="">Stormwater Management</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/tpw/railroad-program"  target="">Railroad Safety Program</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/tpw/pavement_management_fee"  target="">Pavement Management Fee</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/departments/water" class="nav-has-children"  target="">Water</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-29" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-29" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/water/myh2o"  target="">MyH2O Program</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/water/wastewater"  target="">Wastewater</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/water/water-conservation"  target="_self">Water conservation</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/water/water-quality"  target="_self">Drinking quality report</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/water/rates"  target="">Water and wastewater rates</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/water/water-alerts"  target="">Water alerts & outages</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/departments/water/request-speaker"  target="">Online Request a Speaker</a></li></ul></li></ul></li>
+          
+            <li class="nav-section-quarters-1   nav-item-seq-4">
+<a href="https://www.fortworthtexas.gov/government" class="nav-level-1 nav-has-children"  target="">Government</a>
+<button aria-label="Expand" aria-controls="sc-menu-second-level-nav-item-seq-4" aria-haspopup="true" class="mobnav-subarrow" ><i aria-hidden="true"></i></button>
+<ul id="sc-menu-second-level-nav-item-seq-4" class="second-level-container ch-10">
+
+          
+            <li class="second-level-item  "><a href="https://www.fortworthtexas.gov/government/elected-officials" class="nav-has-children"  target="">Elected Officials</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-4-nav-item-seq-1" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-4-nav-item-seq-1" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/elected-officials/mattie-parker"  target="">Mattie Parker</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/elected-officials/carlos-flores"  target="">Carlos Flores</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/elected-officials/michael-crain"  target="">Michael D. Crain</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/elected-officials/charles-lauersdorf"  target="">Charles Lauersdorf</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/elected-officials/deborah-peoples"  target="">Deborah Peoples</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/elected-officials/mia-hall"  target="">Dr. Mia Hall</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/elected-officials/macy-hill"  target="">Macy Hill</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/elected-officials/chris-nettles"  target="">Chris Nettles</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/elected-officials/elizabeth-beck"  target="">Elizabeth M. Beck</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/elected-officials/chris-jamieson"  target="">Chris Jamieson</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/elected-officials/jeanette-martinez"  target="">Jeanette Martinez</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/elected-officials/contact"  target="">Contact your councilmember</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/government/districts" class="nav-has-children"  target="">Council District</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-4-nav-item-seq-2" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-4-nav-item-seq-2" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/districts/mayors-office"  target="_self">Mayor’s Office</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/districts/district2"  target="">District 2</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/districts/district3"  target="">District 3</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/districts/district4"  target="">District 4</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/districts/district5"  target="">District 5</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/districts/district6"  target="">District 6</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/districts/district7"  target="">District 7</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/districts/district8"  target="">District 8</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/districts/district9"  target="">District 9</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/districts/district10"  target="">District 10</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/districts/district11"  target="">District 11</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/government/mayor" class="nav-has-children"  target="">Mayor's Office</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-4-nav-item-seq-3" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-4-nav-item-seq-3" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/mayor/contact"  target="">Contact the Mayor</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/mayor/recognition"  target="_self">How to request recognition</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/government/city-management" class="nav-has-children"  target="">City Management</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-4-nav-item-seq-4" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-4-nav-item-seq-4" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/city-management/city-manager"  target="_self">City Manager</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/city-management/city-attorney"  target="_self">City Attorney</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/city-management/city-secretary"  target="_self">City Secretary</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/city-management/assistant-city-managers"  target="">Assistant City Managers</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/city-management/fwlab"  target="_self">The FWLab</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/city-management/city-auditor"  target="_self">City Auditor</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/government/city-council-meetings" class="nav-has-children"  target="">City Council Meeting</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-4-nav-item-seq-5" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-4-nav-item-seq-5" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/city-council-meetings/appear"  target="_self">How to appear/speak before City Council</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/city-council-meetings/watch-city-meetings-live"  target="_blank">Watch council meetings live</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/city-council-meetings/meetings-agendas"  target="_blank">City Council Meetings & Agendas</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/city-council-meetings/meetings-agendas-legacy"  target="_blank">City Council Meetings & Agendas (Prior to 6/17/2026)</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/city-council-meetings/watch-recorded-city-meetings"  target="_blank">Watch recorded city meetings</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/government/boards" class=""  target="">Boards, Committees & Commissions</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/government/top-govt-topics" class="nav-has-children"  target="">Top Topics</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-4-nav-item-seq-7" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-4-nav-item-seq-7" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/top-govt-topics/2026-budget"  target="_self">FY2026 Budget</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/top-govt-topics/fire-ems"  target="_self">Fire/EMS</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/top-govt-topics/str"  target="_self">Short Term Rentals (STR)</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/top-govt-topics/hot"  target="_self">Hotel Occupancy Tax System</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/top-govt-topics/data-centers"  target="_self">Data Centers</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/government/resources" class="nav-has-children"  target="">Additional Resources</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-4-nav-item-seq-8" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-4-nav-item-seq-8" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/resources/ethics-compliance"  target="">Ethics Compliance</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/resources/legislative-priorities"  target="_self">Legislative Priorities</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/resources/cip"  target="_self">Capital Improvement Projects (CIP)</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/resources/1300-gendy"  target="">1300 Gendy Redevelopment</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/government/resources/game-rooms"  target="_self">Game Room/Amusement Redemption Machine</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/government/district-map" class=""  target="">District Map with Councilmembers</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/government/2026-charter-election" class=""  target="">2026 Charter Election</a></li></ul></li>
+          
+            <li class="nav-section-quarters-1   nav-item-seq-5">
+<a href="https://www.fortworthtexas.gov/calendar-services" class="nav-level-1 nav-has-children"  target="">Calendar & Services</a>
+<button aria-label="Expand" aria-controls="sc-menu-second-level-nav-item-seq-5" aria-haspopup="true" class="mobnav-subarrow" ><i aria-hidden="true"></i></button>
+<ul id="sc-menu-second-level-nav-item-seq-5" class="second-level-container ch-5">
+
+          
+            <li class="second-level-item  "><a href="https://www.fortworthtexas.gov/calendar-services/report" class="nav-has-children"  target="_self">Report an issue</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-5-nav-item-seq-1" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-5-nav-item-seq-1" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/calendar-services/report/report-pothole"  target="_blank">Potholes</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/calendar-services/report/street-lights"  target="_blank">Streetlight or traffic light</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/calendar-services/report/code-violations"  target="_self">Code violations</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/calendar-services/report/report-crime"  target="_blank">File a police report</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/calendar-services/report/report-animal"  target="_blank">Animal issues</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/calendar-services/report/report-graffiti"  target="_blank">Graffiti</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/calendar-services/report/report-online"  target="_blank">Report online using the MyFW app</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/calendar-services/payments" class=""  target="">Payments</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/calendar-services/news" class="nav-has-children"  target="_self">News</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-5-nav-item-seq-3" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-5-nav-item-seq-3" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/calendar-services/news/latest-news"  target="_self">Latest City News</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/calendar-services/news/sign-up-news"  target="_blank">Sign up for City News emails</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/calendar-services/news/department-newsletters"  target="_blank">Sign up for newsletters</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/calendar-services/calendar" class="nav-has-children"  target="_self">Calendars</a><button aria-label="Expand" aria-controls="sc-menu-third-level-nav-item-seq-5-nav-item-seq-4" class="mobnav-subarrow-child"><i aria-hidden="true"></i>
+              </button>
+<ul  id="sc-menu-third-level-nav-item-seq-5-nav-item-seq-4" class="third-level-container">
+          
+            <li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/calendar-services/calendar/city-council"  target="_self">City Council</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/calendar-services/calendar/boards-commissions"  target="_self">Boards & Commissions</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/calendar-services/calendar/events"  target="_self">Events</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/calendar-services/calendar/public-meetings"  target="_self">Public meetings</a></li><li  class="third-level-item  "><a href="https://www.fortworthtexas.gov/calendar-services/calendar/classes-workshops"  target="_self">Classes & workshops</a></li></ul></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/calendar-services/fwtv" class=""  target="_self">Watch city meetings on FWTV</a></li></ul></li>
+          
+            <li class="nav-section-quarters-1   nav-item-seq-6">
+<a href="https://www.fortworthtexas.gov/a-z-index" class="nav-level-1 nav-has-children"  target="">A-Z Index</a>
+<button aria-label="Expand" aria-controls="sc-menu-second-level-nav-item-seq-6" aria-haspopup="true" class="mobnav-subarrow" ><i aria-hidden="true"></i></button>
+<ul id="sc-menu-second-level-nav-item-seq-6" class="second-level-container ch-90">
+
+          
+            <li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/alarms" class=""  target="">Alarm Permits</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/aviation" class=""  target="">Aviation</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/backflow" class=""  target="">Backflow</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/annexation" class=""  target="">Annexation</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/animal-licensing" class=""  target="">Animal Licensing & Fees</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/animal-noise-complaint" class=""  target="">Animal Noise Complaint</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/auditing" class=""  target="">Auditing</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/bids" class=""  target="">Bids and Request for Qualification RFQ</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/bill-assistance" class=""  target="">Billing Assistance</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/bulk-trash" class=""  target="">Bulk Trash</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/ballot" class=""  target="">Ballot</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/bond-proposition" class=""  target="">Bond proposition</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/building-energy-code" class=""  target="">Building & Energy Code</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/business" class=""  target="">Business</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/business-license" class=""  target="">Business Assistance Center BAC</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/cares-act" class=""  target="">Cares Act</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/certificate-occupancy" class=""  target="">Certificate of Occupancy</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/charter" class=""  target="">Charter</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/city-council" class=""  target="">City Council</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/city-management-contacts" class=""  target="">City Management Contacts</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/camp" class=""  target="">Camps</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/code-compliance-contact" class=""  target="">Code Compliance Contacts</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/community-assistance" class=""  target="">Community Action Partners CAP</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/consumer-health" class=""  target="">Consumer Health</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/contractor-registration" class=""  target="">Contractor Registration</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/covid" class=""  target="">Covid-19</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/covid-testing" class=""  target="">COVID-19 Testing</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/deferred-disposition" class=""  target="">Deferred Disposition (Probation)</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/development-services-contact" class=""  target="">Development Services Contacts</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/diversity-cfw" class=""  target="">Diversity</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/employment" class=""  target="">Employment</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/environment" class=""  target="">Environment</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/employment-statistics" class=""  target="">Employment Statistics</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/finance" class=""  target="">Financial Management</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/one-address" class=""  target="">OneAddress</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/government" class=""  target="">Government</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/human-resources-contacts" class=""  target="">Human Resources Contact</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/city-council-contacts" class=""  target="">City Council Contacts</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/human-resources" class=""  target="">Human Resources</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/initiatives" class=""  target="">Initiatives with the City of Fort Worth</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/jobs" class=""  target="">Job Listings</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/kfwb" class=""  target="">Keeping Fort Worth Beautiful</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/lean-lenders" class=""  target="">Lean Lenders</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/my-neighborhood" class=""  target="">My Neighborhood</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/northwest" class=""  target="">Northwest Library</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/old-hemphill-drop-off-station" class=""  target="">Old Hemphill Road Drop-off Station</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/open-records" class=""  target="">Open Records</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/municipal-contact" class=""  target="">Municipal Court Contacts</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/inspections" class=""  target="">Inspections</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/permits" class=""  target="">Permits with the City of Fort Worth</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/quality" class=""  target="">Air Quality</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/recycling" class=""  target="">Recycling with the City of Fort Worth</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/rental-assistance" class=""  target="">Rental Assistance</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/retirees" class=""  target="">Retirement Benefits</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/roundabouts" class=""  target="">Roundabouts</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/salary-schedule" class=""  target="">Salary Schedule</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/seniors" class=""  target="">Seniors</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/solid-waste" class=""  target="">Solid Waste Services</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/departments" class=""  target="">Departmental Listings</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/fire" class=""  target="">Fire Safety</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/fire-prevention" class=""  target="">Fire prevention</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/historic-designation" class=""  target="">Historic designation requirements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/irrigation" class=""  target="">Irrigation requirements for properties</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/trash-collection" class=""  target="">Trash Collection</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/utilities-adminstration-section" class=""  target="">Utilities Administration Section</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/venues" class=""  target="">Venues</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/volunteer" class=""  target="">Volunteer</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/voter-registration" class=""  target="">Voter Registration</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/waste-collection" class=""  target="">Waste Collection</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/water-contact" class=""  target="">Water Contact</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/water-rates" class=""  target="">Water Rates</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/rfp-x-ray" class=""  target="">RFP Veterinary X-ray Machine and Maintenance</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/yardsmart" class=""  target="">YardSmart Seminars</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/zoning-process" class=""  target="">Zoning Process</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/preserve-fort" class=""  target="">Preserve the Fort</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/puppies" class=""  target="">Puppies</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/fwtv" class=""  target="">Fort Worth TV</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/garbage" class=""  target="">Garbage</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/job-descriptions" class=""  target="">Job Descriptions</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/questions" class=""  target="">Questions</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/transportation" class=""  target="">Transportation & Public Works</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/landmark-plaques" class=""  target="">Landmark plaques</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/police" class=""  target="">Police & Public Safety</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/preservation" class=""  target="">Preservation & Development</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/property" class=""  target="">Property management for the city</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/public-events" class=""  target="">Public Events</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/public-records" class=""  target="">Public records to order or view</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/reporting" class=""  target="">Reporting and Contacting</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/west-nile-map" class=""  target="">Public Health West Nile Map</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/a-z-index/boards" class=""  target="">Boards</a></li></ul></li>
+          
+            <li class="nav-section-quarters-1   nav-item-seq-7">
+<a href="https://www.fortworthtexas.gov/calendar" class="nav-level-1 nav-has-children"  target="">Full month view of Calendar & Meetings</a>
+<button aria-label="Expand" aria-controls="sc-menu-second-level-nav-item-seq-7" aria-haspopup="true" class="mobnav-subarrow" ><i aria-hidden="true"></i></button>
+<ul id="sc-menu-second-level-nav-item-seq-7" class="second-level-container ch-1">
+
+          
+            <li class="second-level-item  "><a href="https://www.fortworthtexas.gov/calendar/monthly-events" class=""  target="">Monthly Events</a></li></ul></li>
+          
+            <li class="nav-section-quarters-2   nav-item-seq-8">
+<a href="https://www.fortworthtexas.gov/flooding" class="nav-level-1 nav-has-children"  target="">Flooding Information</a>
+<button aria-label="Expand" aria-controls="sc-menu-second-level-nav-item-seq-8" aria-haspopup="true" class="mobnav-subarrow" ><i aria-hidden="true"></i></button>
+<ul id="sc-menu-second-level-nav-item-seq-8" class="second-level-container ch-1">
+
+          
+            <li class="second-level-item  "><a href="https://www.fortworthtexas.gov/flooding/flood-gallery" class=""  target="">2022 Flood Gallery</a></li></ul></li>
+          
+            <li class="nav-section-quarters-2   nav-item-seq-9">
+<a href="https://www.fortworthtexas.gov/age-friendly-dementia-friendly" class="nav-level-1 nav-has-children"  target="">Fort Worth Age-Friendly & Dementia-Friendly</a>
+<button aria-label="Expand" aria-controls="sc-menu-second-level-nav-item-seq-9" aria-haspopup="true" class="mobnav-subarrow" ><i aria-hidden="true"></i></button>
+<ul id="sc-menu-second-level-nav-item-seq-9" class="second-level-container ch-2">
+
+          
+            <li class="second-level-item  "><a href="https://www.fortworthtexas.gov/age-friendly-dementia-friendly/business-directory" class=""  target="">Age-Friendly & Dementia-Friendly Business Directory</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/age-friendly-dementia-friendly/apply" class=""  target="">Apply to become an Age-Friendly & Dementia-Friendly Business</a></li></ul></li>
+          
+            <li class="nav-section-quarters-2   nav-item-seq-10">
+<a href="https://www.fortworthtexas.gov/impact-fees" class="nav-level-1 nav-has-children"  target="">Impact Fees</a>
+<button aria-label="Expand" aria-controls="sc-menu-second-level-nav-item-seq-10" aria-haspopup="true" class="mobnav-subarrow" ><i aria-hidden="true"></i></button>
+<ul id="sc-menu-second-level-nav-item-seq-10" class="second-level-container ch-2">
+
+          
+            <li class="second-level-item  "><a href="https://www.fortworthtexas.gov/impact-fees/transportation" class=""  target="">Transportation Impact Fees</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/impact-fees/water-impact-fees" class=""  target="">Water and Wastewater Impact Fees</a></li></ul></li>
+          
+            <li class="nav-section-quarters-2   nav-item-seq-11">
+<a href="https://www.fortworthtexas.gov/short-term-rentals" class="nav-level-1 "  target="">Short-Term Rentals (STR)</a>
+</li>
+          
+            <li class="nav-section-quarters-2   nav-item-seq-12">
+<a href="https://www.fortworthtexas.gov/initiatives" class="nav-level-1 "  target="">Initiatives</a>
+</li>
+          
+            <li class="nav-section-quarters-2   nav-item-seq-13">
+<a href="https://www.fortworthtexas.gov/locations" class="nav-level-1 "  target="">Locations</a>
+</li>
+          
+            <li class="nav-section-quarters-2   nav-item-seq-14">
+<a href="https://www.fortworthtexas.gov/job-board" class="nav-level-1 "  target="">Job Board</a>
+</li>
+          
+            <li class="nav-section-quarters-3   nav-item-seq-15">
+<a href="https://www.fortworthtexas.gov/my-area" class="nav-level-1 "  target="">My Area & Data Maps</a>
+</li>
+          
+            <li class="nav-section-quarters-3   nav-item-seq-16">
+<a href="https://www.fortworthtexas.gov/projects" class="nav-level-1 nav-has-children"  target="">Capital Projects</a>
+<button aria-label="Expand" aria-controls="sc-menu-second-level-nav-item-seq-16" aria-haspopup="true" class="mobnav-subarrow" ><i aria-hidden="true"></i></button>
+<ul id="sc-menu-second-level-nav-item-seq-16" class="second-level-container ch-47">
+
+          
+            <li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/Fire-Station-43" class=""  target="">Fire Station 43</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/Public-Safety-and-Municipal-Court-Building-Renovations" class=""  target="">Public Safety and Municipal Court Building Renovations</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/trinity-river-vision-water-wastewater-line-relocations" class=""  target="">Trinity River Vision Water & Wastewater Line Relocations</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/Ridglea-Area-Infrastructure-Improvements" class=""  target="">Ridglea Area Infrastructure Improvements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/Meacham-Airport-Midfield-Redevelopment" class=""  target="">Meacham Airport Midfield Redevelopment</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/Spinks-Airport-East-Side-Taxiway-Improvements" class=""  target="">Spinks Airport East Side Taxiway Improvements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cip-far-nrw-library" class=""  target="">Sendera Springs Library</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-keller-hicks-improvements" class=""  target="">Keller Hicks Road Improvements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/Village-Creek-Water-Reclamation-Facility-Chemical-Storage-Improvements" class=""  target="">Village Creek Water Reclamation Facility-Chemical Storage Improvements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/North-Holly-Sedimentation-Basin-Improvements" class=""  target="">North Holly Sedimentation Basin Improvements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/Village-Creek-Water-Reclamation-Facility-Thickener-Process-Improvements" class=""  target="">Village Creek Water Reclamation Facility Thickener Process Improvement</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/Cooks-LaneMorrison-Drive-Sewer-Main-Improvements" class=""  target="">Cooks Lane/Morrison Drive Sewer Main Improvements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/Eastside-Southside-Infrastructure-Improvements" class=""  target="">Eastside & Southside Infrastructure Improvements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/Wedgwood-Area-Infrastructure-Improvements" class=""  target="">Wedgwood Area Infrastructure Improvements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/Riverside-Alliance-Diamond-Hill-Jarvis-Infrastructure-Improvements" class=""  target="">Riverside Alliance & Diamond Hill-Jarvis Infrastructure Improvements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/Desert-Ridge-Kilpatrick-Avenue-Infrastructure-Improvements" class=""  target="">Desert Ridge & Kilpatrick Avenue Infrastructure Improvements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/Marion-Avenue-Infrastructure-Improvements" class=""  target="">Marion Avenue Infrastructure Improvements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/Noble-Avenue-Seaman-Street-Infrastructure-Improvements" class=""  target="">Noble Avenue & Seaman Street Infrastructure Improvements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/Thomas-Road-Sewer-Main-Improvements" class=""  target="">Thomas Road Sewer Main Improvements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/Uptown-Downtown-Sewer-Improvements" class=""  target="">Uptown & Downtown Sewer Improvements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/Everman-Parkway-Water-Transmission-Main" class=""  target="">Everman Parkway Water Transmission Main</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/Mount-Vernon-Crestview-Sanderson-Newark-Infrastructure-Improvements" class=""  target="">Mount Vernon, Crestview, Sanderson & Newark Infrastructure Improvement</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/Iron-Horse-Golf-Course-Sewer-Improvements" class=""  target="">Iron Horse Golf Course Sewer Improvements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-sycamore-creek-phase-4A-4B-wastewater-improvements" class=""  target="">Sycamore Creek Phase 4A & 4B Wastewater Improvements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-davis-harvey-powell-jessamine-evans-water-and-sewer-improvements" class=""  target="">Davis, Harvey, Powell, Jessamine & Evans Water and Sewer Improvements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-stop6-historic-rosedale-water-and-sewer-improvements" class=""  target="">Stop 6 and Historic Rosedale Water and Sewer Improvements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-diamond-hill-jarvis-area-nichols-to-schwartz-water-and-sewer" class=""  target="">Diamond Hill Jarvis Area - Nichols to Schwartz - Water and Sewer</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/stop-six-hub-mlk-community-center" class=""  target="">Stop Six Hub MLK Community Center</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-bryant-irvin-road-30inch-water-main-pressure-plane-transfer-project" class=""  target="">Bryant Irvin Road 30-inch Water Main/Pressure Plane Transfer Project</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-northside-III-54-inch-water-transmission-main-alignment-and-land-study" class=""  target="">Northside III 54-inch Water Transmission Main Construction</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-water-and-sewer-improvements-I35W-service-road-to-sycamore-creek" class=""  target="">Water and Sewer Improvements - I35W Service Road to Sycamore Creek</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-camp-bowie-boulevard-montgomery-to-clifton-cast-iron-water-main-replacement" class=""  target="">Camp Bowie - Montgomery to Clifton - Cast Iron Water Main Replacement</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-isbell-road-springer-avenue-area-sewer-and-cast-iron-water-mains" class=""  target="">Isbell Road & Springer Avenue Area Sewer and Cast Iron Water Mains</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-miller-avenue-to-trueland-drive-area-water-sewer-improvements" class=""  target="">Miller Avenue to Trueland Drive Area Water & Sewer Improvements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-camp-bowie-boulevard-hulen-to-montgomery-cast-iron-water-main-replacement" class=""  target="">Camp Bowie - Hulen to Montgomery - Cast Iron Water Main Replacement</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/pard-south-drive-extension-northwest-park" class=""  target="">South Drive Extension at Northwest Park</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-north-side-area-sewer-main-and-cast-iron-water-main-replacements" class=""  target="">North Side Area Sewer Main and Cast Iron Water Main Replacements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-forest-park-mistletoe-area-sewer-cast-iron-water-main-replacements" class=""  target="">Forest Park & Mistletoe Area Sewer & Cast Iron Water Main Replacements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-magnolia-avenue-fairmount-area-cast-iron-water-sewer" class=""  target="">Magnolia Avenue & Fairmount Area Cast Iron Water and Sewer</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-central-meadowbrook-area-cast-iron-water-main-replacement-and-sewer-main-replacement" class=""  target="">Central Meadowbrook Area Cast Iron Water & Sewer Main Replacement</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-ridglea-area-sewer-main-and-cast-iron-water-main-replacements" class=""  target="">Ridglea Area Sewer Main and Cast Iron Water Main Replacements</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-grand-avenue-area-jacksboro-hwy-to-north-main-cast-iron-water-main-replacements" class=""  target="">Grand Avenue Area -Jacksboro Hwy to North Main - Cast Iron Water Mains</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-arcadia-trail-area-36-inch-in-diameter-sewer-rehabilitation-replacement" class=""  target="">Arcadia Trail Area 36-inch Diameter Sewer Rehabilitation & Replacement</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-east-bailey-boswell-extension-project" class=""  target="">East Bailey Boswell Extension Project</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/cfw-wedgwood-and-candleridge-area-water-main-and-sewer-main-replacement" class=""  target="">Wedgwood and Candleridge Area Water Main and Sewer Main Replacement</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/pard-riverside-park-ica" class=""  target="">Riverside Park ICA w/ TRWD</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/projects/pard-twin-mills-lasater-channel-clearing" class=""  target="">Twin Mills Park and Lasater Park Channel Clearing</a></li></ul></li>
+          
+            <li class="nav-section-quarters-3   nav-item-seq-17">
+<a href="https://www.fortworthtexas.gov/news" class="nav-level-1 nav-has-children"  target="">City News</a>
+<button aria-label="Expand" aria-controls="sc-menu-second-level-nav-item-seq-17" aria-haspopup="true" class="mobnav-subarrow" ><i aria-hidden="true"></i></button>
+<ul id="sc-menu-second-level-nav-item-seq-17" class="second-level-container ch-10">
+
+          
+            <li class="second-level-item  "><a href="https://www.fortworthtexas.gov/news/gallery-2022" class=""  target="">Gallery for Summer 2022</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/news/gallery-juneteenth" class=""  target="">National Juneteenth Museum</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/news/molly-is-25" class=""  target="">Mollys 25th</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/news/City-Hall-Selfie-Day-2025" class=""  target="">city hall selfie day 2025</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/news/camp-bowie-boulevard-bricks" class=""  target="">The Bricks of Camp Bowie Boulevard</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/news/casa-manana" class=""  target="">The House of Tomorrow: The history of Casa Mañana</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/news/mrs-bairds" class=""  target="">Mrs. Baird's Bakery at 1701 Summit Ave.</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/news/tornado-2000" class=""  target="">March 28, 2000, tornado images (Courtesy of Fort Worth History Center)</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/news/flood-of-1949" class=""  target="">Images from the Fort Worth Flood of May 1949</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/news/drumstick-history" class=""  target="">Drumstick, the iconic Fort Worth-based ice cream treat</a></li></ul></li>
+          
+            <li class="nav-section-quarters-3   nav-item-seq-18">
+<a href="https://www.fortworthtexas.gov/report-an-issue" class="nav-level-1 "  target="_self">Report an Issue</a>
+</li>
+          
+            <li class="nav-section-quarters-3   nav-item-seq-19">
+<a href="https://www.fortworthtexas.gov/venues" class="nav-level-1 "  target="">Venues</a>
+</li>
+          
+            <li class="nav-section-quarters-3   nav-item-seq-20">
+<a href="https://www.fortworthtexas.gov/volunteer" class="nav-level-1 "  target="">Volunteer Opportunities</a>
+</li>
+          
+            <li class="nav-section-quarters-3   nav-item-seq-21">
+<a href="https://www.fortworthtexas.gov/about" class="nav-level-1 nav-has-children"  target="">About Fort Worth</a>
+<button aria-label="Expand" aria-controls="sc-menu-second-level-nav-item-seq-21" aria-haspopup="true" class="mobnav-subarrow" ><i aria-hidden="true"></i></button>
+<ul id="sc-menu-second-level-nav-item-seq-21" class="second-level-container ch-5">
+
+          
+            <li class="second-level-item  "><a href="https://www.fortworthtexas.gov/about/history" class=""  target="">Fort Worth History</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/about/population" class=""  target="">Population</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/about/mission" class=""  target="">Fort Worth's Vision &  Mission</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/about/logo" class=""  target="">Official City of Fort Worth Logo</a></li><li class="second-level-item  "><a href="https://www.fortworthtexas.gov/about/fact-sheet" class=""  target="">City Fact Sheet</a></li></ul></li>
+          
+            <li class="nav-section-quarters-4   nav-item-seq-22">
+<a href="https://www.fortworthtexas.gov/standards" class="nav-level-1 "  target="">New development ordinance, regulations and standards revisions</a>
+</li>
+          
+            <li class="nav-section-quarters-4   nav-item-seq-23">
+<a href="https://www.fortworthtexas.gov/recognitions" class="nav-level-1 "  target="">Submit a Recognition Request</a>
+</li>
+          
+            <li class="nav-section-quarters-4   nav-item-seq-24">
+<a href="https://www.fortworthtexas.gov/crc" class="nav-level-1 "  target="">Community Recovery Center</a>
+</li>
+          
+            <li class="nav-section-quarters-4   nav-item-seq-25">
+<a href="https://www.fortworthtexas.gov/winter-2026" class="nav-level-1 "  target="">Cold Weather Update</a>
+</li>
+          
+            <li class="nav-section-quarters-4   nav-item-seq-26">
+<a href="https://www.fortworthtexas.gov/Soccer-2026" class="nav-level-1 "  target="">Soccer 2026</a>
+</li>
+          
+            </ul>
+            </div>
+        </div>
+    </div>
+</div>
+			
+			<div class="header-search-control-container" id="header-search">
+				<div class="search-inner-container">
+					<div class="sc-search-panel">
+	<label for="ctl08_txtSearch" id="ctl08_lblSearch" class="sc-search-label">Search</label><input name="ctl08$txtSearch" type="text" id="ctl08_txtSearch" class="sc-search-text" placeholder="Find almost anything on our website" /><input type="submit" name="ctl08$btnSearch" value="Search" id="ctl08_btnSearch" class="sc-search-button" />
+</div>
+					<div role="status" id="predictiveResults"></div>
+				</div>
+			</div>
+    </div>
+</div>
+
+            </header>
+            <div class="content-outer-container">
+                <div id="main" role="main" class="main-outer-container clearfix">
+                        
+                        <div class="content-main-container">
+                            <div class="grid">
+					            <div class="col-xs-12">
+						            <nav id="breadcrumbs-container" aria-label="You Are Here :">
+							            <span role="list">
+<span role="listitem">
+	<a href="https://www.fortworthtexas.gov/Home"  lang="en-US">Home</a>
+	<span class="nav-separator" aria-hidden="true" role="presentation">/</span>
+</span>
+          <span role="listitem"><a href="https://www.fortworthtexas.gov/departments" >Departments</a><span class='nav-separator' aria-hidden="true" role="presentation">/</span></span><span role="listitem">
+	<a href="https://www.fortworthtexas.gov/departments/citysecretary" >
+		City Secretary's Office
+	</a>
+	<span class='nav-separator' aria-hidden="true" role="presentation">/</span>
+</span>
+<span class="current-page" role="listitem" aria-current="page" >Disciplinary Hearings 2026</span>
+          </span>
+						            </nav>
+					            </div>
+                      
+					            <div class="col-xs-12">
+						            <div class="main-inner-container">
+							            <div id="main-content" class="main-container clearfix">
+							              
+                            <!-- OC Layout Element Conent Template -->
+							              <!--normalTemplateStart--><div class="grid">
+	<div class="col-xs-12 col-m-8">
+		<h1 class='oc-page-title '>Disciplinary Hearings 2026</h1>
+		
+        
+		
+		<p>HEARING CANCELED</p>
+
+
+	    <div class="clearfix"></div>
+	    
+	        
+	        
+		       <h2 class="sub-title">When</h2>
+      <div class="multi-date-list-container">
+<ul class="multi-date-list future-events-list"><li class="multi-date-item" data-start-year='2026' data-start-month='01' data-start-day='28' data-end-year='2026' data-end-month='01' data-end-day='28'>
+	Wednesday, January 28, 2026 | 09:00 AM  
+</li><li class="multi-date-item" data-start-year='2026' data-start-month='01' data-start-day='29' data-end-year='2026' data-end-month='01' data-end-day='29'>
+	Thursday, January 29, 2026 | 09:00 AM  
+</li><li class="multi-date-item" data-start-year='2026' data-start-month='03' data-start-day='12' data-end-year='2026' data-end-month='03' data-end-day='12'>
+	Thursday, March 12, 2026 | 09:00 AM  
+</li><li class="multi-date-item" data-start-year='2026' data-start-month='03' data-start-day='13' data-end-year='2026' data-end-month='03' data-end-day='13'>
+	Friday, March 13, 2026 | 09:00 AM  
+</li><li class="multi-date-item" data-start-year='2026' data-start-month='03' data-start-day='25' data-end-year='2026' data-end-month='03' data-end-day='25'>
+	Wednesday, March 25, 2026 | 09:00 AM  
+</li><li class="multi-date-item" data-start-year='2026' data-start-month='03' data-start-day='26' data-end-year='2026' data-end-month='03' data-end-day='26'>
+	Thursday, March 26, 2026 | 09:00 AM  
+</li><li class="multi-date-item" data-start-year='2026' data-start-month='03' data-start-day='31' data-end-year='2026' data-end-month='03' data-end-day='31'>
+	Tuesday, March 31, 2026 | 09:00 AM  
+</li><li class="multi-date-item" data-start-year='2026' data-start-month='05' data-start-day='27' data-end-year='2026' data-end-month='05' data-end-day='27'>
+	Wednesday, May 27, 2026 | 09:00 AM  
+</li><li class="multi-date-item" data-start-year='2026' data-start-month='06' data-start-day='04' data-end-year='2026' data-end-month='06' data-end-day='04'>
+	Thursday, June 04, 2026 | 09:00 AM  
+</li><li class="multi-date-item" data-start-year='2026' data-start-month='06' data-start-day='10' data-end-year='2026' data-end-month='06' data-end-day='10'>
+	Wednesday, June 10, 2026 | 09:00 AM  
+</li><li class="multi-date-item" data-start-year='2026' data-start-month='06' data-start-day='30' data-end-year='2026' data-end-month='06' data-end-day='30'>
+	Tuesday, June 30, 2026 | 09:00 AM  
+</li><li class="multi-date-item" data-start-year='2026' data-start-month='08' data-start-day='12' data-end-year='2026' data-end-month='08' data-end-day='12'>
+	Wednesday, August 12, 2026 | 06:00 PM  
+</li><li class="multi-date-item" data-start-year='2026' data-start-month='10' data-start-day='01' data-end-year='2026' data-end-month='10' data-end-day='01'>
+	Thursday, October 01, 2026 | 09:00 AM  
+</li></ul></div>
+		        <h2 class="sub-title">Location</h2><p>CITY HALL TRAINING ROOM CH_MZ10_16,&nbsp;100 FORT WORTH TRAIL, FORT WORTH, TEXAS 76102,&nbsp;Fort Worth&nbsp;76115 &nbsp;<a href="https://maps.google.com?q=CITY%20HALL%20TRAINING%20ROOM%20CH_MZ10_16%20100%20FORT%20WORTH%20TRAIL%2C%20FORT%20WORTH%2C%20TEXAS%2076102%20Fort%20Worth%2076115" target="_blank">View Map</a>
+      </p>
+		        <div id="skip-map-container-top" class="skip-map-container rs_skip">
+    <a href='#map-bottom' class="visuallyhidden focusable skip-map-link" id="map-top">Skip to below map</a>
+</div>
+<div class="gmap rs_skip" data-params='{"zoom" : 14, "autoOpenInfoWindow" : false, "hideControls" : true, "autoBounds" : true, "centerPoint" : "32.7528339,-97.3443686"}'>
+    <div class="gmap-marker hidden">
+        <div class="gmap-latlong">
+          32.7528339,-97.3443686
+        </div>
+        <div class="gmap-address">
+          100 FORT WORTH TRAIL, FORT WORTH, TEXAS 76102&nbsp;,
+          Fort Worth&nbsp;76115
+        </div>
+        <div class="gmap-info">
+            <h2>CITY HALL TRAINING ROOM CH_MZ10_16</h2>
+            <p>
+          100 FORT WORTH TRAIL, FORT WORTH, TEXAS 76102&nbsp;,
+          Fort Worth&nbsp;76115</p>
+        </div>
+		<div class="gmap-title">
+	        Disciplinary Hearings 2026
+        </div>
+    </div>
+    <div class="map-canvas gmap-container">
+        <div class="gmap-target">
+           <img src="https://maps.google.com/maps/api/staticmap?center=100 FORT WORTH TRAIL, FORT WORTH, TEXAS 76102,Fort Worth,76115&amp;zoom=14&amp;size=340x202&amp;maptype=road&amp;markers=color:red|32.7528339,-97.3443686&amp;key=AIzaSyCQMCiBpjEFVSIDsr5IR6gUMFDm6QX02k4" alt="Google Map" />
+        </div>
+    </div>
+</div>
+<div id="skip-map-container-bottom" class="skip-map-container rs_skip">
+    <a href='#map-top' class="visuallyhidden focusable skip-map-link" id="map-bottom">Skip to above map</a>
+</div>
+             
+	    
+        
+	</div>
+    <div class="col-xs-12 col-m-4">
+        
+        
+        
+        <div class="side-box consultation-snapshot">
+		
+			<h2 class="side-box-title">
+				Current Hearing Agenda
+			</h2>
+		
+		
+		<div class="side-box-content">
+			<div class="side-box-section body-content">
+				<p><a title="10-01-2026-Canceled1st-Public-Notice-Eric-Muhammad" href="/files/assets/public/v/2/city-secretary/documents/calendar/2026-agendas/appeal-hearing/10-01-2026-canceled-1st-public-notice-eric-muhammad.pdf" target="_self" class="document ext-pdf"><i aria-hidden="true"></i>10-01-2026-Canceled-1st-Public-Notice-Eric-Muhammad.pdf<span class="file-info">(PDF,&nbsp;952KB)</span></a></p>
+
+
+			</div>
+		</div>
+		
+	</div><div class="side-box consultation-snapshot">
+		
+			<h2 class="side-box-title">
+				Previous Hearing Agendas
+			</h2>
+		
+		
+		<div class="side-box-content">
+			<div class="side-box-section body-content">
+				<p><a title="01-28-2026-01 -29-2026 Canceled Ronald Clements Hearing" href="/files/assets/public/v/5/city-secretary/documents/calendar/2026-agendas/appeal-hearing/01-28-2026-01-29-2026-canceled-ronald-clements-hearing.pdf" target="_self" class="document ext-pdf"><i aria-hidden="true"></i>01-28-2026-01 -29-2026 Canceled Ronald Clements Hearing<span class="file-info">(PDF,&nbsp;771KB)</span></a></p>
+<p><a href="/files/assets/public/v/8/city-secretary/documents/calendar/2026-agendas/appeal-hearing/03-12-2026-03-13-2026-ronald-clements-canceled.pdf" target="_self" title="03-12-2026-03-13-2026-Ronald-Clements CANCELED" style="font-size: 0.962em;" class="document ext-pdf"><i aria-hidden="true"></i>03-12-2026-03-13-2026 Canceled Ronald Clements Hearing<span class="file-info">(PDF,&nbsp;671KB)</span></a></p>
+<p><a title="3-26-2026 Paul-Harrison Hearing Canceled" href="/files/assets/public/v/4/city-secretary/documents/calendar/2026-agendas/appeal-hearing/3-26-2026-paul-harrison-hearing-canceled.pdf" target="_self" class="document ext-pdf"><i aria-hidden="true"></i>3-26-2026-Paul-Harrison-Hearing-Canceled.pdf<span class="file-info">(PDF,&nbsp;660KB)</span></a></p>
+<p><a title="03-31-26-Alma-Molina.pdf" href="/files/assets/public/v/1/city-secretary/documents/calendar/2026-agendas/appeal-hearing/03-31-26-alma-molina.pdf" target="_self" class="document ext-pdf"><i aria-hidden="true"></i>03-31-26-Alma-Molina.pdf<span class="file-info">(PDF,&nbsp;155KB)</span></a></p>
+<p><a title="05-27-2026 Martyniuk Hearing" href="/files/assets/public/v/4/city-secretary/documents/calendar/2026-agendas/appeal-hearing/05-27-2026-martyniuk-hearing.pdf" target="_self" class="document ext-pdf"><i aria-hidden="true"></i>05-27-2026 Martyniuk Hearing<span class="file-info">(PDF,&nbsp;229KB)</span></a></p>
+<p><a title="6-4-2026-1st-public-notice-canceled" href="/files/assets/public/v/9/city-secretary/documents/calendar/2026-agendas/appeal-hearing/6-4-2026-1st-public-notice-canceled.pdf" target="_self" class="document ext-pdf"><i aria-hidden="true"></i>6-4-2026-1st-public-notice-canceled<span class="file-info">(PDF,&nbsp;202KB)</span></a></p>
+<p><a title="06-10-2026 Krueger Hearing" href="/files/assets/public/v/4/city-secretary/documents/calendar/2026-agendas/appeal-hearing/06-10-2026-krueger-hearing.pdf" target="_self" class="document ext-pdf"><i aria-hidden="true"></i>06-10-2026 Krueger Hearing<span class="file-info">(PDF,&nbsp;229KB)</span></a></p>
+<p><a title="6-30-2026 1st Public Notice DAndre Williams" href="/files/assets/public/v/2/city-secretary/documents/calendar/2026-agendas/appeal-hearing/6-30-2026-1st-public-notice-dandre-williams.pdf" target="_self" class="document ext-pdf"><i aria-hidden="true"></i>6-30-2026 1st Public Notice DAndre Williams<span class="file-info">(PDF,&nbsp;368KB)</span></a></p>
+<p><a title="08-12-2026 Vega Appeal Hearing canceled" href="/files/assets/public/v/4/city-secretary/documents/calendar/2026-agendas/appeal-hearing/08-12-2026-vega-appeal-hearing-canceled.pdf" target="_self" class="document ext-pdf"><i aria-hidden="true"></i>08-12-2026-Vega-Appeal-Hearing-Canceled.pdf<span class="file-info">(PDF,&nbsp;871KB)</span></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+			</div>
+		</div>
+		
+	</div>
+        
+    </div>
+	<div class="col-xs-12 col-m-8">
+		<div class="grid">
+			<div class="col-xs-12">
+				<div class="categories-list-container"><span role="heading" aria-level="2">Tagged as:</span><ul class="categories-list clearfix">
+	<li><a href="https://www.fortworthtexas.gov/events?dlv_FW%20CL%20Public%20Events%20Listing=(dd_OC Event Categories=Boards%20%26%20Commissions)(dd_OC Composite Date=0d)">Boards & Commissions</a></li></ul></div>
+            </div>
+            
+            
+             
+            
+		</div>
+	</div>
+</div>
+<!--normalTemplateEnd-->
+                            
+                            
+                            
+							            </div>
+						            </div>
+					            </div>
+                        <div class="col-xs-12">
+					            	<div class="share-page-container share-page-link-right share-page-link-small share-page-link-rounded share-page-link-no-labels" data-item-id="51f3576c-c5c7-42d4-ad05-af27da0cdb02" id="share-page-container clearfix">
+                                        <section aria-labelledby="share-page-info-label">
+                                            <span id="share-page-info-label" class="share-page-info">Share</span><ul class="share-page-links no-translate"><li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.fortworthtexas.gov%2fdepartments%2fcitysecretary%2fevents%2fDisciplinary-Hearings-2026" target="{ShareTarget}" class="share-page-link share-page-link-facebook" data-channel="facebook" data-channel-id="1"><i aria-hidden="true"></i><span class="share-page-link-name share-page-link-name-facebook">Facebook</span></a></li><li><a href="https://twitter.com/share?url=https%3a%2f%2fwww.fortworthtexas.gov%2fdepartments%2fcitysecretary%2fevents%2fDisciplinary-Hearings-2026" target="_blank" class="share-page-link share-page-link-x" data-channel="x" data-channel-id="2"><i aria-hidden="true"></i><span class="share-page-link-name share-page-link-name-x">X</span></a></li><li><a href="mailto:?Body=https%3a%2f%2fwww.fortworthtexas.gov%2fdepartments%2fcitysecretary%2fevents%2fDisciplinary-Hearings-2026" target="_self" class="share-page-link share-page-link-email" data-channel="email" data-channel-id="3"><i aria-hidden="true"></i><span class="share-page-link-name share-page-link-name-email">Email</span></a></li><li><a href="#" target="_self" class="share-page-link share-page-link-print" data-channel="print" data-channel-id="5"><i aria-hidden="true"></i><span class="share-page-link-name share-page-link-name-print">Print</span></a></li><li><a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fwww.fortworthtexas.gov%2fdepartments%2fcitysecretary%2fevents%2fDisciplinary-Hearings-2026" target="_blank" class="share-page-link share-page-link-linkedin" data-channel="linkedin" data-channel-id="7"><i aria-hidden="true"></i><span class="share-page-link-name share-page-link-name-linkedin">LinkedIn</span></a></li></ul>
+                                        </section>
+                                    </div></div>
+                            </div>
+                        </div>
+                        <div class="back-to-top-container text-center">
+                            <a href="#body-top" id="back-to-top"><i aria-hidden="true"></i><span class="js-visuallyhidden">Back to top</span></a>
+                        </div>
+                </div>
+            </div><!--groupTemplateEnd-->
+            <footer>
+                
+                    <div class="footer-outer-container footer-first-row">
+                        <div class="footer-container clearfix">
+                            <div class="grid grid-pad">
+                                <div class="col-xs-12 col-s-12 col-m-12 col-lg-12 col-12" >
+
+	
+	
+	<div><div>
+		
+		<h2 style="color:#fff; color:#fff; font-size:2em;border-bottom:1px solid #fff;padding-bottom:0px;">
+			<a href="https://www.fortworthtexas.gov/departments/hr/civil-right-office/title-VI-accessibility-accommodations">Title VI and Accessibility & Accommodations</a>
+		</h2>
+		<div class="body-content" style="color:#fff;">
+				<p>Accommodations are available for residents who have accessibility requirements. To learn more about accessibility accommodations available from the City of Fort Worth, visit the <a href="https://www.fortworthtexas.gov/departments/hr/civil-right-office/title-VI-accessibility-accommodations" target="_self">Accessibility page</a>.&nbsp;
+				<a href="https://fwhrc.wufoo.com/forms/mloqbwn15meruo/" target="_blank" ><i>Request Accommodations  (English) / <a href="https://fwhrc.wufoo.com/forms/m1ta10t10usk60n/" target="_blank">Solicitud de Acomodación (Spanish)</a></i><span class="file-info"></span></a>&nbsp;due to disability. </p>
+			
+
+
+			</div>
+		</div></div>
+<p>&nbsp;</p>
+
+
+	
+
+	
+	<div style="text-align:center;"><div id="google_translate_element"></div>
+<script type="text/javascript">// <![CDATA[
+function googleTranslateElementInit() {
+new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+// ]]></script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript"></script></div>
+
+
+</div><div class="col-xs-12 col-s-6 col-m-3 col-lg-3 about-footer" >
+
+	
+	
+	<h2><a href="https://www.fortworthtexas.gov/about" target="_self"><span style="font-size: 75%;">About Fort Worth</span></a></h2>
+
+
+	
+
+	<ul class="footer-links without-icons ">  <li>
+<a href="https://www.fortworthtexas.gov/departments" target="_self"  >Departments</a>
+</li>
+          <li>
+<a href="https://www.fortworthtexas.gov/policies" target="_self"  >Website Policies</a>
+</li>
+          <li>
+<a href="https://www.fortworthtexas.gov/departments/civil-rights-office/accessibility" target="_self"  >Accessibility</a>
+</li>
+          <li>
+<a href="https://www.fortworth.com/" target="_blank"  >Visitor Information</a>
+</li>
+          <li>
+<a href="https://www.fortworthtexas.gov/departments/communications/records" target="_self"  >Public Information</a>
+</li>
+          <li>
+<a href="https://www.fortworthtexas.gov/Home" target="_self"  >Financial Information</a>
+</li>
+          <li>
+<a href="https://data.fortworthtexas.gov/" target="_blank"  >Open Data</a>
+</li>
+          <li>
+<a href="https://www.fortworthtexas.gov/contact" target="_self"  >Contact & Addresses</a>
+</li>
+          <li>
+<a href="https://www.fortworthtexas.gov/departments/city-directory" target="_self"  >City Directory</a>
+</li>
+          <li>
+<a href="https://outlook.office365.com/owa?realm=fortworthtexas.gov" target="_blank"  >Employee Email</a>
+</li>
+          <li>
+<a href="https://www.fortworthtexas.gov/government/resources/ethics-compliance" target="_blank"  >Ethics Compliance</a>
+</li>
+          <li>
+<a href="https://codelibrary.amlegal.com/codes/ftworth/latest/ftworth_tx/0-0-0-20491#JD_Ch.17Art.I" target="_blank"  >Nondiscrimination Policy</a>
+</li>
+           </ul>
+	
+</div><div class="col-xs-12 col-s-6 col-m-3 col-lg-3 citycouncil-footer" >
+
+	
+	
+	<h2><span style="font-size: 75%;"><a href="https://www.fortworthtexas.gov/government" target="_self">City Council</a></span></h2>
+
+
+	
+
+	<ul class="footer-links without-icons ">  <li>
+<a href="https://docspublished.io/fortworthtexas" target="_blank"  >City Council Meeting and Work Session Agendas</a>
+</li>
+          <li>
+<a href="https://fortworthgov.legistar.com/Calendar.aspx" target="_blank"  >City Council Meeting and Work Session Agendas (Prior to 6/17/2026)</a>
+</li>
+          <li>
+<a href="https://publicdocuments.fortworthtexas.gov/csodocs/?_gl=1*tsfjow*_ga*MTAyMzE2NTk4LjE2NjA5MDY4NDE.*_ga_R90X60M8G9*MTY2MjA0MzcxNi42MC4xLjE2NjIwNDc4NTUuMC4wLjA." target="_blank"  >Council Packet Archived</a>
+</li>
+          <li>
+<a href="https://www.fortworthtexas.gov/government/boards" target="_self"  >Boards, Commissions and Committees</a>
+</li>
+          <li>
+<a href="https://codelibrary.amlegal.com/codes/ftworth/latest/overview" target="_blank"  >City Code & Charter</a>
+</li>
+           </ul>
+	<p>&nbsp;</p>
+
+
+</div><div class="col-xs-12 col-s-6 col-m-3 col-lg-3 publicsafety-footer" >
+
+	
+	
+	<h2><a href="https://www.fortworthtexas.gov/departments/publicsafety" target="_self" alt="Public Safety contact information listed"><span style="font-size: 75%;">Public Safety</span></a></h2>
+
+
+	
+
+	<ul class="footer-links without-icons ">  <li>
+<a href="https://www.fortworthtexas.gov/departments/tpw/stormwater" target="_self"  >Flood Safety & Insurance</a>
+</li>
+          <li>
+<a href="https://knowhat2do.com/" target="_blank"  >KnoWhat2Do in an emergency</a>
+</li>
+          <li>
+<a href="https://apps.fortworthtexas.gov/snap/" target="_blank"  >Special Needs Assistance Plan (SNAP)</a>
+</li>
+           </ul>
+	
+</div><div class="col-xs-12 col-s-6 col-m-3 col-lg-3 business-footer" >
+
+	
+	
+	<h2><a href="https://www.fortworthtexas.gov/business" target="_self"><span style="font-size: 75%;">&nbsp;Business</span></a></h2>
+
+
+	
+
+	<ul class="footer-links without-icons ">  <li>
+<a href="https://www.fortworthtexas.gov/departments/finance/purchasing" target="_self"  >Vendors</a>
+</li>
+          <li>
+<a href="https://www.fortworthtexas.gov/departments/econdev" target="_self"  >Economic Development</a>
+</li>
+          <li>
+<a href="https://www.fortworthtexas.gov/departments/tpw/title-vi" target="_self"  >Title VI</a>
+</li>
+          <li>
+<a href="https://www.fortworthtexas.gov/departments/econdev/bac" target="_self"  >Small Business</a>
+</li>
+          <li>
+<a href="https://gisapps.fortworthtexas.gov/Html5Viewer/?viewer=zoning" target="_blank"  >Zoning & Annexation Map</a>
+</li>
+          <li>
+<a href="https://gisapps.fortworthtexas.gov/Html5Viewer/?viewer=economicdevelopment" target="_blank"  >Incentive Map</a>
+</li>
+           </ul>
+	
+</div><div class="col-xs-12 col-s-12 col-m-12 col-lg-12 getconnected-footer" >
+
+	
+	
+	<p><style>          
+.connected {
+	text-align: center;
+	background-color: #3B5675;
+
+	padding: 25px;
+}
+
+.connected h2 {
+	color: #fff;
+	font-size: 1.75em;
+}
+
+.connected p {
+	font-size:1.25em;
+}
+
+#email {
+	font-size: 1.25em;
+	width: 45%;
+	height: 2em;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.connected button {
+	margin: 1rem 0 0 0;
+	width: 35%;
+	background-color: transparent;
+	border: 3px solid white;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 1.25em;
+	height: 2.25em;
+}
+
+.connected button:hover, .connected button:focus {
+	text-decoration: underline;
+}
+
+.subscription-box {
+	font-size: 1em;
+	padding-top: 15px;
+}
+
+.footer-links >.with-icons >.social-media-links{display:none;}
+
+@media (max-width: 767px) {
+
+	.connected {
+		padding: 15px;
+	}
+	
+	#email {
+		font-size: 1em;
+		width: 100%;
+		height: 2.5em;
+	}
+	
+	.connected button {
+		width: 100%;
+		font-size: 1.25em;
+		height: 2.5em;
+	}
+
+}
+</style>
+
+
+<div class="connected">
+	<h2>Get Connected. Stay Informed.</h2>
+	<p>Get email updates from the City of Fort Worth on the topics you want.</p>	             
+		 <input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="54VRJuJRPdR1xHlt/nlgSizzH5ciuOalY5Job3KkG+HIcMj+RWMYK2eLkTQ0SDWIHgIhixr5856PjAjl1IJfYg==">	              
+	
+	<div class="subscription-box">
+		<p><input placeholder="Enter your email address" aria-label="Search" type="text" name="email" id="email"></p>
+
+		 
+		<button class="btn btn-block btn-lg" type="button" name="commit" onclick="Subscribe()">Subscribe</button>              
+	</div>
+	<br><br>
+	<p><a href="/departments/communications/customercare">Contact</a>,&nbsp;<a href="https://www.fortworthtexas.gov/departments/communications/customercare#address-numbers" >&nbsp;Mailing/Physical Address</a> & <a href="https://www.fortworthtexas.gov/departments/communications/customercare#address-numbers" >Main Number</a>:</p>
+<h3 style="text-align:center;color:#fff;"><b>City Hall, 100 Fort Worth Trail, Fort Worth, TX 76102/817-392-1234</b></h3>
+
+</div>
+<br>
+<script>
+function Subscribe(){
+    var input = document.getElementById('email');
+    var URL = "https://public.govdelivery.com/accounts/TXFTWORTH/subscribers/qualify"
+
+	var mainForm = $("#mainForm");
+
+    mainForm.attr("method", "post");
+    mainForm.attr("action", URL).submit();
+
+    return false;
+}
+</script></p>
+
+
+	
+
+	
+	
+</div>
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="footer-outer-container footer-second-row">
+                    <div class="footer-container clearfix">
+                        <div class="grid grid-pad footer-secondary-links">
+                            <div class="col-xs-12 col-m-7">
+                                
+                                    <div><a href="https://www.fortworthtexas.gov/about" target="_blank"  >About</a>&nbsp;| <a href="https://www.fortworthtexas.gov/policies" target="_blank"  >Copyright & Disclaimer</a>&nbsp;| <a href="https://www.fortworthtexas.gov/sitemap" target="_blank"  >Sitemap</a>&nbsp;| <a href="https://www.fortworthtexas.gov/a-z-index" target="_blank"  >A-Z Index</a>&nbsp;| <a href="https://us.openforms.com/Form/c4fbf986-7585-48fc-ae92-9df4faa00ae7" target="_blank"  >Web suggestions</a>&nbsp;| <a href="https://translate.google.com/?sl=auto&tl=es&op=websites" target="_blank"  >Google Translation of website</a></div>
+                                
+                            </div>
+                            <div class="col-xs-12 col-m-5 powered-by">
+                                <div class="right">
+                                    &copy; 2026 City of Fort Worth&nbsp;|&nbsp;<span class="powered-by">Powered by <a href="https://granicus.com/solution/govaccess/opencities/" target="_blank">Granicus</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="/files/oc-resources/b9015858-988c-48a4-9473-7c193df083e4/JsTextSnippets.js?ocsvclang=en-US" type="text/javascript"></script><script>OpenCitiesResourceStrings["Sys Js Dates Past event dates"] = "Past event dates";OpenCitiesResourceStrings["Sys Js Get Updates"] = "Get updates";</script>
+    
+    
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R90X60M8G9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+/*gtag('config', 'G-R90X60M8G9', {'allow_google_signals': false});*/
+  
+</script>
+
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TS2WDX2');</script>
+<!-- End Google Tag Manager -->
+
+
+<script async src="https://siteimproveanalytics.com/js/siteanalyze_15203328.js"></script>
+    
+    
+
+<script type="text/javascript">
+//<![CDATA[
+window.__TsmHiddenField = $get('ctl04_seamless_script_manager_TSM');//]]>
+</script>
+</form>
+</body>
+</html>
