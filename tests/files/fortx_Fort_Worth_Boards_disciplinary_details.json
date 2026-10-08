@@ -1,0 +1,19 @@
+{
+    "data": {
+        "Title": "Disciplinary Hearings 2026",
+        "Description": "View agendas and meeting details.",
+        "Link": "https://www.fortworthtexas.gov/departments/citysecretary/events/Disciplinary-Hearings-2026",
+        "Image": null,
+        "AltText": null,
+        "Address": {
+            "Venue": "CITY HALL TRAINING ROOM CH_MZ10_16",
+            "Street": "100 FORT WORTH TRAIL, FORT WORTH, TEXAS 76102",
+            "Suburb": "Fort Worth",
+            "PostCode": "76115",
+            "Formatted": "CITY HALL TRAINING ROOM CH_MZ10_16, 100 FORT WORTH TRAIL, FORT WORTH, TEXAS 76102, Fort Worth, 76115"
+        },
+        "AdditionalInfo": [],
+        "IsCancelled": false
+    },
+    "success": true
+}

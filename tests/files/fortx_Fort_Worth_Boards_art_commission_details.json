@@ -1,0 +1,19 @@
+{
+    "data": {
+        "Title": "Fort Worth Art Commission Meeting (FWAC)",
+        "Description": "The Fort Worth Art Commission (FWAC), is to act as an advisory body to the City Council in matters relating to the City of Fort Worth's public art program. View agendas and details of the meeting.",
+        "Link": "https://www.fortworthtexas.gov/departments/citysecretary/events/fw-art-commission-2025",
+        "Image": null,
+        "AltText": null,
+        "Address": {
+            "Venue": "Ella Mae Shambley Library",
+            "Street": "1062 Evans Avenue Fort Worth, TX 76104",
+            "Suburb": "Fort Worth",
+            "PostCode": "76104",
+            "Formatted": "Ella Mae Shambley Library, 1062 Evans Avenue Fort Worth, TX 76104, Fort Worth, 76104"
+        },
+        "AdditionalInfo": [],
+        "IsCancelled": false
+    },
+    "success": true
+}
