@@ -1,8 +1,9 @@
 name: Staging
 
+# GitHub runs this schedule as whoever last changed the cron value; a comment-only edit doesn't re-register it.
 on:
   schedule:
-    - cron: "0 5 * * *"
+    - cron: "2 5 * * *"
   push:
     branches:
       - staging
